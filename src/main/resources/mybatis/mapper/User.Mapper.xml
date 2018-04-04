@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.AssassinG.scsycc.entitys.User.dao.UserDaoImpl">
+
+	<!-- 用户信息表 -->
+	<sql id="t_user"> t_user </sql>
+
+	<resultMap id="beanMap" type="User">
+		<id column="id" property="id" />
+		<result column="create_time" property="createTime" />
+		<result column="update_time" property="updateTime" />
+		<result column="delete_time" property="deleteTime" />
+		<result column="user_name" property="username" />
+	</resultMap>
+	
+	<insert id="insert" parameterType="User" keyProperty="id" useGeneratedKeys="true">
+		insert into <include refid="t_user"/> (create_time, update_time, delete_time, user_name)
+		values (#{createTime}, #{updateTime}, #{deleteTime}, #{username})
+	</insert>
+	
+	<update id="update" parameterType="User">
+		update <include refid="t_user"/>
+		<set>
+			create_time = #{createTime},
+			update_time = #{updateTime},
+			delete_time = #{deleteTime},
+			user_name =  #{username}
+		</set>
+		<where>
+			ID = #{id}
+		</where>
+	</update>
+	
+	
+  	<select id="getById" parameterType="long" resultMap="beanMap">
+    	select * from <include refid="t_user"/> where id = #{id}
+  	</select>
+  	
+  	<select id="findByUserNo" parameterType="string" resultMap="beanMap">
+    	select * from <include refid="t_user"/> where user_name= #{username}
+  	</select>
+  	
+  	<select id="listAll" resultMap="beanMap">
+    	select * from <include refid="t_user"/> order by id
+  	</select>
+  	
+  	<delete id="deleteById" parameterType="long">
+    	delete from <include refid="t_user"/> where id = #{id}
+  	</delete>
+
+	<sql id="condition_sql">
+		<!-- Equal query -->
+		<if test="createTime != null"> and create_time = #{createTime}</if>
+		<if test="updateTime != null"> and update_time = #{updateTime}</if>
+		<if test="deleteTime != null"> and delete_time = #{deleteTime}</if>
+		<!-- Like query -->
+		<if test="username != null and username != ''"> and user_name like CONCAT(CONCAT('%', #{username}), '%')</if>
+	</sql>
+	
+	<select id="listPage" parameterType="java.util.Map" resultMap="beanMap">
+		select * from  
+		<include refid="t_user"/>
+		
+		<where>
+			<include refid="condition_sql" />
+		</where>
+		order by id desc 
+		limit #{pageFirst} , #{pageSize} 
+	</select>
+	
+	<select id="listPageCount" parameterType="java.util.Map" resultType="long">
+		select count(1) from <include refid="t_user"/>
+		<where>
+			<include refid="condition_sql"/>
+		</where>
+	</select>
+	
+</mapper>
