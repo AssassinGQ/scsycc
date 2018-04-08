@@ -2,7 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <bean id="UserDao" class="cn.AssassinG.scsycc.entitys.User.dao.UserDaoImpl">
+    <bean id="UserDao" class="cn.AssassinG.scsycc.entitys.User.dao.UserInfoDaoImpl">
         <property name="sessionTemplate">
             <ref bean="sessionTemplate"/>
         </property>
@@ -10,8 +10,8 @@
             <ref bean="sessionTemplate"/>
         </property>
     </bean>
-    <bean id="Userservices" class="cn.AssassinG.scsycc.entitys.User.biz.UserServices">
-        <property name="userDao">
+    <bean id="Userservices" class="cn.AssassinG.scsycc.entitys.User.biz.UserInfoServices">
+        <property name="userInfoDao">
             <ref bean="UserDao"/>
         </property>
     </bean>

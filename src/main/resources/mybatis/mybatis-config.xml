@@ -37,11 +37,11 @@
 
 	 <!--类型别名是为 Java类型命名一个短的名字。 它只和 XML配置有关,只用来减少类完全 限定名的多余部分-->
 	<typeAliases>
-		<typeAlias alias="User" type="cn.AssassinG.scsycc.entitys.User.entity.User" />
+		<typeAlias alias="UserInfo" type="cn.AssassinG.scsycc.entitys.User.entity.UserInfo" />
 	</typeAliases>
 
 	<mappers>
-		<mapper resource="mybatis/mapper/User.Mapper.xml" />
+		<mapper resource="mybatis/mapper/UserInfo.Mapper.xml" />
 	</mappers>
 
 </configuration>

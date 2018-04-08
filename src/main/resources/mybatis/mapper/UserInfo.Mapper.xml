@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.AssassinG.scsycc.entitys.User.dao.UserInfoDaoImpl">
+
+	<!-- 用户信息表 -->
+	<sql id="t_userinfo"> t_userinfo </sql>
+
+	<resultMap id="beanMap" type="UserInfo">
+		<id column="id" property="id" />
+		<result column="create_time" property="createTime" />
+		<result column="update_time" property="updateTime" />
+		<result column="delete_time" property="deleteTime" />
+		<result column="open_id" property="openID" />
+		<result column="session_key" property="sessionKey" />
+		<result column="union_id" property="unionID" />
+		<result column="phone" property="phone" />
+		<result column="nick_name" property="nickName" />
+		<result column="avatar_url" property="avatarUrl" />
+		<result column="gender" property="gender" />
+		<result column="city" property="city" />
+		<result column="province" property="province" />
+		<result column="country" property="country" />
+        <result column="_language" property="language" />
+        <result column="raw_data" property="rawData" />
+        <result column="signature" property="signature" />
+        <result column="encrypted_data" property="encryptedData" />
+        <result column="iv" property="iv" />
+	</resultMap>
+	
+	<insert id="insert" parameterType="UserInfo" keyProperty="id" useGeneratedKeys="true">
+		insert into <include refid="t_userinfo"/> (create_time, update_time, delete_time, open_id,
+        session_key, union_id, phone, nick_name, avatar_url, gender, city, province, country,
+        _language, raw_data, signature, encrypted_data, iv)
+		values (#{createTime}, #{updateTime}, #{deleteTime}, #{openID}, #{sessionKey}, #{unionID},
+        #{phone}, #{nickName}, #{avatarUrl}, #{gender}, #{city}, #{province}, #{country},
+        #{language}, #{rawData}, #{signature}, #{encryptedData}, #{iv})
+	</insert>
+	
+	<update id="update" parameterType="UserInfo">
+		update <include refid="t_userinfo"/>
+		<set>
+			create_time = #{createTime},
+			update_time = #{updateTime},
+			delete_time = #{deleteTime},
+            open_id = #{openID},
+            session_key = #{sessionKey},
+            union_id = #{unionID},
+            phone = #{phone},
+            nick_name = #{nickName},
+            avatar_url = #{avatarUrl},
+            gender = #{gender},
+            city = #{city},
+            province = #{province},
+            country = #{country},
+            _language = #{language},
+            raw_data = #{rawData},
+            signature = #{signature},
+            encrypted_data = #{encryptedData},
+            iv = #{iv}
+		</set>
+		<where>
+			ID = #{id}
+		</where>
+	</update>
+	
+	
+  	<select id="getById" parameterType="long" resultMap="beanMap">
+    	select * from <include refid="t_userinfo"/> where id = #{id}
+  	</select>
+  	
+  	<select id="listAll" resultMap="beanMap">
+    	select * from <include refid="t_userinfo"/> order by id
+  	</select>
+  	
+  	<delete id="deleteById" parameterType="long">
+    	delete from <include refid="t_userinfo"/> where id = #{id}
+  	</delete>
+
+	<!--<sql id="condition_sql">-->
+		<!--&lt;!&ndash; Equal query &ndash;&gt;-->
+		<!--<if test="createTime != null"> and create_time = #{createTime}</if>-->
+		<!--<if test="updateTime != null"> and update_time = #{updateTime}</if>-->
+		<!--<if test="deleteTime != null"> and delete_time = #{deleteTime}</if>-->
+		<!--&lt;!&ndash; Like query &ndash;&gt;-->
+		<!--<if test="username != null and username != ''"> and user_name like CONCAT(CONCAT('%', #{username}), '%')</if>-->
+	<!--</sql>-->
+	<!---->
+	<!--<select id="listPage" parameterType="java.util.Map" resultMap="beanMap">-->
+		<!--select * from  -->
+		<!--<include refid="t_userinfo"/>-->
+		<!---->
+		<!--<where>-->
+			<!--<include refid="condition_sql" />-->
+		<!--</where>-->
+		<!--order by id desc -->
+		<!--limit #{pageFirst} , #{pageSize} -->
+	<!--</select>-->
+	<!---->
+	<!--<select id="listPageCount" parameterType="java.util.Map" resultType="long">-->
+		<!--select count(1) from <include refid="t_userinfo"/>-->
+		<!--<where>-->
+			<!--<include refid="condition_sql"/>-->
+		<!--</where>-->
+	<!--</select>-->
+	
+</mapper>

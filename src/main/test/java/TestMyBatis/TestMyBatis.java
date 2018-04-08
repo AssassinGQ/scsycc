@@ -1,7 +1,7 @@
 package TestMyBatis;
 
-import cn.AssassinG.scsycc.entitys.User.biz.UserServices;
-import cn.AssassinG.scsycc.entitys.User.entity.User;
+import cn.AssassinG.scsycc.entitys.User.biz.UserInfoServices;
+import cn.AssassinG.scsycc.entitys.User.entity.UserInfo;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,11 +19,11 @@ public class TestMyBatis {
     @Test
     public void test(){
         ApplicationContext ctx = new ClassPathXmlApplicationContext(new String[]{"spring/spring-mybatis.xml", "spring/beans/UserServiceImpl.xml"});
-        UserServices userServices = (UserServices)ctx.getBean("Userservices");
-        User user = new User();
-        user.setUsername("duyanting");
-        user.setCreateTime(new Date());
-        user.setUpdateTime(new Date());
-        logger.info("Inserted id: "+userServices.create(user));
+        UserInfoServices userInfoServices = (UserInfoServices)ctx.getBean("Userservices");
+        UserInfo userinfo = new UserInfo();
+        userinfo.setNickName("duyanting");
+        userinfo.setCreateTime(new Date());
+        userinfo.setUpdateTime(new Date());
+        logger.info("Inserted id: "+ userInfoServices.create(userinfo));
     }
 }

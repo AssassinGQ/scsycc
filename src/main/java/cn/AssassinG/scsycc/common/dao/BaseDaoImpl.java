@@ -16,10 +16,10 @@ public class BaseDaoImpl<T extends BaseEntity> extends SqlSessionDaoSupport impl
     public static final String SQL_BATCH_UPDATE = "batchUpdate";
     public static final String SQL_GET_BY_ID = "getById";
     public static final String SQL_DELETE_BY_ID = "deleteById";
-    public static final String SQL_LIST_PAGE = "listPage";
-    public static final String SQL_LIST_PAGE_COUNT = "listPageCount";
-    public static final String SQL_LIST_BY = "listBy";
-    public static final String SQL_COUNT_BY_PAGE_PARAM = "countByPageParam"; // 根据当前分页参数进行统计
+//    public static final String SQL_LIST_PAGE = "listPage";
+//    public static final String SQL_LIST_PAGE_COUNT = "listPageCount";
+//    public static final String SQL_LIST_BY = "listBy";
+//    public static final String SQL_COUNT_BY_PAGE_PARAM = "countByPageParam"; // 根据当前分页参数进行统计
 
     private SqlSessionTemplate sessionTemplate;
     public SqlSessionTemplate getSessionTemplate() {
@@ -94,20 +94,20 @@ public class BaseDaoImpl<T extends BaseEntity> extends SqlSessionDaoSupport impl
         return (int) sessionTemplate.delete(getStatement(SQL_DELETE_BY_ID), id);
     }
 
-    public T getBy(Map<String, Object> paramMap) {
-        if (paramMap == null || paramMap.isEmpty()) {
-            return null;
-        }
-
-        return sessionTemplate.selectOne(getStatement(SQL_LIST_BY), paramMap);
-    }
-
-    public List<T> listBy(Map<String, Object> paramMap) {
-        if (paramMap == null || paramMap.isEmpty()) {
-            return null;
-        }
-        return sessionTemplate.selectList(getStatement(SQL_LIST_BY), paramMap);
-    }
+//    public T getBy(Map<String, Object> paramMap) {
+//        if (paramMap == null || paramMap.isEmpty()) {
+//            return null;
+//        }
+//
+//        return sessionTemplate.selectOne(getStatement(SQL_LIST_BY), paramMap);
+//    }
+//
+//    public List<T> listBy(Map<String, Object> paramMap) {
+//        if (paramMap == null || paramMap.isEmpty()) {
+//            return null;
+//        }
+//        return sessionTemplate.selectList(getStatement(SQL_LIST_BY), paramMap);
+//    }
 
     public String getStatement(String sqlId) {
         String name = this.getClass().getName();
