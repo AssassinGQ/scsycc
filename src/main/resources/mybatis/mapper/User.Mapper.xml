@@ -10,27 +10,76 @@
 		<result column="create_time" property="createTime" />
 		<result column="update_time" property="updateTime" />
 		<result column="delete_time" property="deleteTime" />
+        <result column="is_deleted" property="isDeleted" />
 		<result column="user_name" property="username" />
+        <result column="_password" property="password" />
 	</resultMap>
 	
 	<insert id="insert" parameterType="User" keyProperty="id" useGeneratedKeys="true">
-		insert into <include refid="t_user"/> (create_time, update_time, delete_time, user_name)
-		values (#{createTime}, #{updateTime}, #{deleteTime}, #{username})
+		insert into <include refid="t_user"/> (create_time, update_time, delete_time, is_deleted, user_name, _password)
+		values (#{createTime}, #{updateTime}, #{deleteTime}, #{isDeleted}, #{username}, #{password})
+	</insert>
+
+	<insert id="batchInsert" parameterType="List" keyProperty="id" useGeneratedKeys="true">
+		insert into <include refid="t_user"/> (create_time, update_time, delete_time, is_deleted, user_name, _password)
+		values
+        <foreach collection="list" item="obj" separator=",">
+            (#{obj.createTime}, #{obj.updateTime}, #{obj.deleteTime}, #{obj.isDeleted}, #{obj.username}, #{obj.password})
+        </foreach>
 	</insert>
 	
 	<update id="update" parameterType="User">
 		update <include refid="t_user"/>
 		<set>
-			create_time = #{createTime},
-			update_time = #{updateTime},
-			delete_time = #{deleteTime},
-			user_name =  #{username}
+			update_time = now(),
+			user_name =  #{username},
+            _password =  #{password}
 		</set>
 		<where>
 			ID = #{id}
 		</where>
 	</update>
-	
+
+    <update id="batchUpdate" parameterType="List">
+        update <include refid="t_user"/>
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="update_time =case" suffix="end,">
+                <foreach collection="list" item="item">
+                    when id=#{item.id} then now()
+                </foreach>
+            </trim>
+            <trim prefix="user_name =case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.username!=null">
+                        when id=#{item.id} then #{item.username}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="_password =case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.password!=null">
+                        when id=#{item.id} then #{item.password}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        <where>
+            <foreach collection="list" separator="or" item="item">
+                id=#{item.id}
+            </foreach>
+        </where>
+    </update>
+
+    <update id="delete" parameterType="User">
+        update <include refid="t_user"/>
+        <set>
+            delete_time = now(),
+            is_deleted =  true
+        </set>
+        <where>
+            ID = #{id}
+        </where>
+    </update>
 	
   	<select id="getById" parameterType="long" resultMap="beanMap">
     	select * from <include refid="t_user"/> where id = #{id}
@@ -43,10 +92,6 @@
   	<select id="listAll" resultMap="beanMap">
     	select * from <include refid="t_user"/> order by id
   	</select>
-  	
-  	<delete id="deleteById" parameterType="long">
-    	delete from <include refid="t_user"/> where id = #{id}
-  	</delete>
 
 	<sql id="condition_sql">
 		<!-- Equal query -->

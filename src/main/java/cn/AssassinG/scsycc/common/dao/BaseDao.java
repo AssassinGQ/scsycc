@@ -15,6 +15,7 @@ public interface BaseDao<T> {
     int update(List<T> list);
     T getById(long id);
     int deleteById(long id);
+    int delete(T entity);
     public T getBy(Map<String, Object> paramMap);
     public List<T> listBy(Map<String, Object> paramMap);
 }

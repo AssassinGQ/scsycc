@@ -8,6 +8,7 @@ public class BaseEntity implements Serializable {
     private Date createTime;
     private Date updateTime;
     private Date deleteTime;
+    private boolean isDeleted;
 
     public Long getId() {
         return id;
@@ -39,5 +40,13 @@ public class BaseEntity implements Serializable {
 
     public void setDeleteTime(Date deleteTime) {
         this.deleteTime = deleteTime;
+    }
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
     }
 }

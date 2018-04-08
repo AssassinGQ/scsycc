@@ -16,6 +16,7 @@ public class BaseDaoImpl<T extends BaseEntity> extends SqlSessionDaoSupport impl
     public static final String SQL_BATCH_UPDATE = "batchUpdate";
     public static final String SQL_GET_BY_ID = "getById";
     public static final String SQL_DELETE_BY_ID = "deleteById";
+    public static final String SQL_DELETE = "delete";
     public static final String SQL_LIST_PAGE = "listPage";
     public static final String SQL_LIST_PAGE_COUNT = "listPageCount";
     public static final String SQL_LIST_BY = "listBy";
@@ -60,7 +61,6 @@ public class BaseDaoImpl<T extends BaseEntity> extends SqlSessionDaoSupport impl
             //throw BizException.DB_INSERT_RESULT_0.newInstance("数据库操作,insert返回0.{%s}", getStatement(SQL_INSERT));
             throw new RuntimeException("数据库insert操作返回0");
         }
-
         return result;
     }
 
@@ -94,11 +94,19 @@ public class BaseDaoImpl<T extends BaseEntity> extends SqlSessionDaoSupport impl
         return (int) sessionTemplate.delete(getStatement(SQL_DELETE_BY_ID), id);
     }
 
+    public int delete(T entity) {
+        int result = sessionTemplate.update(getStatement(SQL_DELETE), entity);
+        if (result <= 0) {
+            //throw BizException.DB_UPDATE_RESULT_0.newInstance("数据库操作,update返回0.{%s}", getStatement(SQL_UPDATE));
+            throw new RuntimeException("数据库delete操作返回0");
+        }
+        return result;
+    }
+
     public T getBy(Map<String, Object> paramMap) {
         if (paramMap == null || paramMap.isEmpty()) {
             return null;
         }
-
         return sessionTemplate.selectOne(getStatement(SQL_LIST_BY), paramMap);
     }
 
