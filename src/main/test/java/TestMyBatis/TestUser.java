@@ -1,7 +1,8 @@
 package TestMyBatis;
 
+import cn.AssassinG.scsycc.common.page.PageBean;
+import cn.AssassinG.scsycc.common.page.PageParam;
 import cn.AssassinG.scsycc.entitys.User.biz.UserServices;
-import cn.AssassinG.scsycc.entitys.User.dao.UserDao;
 import cn.AssassinG.scsycc.entitys.User.dao.UserDaoImpl;
 import cn.AssassinG.scsycc.entitys.User.entity.User;
 import org.apache.log4j.Logger;
@@ -12,15 +13,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import javax.jws.soap.SOAPBinding;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:spring/spring-mybatis.xml"})
-public class TestMyBatis {
-    private static Logger logger = Logger.getLogger(TestMyBatis.class);
+public class TestUser {
+    private static Logger logger = Logger.getLogger(TestUser.class);
     private ApplicationContext ctx = new ClassPathXmlApplicationContext(new String[]{"spring/spring-mybatis.xml", "spring/beans/UserServiceImpl.xml"});
     private UserServices userServices = (UserServices)ctx.getBean("Userservices");
     private UserDaoImpl userDao = (UserDaoImpl)ctx.getBean("UserDao");
@@ -77,5 +75,44 @@ public class TestMyBatis {
     public void testDelete(){
         User user = userDao.getById(1);
         logger.info("Deleted "+userDao.delete(user)+" items");
+    }
+
+    @Test
+    public void testListAll(){
+        List<User> users = userDao.listAll();
+        for(int i = 0; i < users.size(); i++)
+            logger.info("Item"+i+":"+users.get(i));
+    }
+
+    @Test
+    public void testGetBy(){
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put("pageFirst", 2);
+        paramMap.put("pageSize", 2);
+        paramMap.put("isDeleted", true);
+        logger.info(userDao.getBy(paramMap));
+    }
+
+    @Test
+    public void testListBy(){
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put("pageFirst", 2);
+        paramMap.put("pageSize", 2);
+        paramMap.put("isDeleted", true);
+        List<User> users = userDao.listBy(paramMap);
+        for(int i = 0; i < users.size(); i++)
+            logger.info("Item"+i+":"+users.get(i));
+    }
+
+    @Test
+    public void testListPage(){
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put("isDeleted", false);
+        PageParam pageParam = new PageParam(2, 2);
+        PageBean<User> pageBean = userDao.listPage(pageParam, paramMap);
+        logger.info(pageBean);
+        List<User> users = pageBean.getRecordList();
+        for(int i = 0; i < users.size(); i++)
+            logger.info("Item"+i+":"+users.get(i));
     }
 }

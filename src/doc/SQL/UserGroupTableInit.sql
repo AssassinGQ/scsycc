@@ -5,6 +5,7 @@ create table t_usergroup (
   create_time   DATETIME   NOT NULL DEFAULT now()  COMMENT '创建时间',
   update_time   DATETIME   NOT NULL DEFAULT now()  COMMENT '最后修改时间',
   delete_time   DATETIME COMMENT '删除时间',
+  is_deleted   BOOLEAN NOT NULL DEFAULT false COMMENT '数据是否已经删除',
   usergroup_name  VARCHAR(20) COMMENT '用户组名称',
   father_group_id BIGINT(20) COMMENT '父用户组id',
   PRIMARY KEY (id)

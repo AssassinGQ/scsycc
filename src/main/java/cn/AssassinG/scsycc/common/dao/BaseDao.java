@@ -1,5 +1,7 @@
 package cn.AssassinG.scsycc.common.dao;
 
+import cn.AssassinG.scsycc.common.page.PageBean;
+import cn.AssassinG.scsycc.common.page.PageParam;
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -16,6 +18,8 @@ public interface BaseDao<T> {
     T getById(long id);
     int deleteById(long id);
     int delete(T entity);
+    public List<T> listAll();
     public T getBy(Map<String, Object> paramMap);
     public List<T> listBy(Map<String, Object> paramMap);
+    public PageBean<T> listPage(PageParam pageParam, Map<String, Object> paramMap);
 }
