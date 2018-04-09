@@ -48,6 +48,10 @@
 	<mappers>
 		<mapper resource="mybatis/mapper/User.Mapper.xml" />
         <mapper resource="mybatis/mapper/Role.Mapper.xml" />
+		<mapper resource="mybatis/mapper/UserGroup.Mapper.xml" />
+        <mapper resource="mybatis/mapper/UserRole.Mapper.xml" />
+        <mapper resource="mybatis/mapper/UserGroupRole.Mapper.xml" />
+        <mapper resource="mybatis/mapper/UserGroupUser.Mapper.xml" />
 	</mappers>
 
 </configuration>

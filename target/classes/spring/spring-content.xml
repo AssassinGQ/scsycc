@@ -24,5 +24,4 @@
 
     <import resource="spring-mybatis.xml" />
     <import resource="beans/UserServiceImpl.xml" />
-    <import resource="beans/RoleServiceImpl.xml" />
 </beans>

@@ -18,7 +18,7 @@ import java.util.*;
 @ContextConfiguration(locations = {"classpath:spring/spring-mybatis.xml"})
 public class TestRole {
     private static Logger logger = Logger.getLogger(TestRole.class);
-    private ApplicationContext ctx = new ClassPathXmlApplicationContext(new String[]{"spring/spring-mybatis.xml", "spring/beans/RoleServiceImpl.xml"});
+    private ApplicationContext ctx = new ClassPathXmlApplicationContext("spring/spring-mybatis.xml", "spring/beans/UserServiceImpl.xml");
     private RoleDaoImpl roleDao = (RoleDaoImpl)ctx.getBean("RoleDao");
     @Test
     public void testInsert(){

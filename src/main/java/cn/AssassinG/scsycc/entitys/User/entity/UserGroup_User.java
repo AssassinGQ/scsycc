@@ -3,25 +3,25 @@ package cn.AssassinG.scsycc.entitys.User.entity;
 import cn.AssassinG.scsycc.common.entity.BaseEntity;
 
 public class UserGroup_User extends BaseEntity {
-    private Long usergroup_id;
-    private Long user_id;
+    private Long UserGroupId;
+    private Long UserId;
 
     public UserGroup_User() {
     }
 
-    public Long getUsergroup_id() {
-        return usergroup_id;
+    public Long getUserGroupId() {
+        return UserGroupId;
     }
 
-    public void setUsergroup_id(Long usergroup_id) {
-        this.usergroup_id = usergroup_id;
+    public void setUserGroupId(Long userGroupId) {
+        UserGroupId = userGroupId;
     }
 
-    public Long getUser_id() {
-        return user_id;
+    public Long getUserId() {
+        return UserId;
     }
 
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
+    public void setUserId(Long userId) {
+        UserId = userId;
     }
 }
