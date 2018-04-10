@@ -74,12 +74,25 @@
         update <include refid="t_user"/>
         <set>
             delete_time = now(),
+			update_time = now(),
             is_deleted =  true
         </set>
         <where>
             ID = #{id}
         </where>
     </update>
+
+	<update id="deleteById" parameterType="long">
+		update <include refid="t_user"/>
+		<set>
+			delete_time = now(),
+			update_time = now(),
+			is_deleted =  true
+		</set>
+		<where>
+			ID = #{id}
+		</where>
+	</update>
 	
   	<select id="getById" parameterType="long" resultMap="beanMap">
     	select * from <include refid="t_user"/> where id = #{id}

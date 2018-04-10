@@ -65,6 +65,19 @@
         update <include refid="t_role"/>
         <set>
             delete_time = now(),
+            update_time = now(),
+            is_deleted =  true
+        </set>
+        <where>
+            ID = #{id}
+        </where>
+    </update>
+
+    <update id="deleteById" parameterType="long">
+        update <include refid="t_role"/>
+        <set>
+            delete_time = now(),
+            update_time = now(),
             is_deleted =  true
         </set>
         <where>

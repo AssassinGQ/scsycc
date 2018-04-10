@@ -19,7 +19,11 @@ public class UserServices {
     }
 
     public User getById(Long userId) {
-        return userDao.getById(userId);
+        User user = userDao.getById(userId);
+        if(user.isDeleted())
+            return null;
+        else
+            return user;
     }
 
     public void deleteUserById(long userId) {

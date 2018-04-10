@@ -76,6 +76,11 @@ public class TestRole {
     }
 
     @Test
+    public void testDeleteById(){
+        logger.info("Deleted "+roleDao.deleteById(3)+" items");
+    }
+
+    @Test
     public void testListAll(){
         List<Role> roles = roleDao.listAll();
         for(int i = 0; i < roles.size(); i++)
