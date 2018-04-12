@@ -17,14 +17,14 @@
 
     <insert id="insert" parameterType="UserGroup" keyProperty="id" useGeneratedKeys="true">
         insert into <include refid="t_usergroup"/> (create_time, update_time, delete_time, is_deleted, usergroup_name, father_group_id)
-        values (now(), #{updateTime}, #{deleteTime}, #{isDeleted}, #{UserGroupName}, #{FatherGroupId})
+        values (now(), now(), NULL, FALSE, #{UserGroupName}, #{FatherGroupId})
     </insert>
 
     <insert id="batchInsert" parameterType="List" keyProperty="id" useGeneratedKeys="true">
         insert into <include refid="t_usergroup"/> (create_time, update_time, delete_time, is_deleted, usergroup_name, father_group_id)
         values
         <foreach collection="list" item="obj" separator=",">
-            (now(), #{obj.updateTime}, #{obj.deleteTime}, #{obj.isDeleted}, #{obj.UserGroupName}, #{obj.FatherGroupId})
+            (now(), now(), NULL, FALSE, #{obj.UserGroupName}, #{obj.FatherGroupId})
         </foreach>
     </insert>
 

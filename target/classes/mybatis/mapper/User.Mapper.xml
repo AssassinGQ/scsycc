@@ -24,7 +24,7 @@
 		insert into <include refid="t_user"/> (create_time, update_time, delete_time, is_deleted, user_name, _password)
 		values
         <foreach collection="list" item="obj" separator=",">
-            (now(), #{obj.updateTime}, #{obj.deleteTime}, #{obj.isDeleted}, #{obj.username}, #{obj.password})
+            (now(), now(), NULL, FALSE, #{obj.username}, #{obj.password})
         </foreach>
 	</insert>
 	

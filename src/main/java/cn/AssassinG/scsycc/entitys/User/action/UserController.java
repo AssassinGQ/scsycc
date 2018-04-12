@@ -15,28 +15,51 @@ public class UserController {
     private UserServices userServices;
     @RequestMapping(value = "/Reg", method = RequestMethod.GET)//注册页面
     public String toReg(ModelMap model){
-//        model.put("hobbyList", new String[]{"Swim", "Run"});
+        model.put("registe_info", "");
         return "register";
     }
 
     @RequestMapping(value = "/Reg", method = RequestMethod.POST)//提交注册
     public String doReg(User user, ModelMap model){
         model.put("User", user);
-        userServices.create(user);
-        return "forward:/WEB-INF/user/show.jsp";
+        if(user.getUsername() == null || user.getUsername().isEmpty()){
+            model.put("registe_info", "请输入用户名");
+            return "register";
+        }
+        if(user.getPassword() == null || user.getPassword().isEmpty()){
+            model.put("registe_info", "请输入密码");
+            return "register";
+        }
+        User p_user = userServices.findUserByUname(user.getUsername());
+        if(p_user == null){
+            userServices.create(user);
+            return "redirect:/user/Login";
+        }else{
+            model.put("registe_info", "重复的用户名");
+            return "register";
+        }
     }
 
     @RequestMapping(value="/Login", method = RequestMethod.GET)
     public String toLogin(ModelMap model){
-        System.out.println("In UserController-toLogin");
+        model.put("login_info", "");
         return "login";
     }
 
     @RequestMapping(value="/Login", method = RequestMethod.POST)
     public String doLogin(User user, ModelMap model){
         model.put("User", user);
-        System.out.println("In UserController-doLogin, User,username="+user.getUsername());
-        return "success";
+        User p_user = userServices.findUserByUname(user.getUsername());
+        if(p_user == null){
+            model.put("login_info", "查无此用户");
+            return "login";
+        }
+        if(p_user.getPassword().equals(user.getPassword()))
+            return "success";
+        else {
+            model.put("login_info", "密码错误");
+            return "login";
+        }
     }
 
 

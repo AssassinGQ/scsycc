@@ -17,14 +17,14 @@
 
     <insert id="insert" parameterType="UserRole" keyProperty="id" useGeneratedKeys="true">
         insert into <include refid="t_userrole"/> (create_time, update_time, delete_time, is_deleted, user_id, role_id)
-        values (now(), #{updateTime}, #{deleteTime}, #{isDeleted}, #{UserId}, #{RoleId})
+        values (now(), now(), NULL, FALSE, #{UserId}, #{RoleId})
     </insert>
 
     <insert id="batchInsert" parameterType="List" keyProperty="id" useGeneratedKeys="true">
         insert into <include refid="t_userrole"/> (create_time, update_time, delete_time, is_deleted, user_id, role_id)
         values
         <foreach collection="list" item="obj" separator=",">
-            (now(), #{obj.updateTime}, #{obj.deleteTime}, #{obj.isDeleted}, #{obj.UserId}, #{obj.RoleId})
+            (now(), now(), NULL, FALSE, #{obj.UserId}, #{obj.RoleId})
         </foreach>
     </insert>
 

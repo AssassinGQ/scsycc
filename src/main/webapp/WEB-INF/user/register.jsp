@@ -10,6 +10,9 @@
             <td><input type="password" name="password"></td>
         </tr>
         <tr>
+            <td><h5>${registe_info}</h5></td>
+        </tr>
+        <tr>
             <td></td>
             <td><input type="submit" value="注册"></td>
         </tr>

@@ -121,8 +121,9 @@ public class TestUser {
     public void testCreate(){
         User user = new User();
         user.setUsername("duyanting");
-        user.setCreateTime(new Date());
-        user.setUpdateTime(new Date());
+        user.setPassword("123456");
+//        user.setCreateTime(new Date());
+//        user.setUpdateTime(new Date());
         logger.info("Inserted id: "+userServices.create(user));
     }
 }
