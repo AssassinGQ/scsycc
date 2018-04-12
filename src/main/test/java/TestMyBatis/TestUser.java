@@ -26,9 +26,10 @@ public class TestUser {
     public void testInsert(){
         User user = new User();
         user.setUsername("duyanting");
-        user.setCreateTime(new Date());
-        user.setUpdateTime(new Date());
-        logger.info("Inserted id: "+userServices.create(user));
+        user.setPassword("d123456");
+//        user.setCreateTime(new Date());
+//        user.setUpdateTime(new Date());
+        logger.info("Inserted id: "+userDao.insert(user));
     }
 
     @Test
@@ -114,5 +115,14 @@ public class TestUser {
         List<User> users = pageBean.getRecordList();
         for(int i = 0; i < users.size(); i++)
             logger.info("Item"+i+":"+users.get(i));
+    }
+
+    @Test
+    public void testCreate(){
+        User user = new User();
+        user.setUsername("duyanting");
+        user.setCreateTime(new Date());
+        user.setUpdateTime(new Date());
+        logger.info("Inserted id: "+userServices.create(user));
     }
 }

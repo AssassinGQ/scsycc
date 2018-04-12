@@ -15,6 +15,7 @@ public class UserServices {
     }
 
     public long create(User user) {
+        System.out.println("In UserService :"+user);
         return userDao.insert(user);
     }
 

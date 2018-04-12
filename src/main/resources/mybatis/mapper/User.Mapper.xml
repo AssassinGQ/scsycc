@@ -17,7 +17,7 @@
 	
 	<insert id="insert" parameterType="User" keyProperty="id" useGeneratedKeys="true">
 		insert into <include refid="t_user"/> (create_time, update_time, delete_time, is_deleted, user_name, _password)
-		values (now(), #{updateTime}, #{deleteTime}, #{isDeleted}, #{username}, #{password})
+		values (now(), now(), NULL , FALSE , #{username}, #{password})
 	</insert>
 
 	<insert id="batchInsert" parameterType="List" keyProperty="id" useGeneratedKeys="true">

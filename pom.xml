@@ -7,6 +7,9 @@
   <version>1.0-SNAPSHOT</version>
   <name>scsycc Maven Webapp</name>
   <url>http://maven.apache.org</url>
+  <build>
+    <finalName>scsycc</finalName>
+  </build>
 
   <properties>
     <spring.version>5.0.4.RELEASE</spring.version>
@@ -161,8 +164,4 @@
       <version>1.9</version>
     </dependency>
   </dependencies>
-
-  <build>
-    <finalName>scsycc</finalName>
-  </build>
 </project>
