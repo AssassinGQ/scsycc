@@ -17,6 +17,10 @@
             <!--</list>-->
         <!--</property>-->
     <!--</bean>-->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="spring.messages.messages" />
+        <property name="useCodeAsDefaultMessage" value="true" />
+    </bean>
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/user/"/>
         <property name="suffix" value=".jsp"/>

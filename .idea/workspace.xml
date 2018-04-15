@@ -6,35 +6,15 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b2e9600-138b-4d4a-baf5-eae15b0250f4" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e79e7c53-052b-4e6c-bfcc-b6a7314605df.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/e79e7c53-052b-4e6c-bfcc-b6a7314605df.xml" afterDir="false" />
+    <list default="true" id="8b2e9600-138b-4d4a-baf5-eae15b0250f4" name="Default" comment="进度推进&#10;1.设计了一个简单的用户注册登录功能&#10;2.修改了Entity：User包中所有Entity的mybatis XML映射文件的insert语句，createTime，updateTime，deleteTime和isDeleted不在从JavaBean属性获取，而是直接使用初始化值：now(),now(),null,false&#10;3.尝试了controller向jsp传值，但需要页面刷新一下才能将值更新到view，这里考虑下次改为ajax，并将传值的字符串改成能够适应国际化&#10;4.发现了一个问题：jdbc.properties配置时，url driver username password作为key时报错，使用jdbc.driver jdbc.url jdbc.username jdbc.password不报错。没找到错误原因，网上说是编写jdbc.properties文件时，key的名称不能与数据库表中的字段有重复，重复了就会导致上述错误">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/spring/messages/messages_en.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/spring/messages/messages_zh.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/rc-web-boss.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/rc-web-boss.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scsycc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/scsycc.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/action/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/action/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/jdbc.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/Role.Mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/Role.Mapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/User.Mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/User.Mapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/UserGroup.Mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/UserGroup.Mapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/UserGroupRole.Mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/UserGroupRole.Mapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/UserGroupUser.Mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/UserGroupUser.Mapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/UserRole.Mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/UserRole.Mapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/spring/spring-mybatis.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/spring/spring-mybatis.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/test/java/TestMyBatis/TestUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/java/TestMyBatis/TestUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/spring/spring-mvc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/spring/spring-mvc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/user/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/user/login.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/user/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/user/register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/cn/AssassinG/scsycc/common/dao/BaseDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/AssassinG/scsycc/common/dao/BaseDaoImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/cn/AssassinG/scsycc/entitys/User/action/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/AssassinG/scsycc/entitys/User/action/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jdbc.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mapper/Role.Mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/Role.Mapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mapper/User.Mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/User.Mapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/spring/spring-mybatis.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/spring/spring-mybatis.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/TestMyBatis/TestUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/TestMyBatis/TestUser.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -63,99 +43,47 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="UserServices.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/biz/UserServices.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="736">
-              <caret line="37" column="30" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
-              <folding>
-                <element signature="e#908#909#0" expanded="true" />
-                <element signature="e#963#964#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserDao.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/dao/UserDao.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserDaoImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/dao/UserDaoImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="UserController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/action/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="445">
-              <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+            <state relative-caret-position="437">
+              <caret line="34" column="38" lean-forward="true" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="success.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/user/success.jsp">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="login.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/user/login.jsp">
+      <file leaf-file-name="web.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="26" />
+            <state relative-caret-position="1219">
+              <caret line="53" column="46" selection-start-line="53" selection-start-column="46" selection-end-line="53" selection-end-column="46" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="register.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/user/register.jsp">
+      <file leaf-file-name="spring-content.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-content.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="12" column="34" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
+            <state relative-caret-position="435">
+              <caret line="24" column="32" lean-forward="true" selection-start-line="24" selection-start-column="32" selection-end-line="24" selection-end-column="32" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestRole.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/test/java/TestMyBatis/TestRole.java">
+      <file leaf-file-name="spring-mybatis.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-mybatis.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="38" column="40" selection-start-line="38" selection-start-column="40" selection-end-line="38" selection-end-column="40" />
+            <state relative-caret-position="-46">
+              <caret line="13" column="42" selection-start-line="13" selection-start-column="42" selection-end-line="13" selection-end-column="42" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestUser.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/test/java/TestMyBatis/TestUser.java">
+      <file leaf-file-name="spring-mvc.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-mvc.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1104">
-              <caret line="28" column="36" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
-              <folding>
-                <element signature="e#1868#1874#0" expanded="true" />
-                <element signature="e#2537#2543#0" expanded="true" />
-                <element signature="e#3101#3117#0" expanded="true" />
-                <element signature="e#3380#3396#0" expanded="true" />
-                <element signature="e#3766#3782#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BaseDaoImpl.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/common/dao/BaseDaoImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="43" selection-start-line="43" selection-end-line="43" />
+            <state relative-caret-position="280">
+              <caret line="21" column="64" selection-start-line="21" selection-start-column="64" selection-end-line="21" selection-end-column="64" />
             </state>
           </provider>
         </entry>
@@ -235,7 +163,6 @@
         <option value="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/entity/UserGroup.java" />
         <option value="$PROJECT_DIR$/src/main/resources/spring/beans/UserGroupServiceImpl.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/spring/beans/UserServiceImpl.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/spring/spring-content.xml" />
         <option value="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/entity/User_Role.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/entity/UserGroup_Role.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mybatis/mybatis-config.xml" />
@@ -260,10 +187,14 @@
         <option value="$PROJECT_DIR$/src/main/resources/mybatis/mapper/UserGroupRole.Mapper.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/mybatis/mapper/UserRole.Mapper.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/mybatis/mapper/UserGroupUser.Mapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/user/login.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/user/register.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/action/UserController.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/common/dao/BaseDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/spring/spring-content.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/spring/messages/messages_en.properties" />
+        <option value="$PROJECT_DIR$/src/main/resources/spring/messages/messages_zh.properties" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/user/login.jsp" />
+        <option value="$PROJECT_DIR$/src/main/resources/spring/spring-mvc.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/user/register.jsp" />
       </list>
     </option>
   </component>
@@ -281,10 +212,13 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="228" />
-    <option name="y" value="-23" />
+    <option name="x" value="397" />
+    <option name="y" value="-17" />
     <option name="width" value="1273" />
     <option name="height" value="965" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -292,7 +226,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -386,6 +319,29 @@
               <item name="scsycc_master" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="cn" type="462c0819:PsiDirectoryNode" />
+              <item name="AssassinG" type="462c0819:PsiDirectoryNode" />
+              <item name="scsycc" type="462c0819:PsiDirectoryNode" />
+              <item name="entitys" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="scsycc_master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scsycc_master" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="cn" type="462c0819:PsiDirectoryNode" />
+              <item name="AssassinG" type="462c0819:PsiDirectoryNode" />
+              <item name="scsycc" type="462c0819:PsiDirectoryNode" />
+              <item name="entitys" type="462c0819:PsiDirectoryNode" />
+              <item name="User" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="scsycc_master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scsycc_master" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -412,6 +368,15 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="spring" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="scsycc_master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scsycc_master" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="spring" type="462c0819:PsiDirectoryNode" />
+              <item name="messages" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="scsycc_master" type="b2602c69:ProjectViewProjectNode" />
@@ -461,16 +426,12 @@
               <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
               <item name="user" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="scsycc_master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scsycc_master" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="AndroidView" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -784,7 +745,10 @@
       <workItem from="1523526993931" duration="1841000" />
       <workItem from="1523531317583" duration="2705000" />
       <workItem from="1523534350866" duration="43000" />
-      <workItem from="1523537244242" duration="2081000" />
+      <workItem from="1523537244242" duration="4491000" />
+      <workItem from="1523668080111" duration="5897000" />
+      <workItem from="1523719958202" duration="9000" />
+      <workItem from="1523768410120" duration="8459000" />
     </task>
     <task id="LOCAL-00001" summary="进度推进&#10;1.完成并测试userDao.listAll&#10;2.了解mybatis创建条件查询SQL&#10;3.测试userDao.getBy和userDao.listBy&#10;4.设计PageBean和页面查询&#10;5.测试userDao.listPage&#10;6.编写role的测试类，完成role的测试&#10;&#10;&#10;&#10;selectone插到多个结果时会报错，那么有什么用呢，直接用selectlist查再做判断反而省事，因为只有涉及到很少几个键的查询查询结果才会是唯一的">
       <created>1523263628435</created>
@@ -807,7 +771,14 @@
       <option name="project" value="LOCAL" />
       <updated>1523349119858</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="进度推进&#10;1.设计了一个简单的用户注册登录功能&#10;2.修改了Entity：User包中所有Entity的mybatis XML映射文件的insert语句，createTime，updateTime，deleteTime和isDeleted不在从JavaBean属性获取，而是直接使用初始化值：now(),now(),null,false&#10;3.尝试了controller向jsp传值，但需要页面刷新一下才能将值更新到view，这里考虑下次改为ajax，并将传值的字符串改成能够适应国际化&#10;4.发现了一个问题：jdbc.properties配置时，url driver username password作为key时报错，使用jdbc.driver jdbc.url jdbc.username jdbc.password不报错。没找到错误原因，网上说是编写jdbc.properties文件时，key的名称不能与数据库表中的字段有重复，重复了就会导致上述错误">
+      <created>1523539910765</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1523539910765</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -843,7 +814,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49316000" />
+    <option name="totallyTimeSpent" value="66091000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -856,7 +827,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="18" />
       <window_info anchor="bottom" id="Event Log" order="6" side_tool="true" />
@@ -879,9 +849,9 @@
       <window_info anchor="bottom" id="Java Enterprise" order="7" weight="0.32901832" />
       <window_info anchor="right" id="Capture Analysis" order="14" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.3279396" />
-      <window_info anchor="bottom" id="Run" order="17" visible="true" weight="0.41639698" />
+      <window_info anchor="bottom" id="Run" order="17" weight="0.41639698" />
       <window_info anchor="bottom" id="Spring" order="11" weight="0.32901832" />
-      <window_info anchor="bottom" id="Terminal" order="12" weight="0.32470334" />
+      <window_info anchor="bottom" id="Terminal" order="12" visible="true" weight="0.24811219" />
       <window_info active="true" content_ui="combo" id="Project" order="14" visible="true" weight="0.18123667" />
       <window_info anchor="right" id="Bean Validation" order="15" />
       <window_info id="Web" order="10" side_tool="true" />
@@ -933,11 +903,10 @@
     <MESSAGE value="进度推进&#10;1.修改了UserGroup,User_Role,UserGroup_Role,UserGroup_User中属性的命名规则，该用驼峰命名规则&#10;2.编写了UserGroup,User_Role,UserGroup_Role,UserGroup_User对应的mytatis映射xml&#10;3.编写了UserGroup,User_Role,UserGroup_Role,UserGroup_User对应的数据库测试代码&#10;4.考虑DAO与业务逻辑的分了，不在DAO层的查询功能中加入is_deleted的字段的约束，通过上层传参约束（暂时还没考虑好在那一层约束查询时is_deleted=false的约束）" />
     <MESSAGE value="进度推进&#10;1.添加了deleteById&#10;2.在UserService中的getById中添加了is_deleted=false的约束" />
     <MESSAGE value="进度推进&#10;1.修改UserController，开始设计注册功能&#10;2.添加UserService的create方法的测试&#10;3.发现了一个bug，mybatis的xml配置中，如果JavaBean的属性为空，会报错（废话），这个要十分小心，可能需要后期再进行数据库操作前，在biz层先对JavaBean进行验证" />
-    <option name="LAST_COMMIT_MESSAGE" value="进度推进&#10;1.修改UserController，开始设计注册功能&#10;2.添加UserService的create方法的测试&#10;3.发现了一个bug，mybatis的xml配置中，如果JavaBean的属性为空，会报错（废话），这个要十分小心，可能需要后期再进行数据库操作前，在biz层先对JavaBean进行验证" />
+    <MESSAGE value="进度推进&#10;1.设计了一个简单的用户注册登录功能&#10;2.修改了Entity：User包中所有Entity的mybatis XML映射文件的insert语句，createTime，updateTime，deleteTime和isDeleted不在从JavaBean属性获取，而是直接使用初始化值：now(),now(),null,false&#10;3.尝试了controller向jsp传值，但需要页面刷新一下才能将值更新到view，这里考虑下次改为ajax，并将传值的字符串改成能够适应国际化&#10;4.发现了一个问题：jdbc.properties配置时，url driver username password作为key时报错，使用jdbc.driver jdbc.url jdbc.username jdbc.password不报错。没找到错误原因，网上说是编写jdbc.properties文件时，key的名称不能与数据库表中的字段有重复，重复了就会导致上述错误" />
+    <option name="LAST_COMMIT_MESSAGE" value="进度推进&#10;1.设计了一个简单的用户注册登录功能&#10;2.修改了Entity：User包中所有Entity的mybatis XML映射文件的insert语句，createTime，updateTime，deleteTime和isDeleted不在从JavaBean属性获取，而是直接使用初始化值：now(),now(),null,false&#10;3.尝试了controller向jsp传值，但需要页面刷新一下才能将值更新到view，这里考虑下次改为ajax，并将传值的字符串改成能够适应国际化&#10;4.发现了一个问题：jdbc.properties配置时，url driver username password作为key时报错，使用jdbc.driver jdbc.url jdbc.username jdbc.password不报错。没找到错误原因，网上说是编写jdbc.properties文件时，key的名称不能与数据库表中的字段有重复，重复了就会导致上述错误" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/doc/SQL/UserGroupTableInit.sql" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/entity/UserGroup.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/entity/Role.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/common/page/PageParam.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/dao/RoleDao.java" />
@@ -1014,9 +983,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="199">
           <caret line="27" column="43" lean-forward="true" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="43" />
-          <folding>
-            <element signature="imports" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1024,9 +990,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="460">
           <caret line="20" column="72" lean-forward="true" selection-start-line="20" selection-start-column="72" selection-end-line="20" selection-end-column="72" />
-          <folding>
-            <element signature="imports" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1034,12 +997,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="447">
           <caret line="68" column="41" selection-start-line="68" selection-start-column="41" selection-end-line="68" selection-end-column="41" />
-          <folding>
-            <element signature="imports" />
-            <element signature="e#2040#2056#0" />
-            <element signature="e#2278#2279#0" />
-            <element signature="e#2334#2335#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1064,13 +1021,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/user/show.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="56" selection-start-line="2" selection-start-column="56" selection-end-line="2" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/test/java/TestMyBatis/TestUserGroupRole.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1173">
@@ -1085,43 +1035,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="30" selection-start-column="30" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="64" column="22" lean-forward="true" selection-start-line="64" selection-start-column="22" selection-end-line="64" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-content.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="19" column="74" lean-forward="true" selection-start-line="19" selection-start-column="74" selection-end-line="19" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-mvc.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-330" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/jdbc.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
           <caret line="7" column="8" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-mybatis.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="13" column="42" selection-start-line="13" selection-start-column="42" selection-end-line="13" selection-end-column="42" />
         </state>
       </provider>
     </entry>
@@ -1177,7 +1094,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/test/java/TestMyBatis/TestUser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1104">
+        <state relative-caret-position="345">
           <caret line="28" column="36" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
           <folding>
             <element signature="e#1868#1874#0" expanded="true" />
@@ -1191,50 +1108,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/test/java/TestMyBatis/TestRole.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
+        <state relative-caret-position="598">
           <caret line="38" column="40" selection-start-line="38" selection-start-column="40" selection-end-line="38" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/user/success.jsp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/biz/UserServices.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="736">
-          <caret line="37" column="30" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
-          <folding>
-            <element signature="e#908#909#0" expanded="true" />
-            <element signature="e#963#964#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/dao/UserDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/user/login.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/user/register.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="12" column="34" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/action/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
         </state>
       </provider>
     </entry>
@@ -1247,8 +1122,111 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/common/dao/BaseDaoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
+        <state relative-caret-position="621">
           <caret line="43" selection-start-line="43" selection-end-line="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/dao/UserDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/biz/UserServices.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="e#908#909#0" expanded="true" />
+            <element signature="e#963#964#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/messages/messages_en.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="30" selection-start-column="30" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/user/login.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="6" column="63" lean-forward="true" selection-start-line="6" selection-start-column="63" selection-end-line="6" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/user/show.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" column="56" selection-start-line="2" selection-start-column="56" selection-end-line="2" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/user/success.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="1" column="4" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/messages/messages_zh.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+        </state>
+      </provider>
+      <provider editor-type-id="ResourceBundle" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/user/register.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="16" column="12" lean-forward="true" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/action/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="34" column="38" lean-forward="true" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-mvc.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="21" column="64" selection-start-line="21" selection-start-column="64" selection-end-line="21" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-mybatis.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-46">
+          <caret line="13" column="42" selection-start-line="13" selection-start-column="42" selection-end-line="13" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-content.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="24" column="32" lean-forward="true" selection-start-line="24" selection-start-column="32" selection-end-line="24" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1219">
+          <caret line="53" column="46" selection-start-line="53" selection-start-column="46" selection-end-line="53" selection-end-column="46" />
         </state>
       </provider>
     </entry>
