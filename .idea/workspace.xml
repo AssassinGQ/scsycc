@@ -7,14 +7,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b2e9600-138b-4d4a-baf5-eae15b0250f4" name="Default" comment="进度推进&#10;1.设计了一个简单的用户注册登录功能&#10;2.修改了Entity：User包中所有Entity的mybatis XML映射文件的insert语句，createTime，updateTime，deleteTime和isDeleted不在从JavaBean属性获取，而是直接使用初始化值：now(),now(),null,false&#10;3.尝试了controller向jsp传值，但需要页面刷新一下才能将值更新到view，这里考虑下次改为ajax，并将传值的字符串改成能够适应国际化&#10;4.发现了一个问题：jdbc.properties配置时，url driver username password作为key时报错，使用jdbc.driver jdbc.url jdbc.username jdbc.password不报错。没找到错误原因，网上说是编写jdbc.properties文件时，key的名称不能与数据库表中的字段有重复，重复了就会导致上述错误">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/spring/messages/messages_en.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/spring/messages/messages_zh.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_acl_5_0_4_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_config_5_0_4_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_core_5_0_4_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_taglibs_5_0_4_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_web_5_0_4_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/scsycc_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/scsycc_war_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/spring/spring-mvc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/spring/spring-mvc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/user/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/user/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/user/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/user/register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/AssassinG/scsycc/common/dao/BaseDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/AssassinG/scsycc/common/dao/BaseDaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/AssassinG/scsycc/entitys/User/action/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/AssassinG/scsycc/entitys/User/action/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scsycc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/scsycc.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/spring/spring-mvc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/spring/spring-mvc.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -43,47 +45,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="PageBean.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/common/page/PageBean.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret line="36" column="7" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="UserController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/action/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="34" column="38" lean-forward="true" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
+            <state>
+              <caret line="34" column="38" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="web.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+      <file leaf-file-name="UserServices.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/biz/UserServices.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1219">
-              <caret line="53" column="46" selection-start-line="53" selection-start-column="46" selection-end-line="53" selection-end-column="46" />
+            <state>
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="spring-content.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-content.xml">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="24" column="32" lean-forward="true" selection-start-line="24" selection-start-column="32" selection-end-line="24" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="spring-mybatis.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-mybatis.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-46">
-              <caret line="13" column="42" selection-start-line="13" selection-start-column="42" selection-end-line="13" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="spring-mvc.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-mvc.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="21" column="64" selection-start-line="21" selection-start-column="64" selection-end-line="21" selection-end-column="64" />
+            <state relative-caret-position="300">
+              <caret line="183" column="36" selection-start-line="183" selection-start-column="36" selection-end-line="183" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -145,6 +138,7 @@
     </replaceStrings>
   </component>
   <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -174,7 +168,6 @@
         <option value="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/common/dao/BaseDao.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/user/show.jsp" />
         <option value="$PROJECT_DIR$/src/main/test/java/TestMyBatis/TestRole.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/biz/UserServices.java" />
         <option value="$PROJECT_DIR$/src/main/test/java/TestMyBatis/TestUser.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/index.jsp" />
@@ -195,6 +188,7 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/user/login.jsp" />
         <option value="$PROJECT_DIR$/src/main/resources/spring/spring-mvc.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/user/register.jsp" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
   </component>
@@ -211,11 +205,14 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths />
+  </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="397" />
-    <option name="y" value="-17" />
+    <option name="x" value="405" />
+    <option name="y" value="116" />
     <option name="width" value="1273" />
-    <option name="height" value="965" />
+    <option name="height" value="884" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -225,218 +222,60 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="scsycc_master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scsycc_master" type="462c0819:PsiDirectoryNode" />
+              <item name="scsycc_master'" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scsycc_master'" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="scsycc_master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scsycc_master" type="462c0819:PsiDirectoryNode" />
+              <item name="scsycc_master'" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scsycc_master'" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="scsycc_master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scsycc_master" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="doc" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="scsycc_master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scsycc_master" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="doc" type="462c0819:PsiDirectoryNode" />
-              <item name="SQL" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="scsycc_master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scsycc_master" type="462c0819:PsiDirectoryNode" />
+              <item name="scsycc_master'" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scsycc_master'" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="scsycc_master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scsycc_master" type="462c0819:PsiDirectoryNode" />
+              <item name="scsycc_master'" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scsycc_master'" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="scsycc_master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scsycc_master" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="cn" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="scsycc_master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scsycc_master" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="cn" type="462c0819:PsiDirectoryNode" />
-              <item name="AssassinG" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="scsycc_master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scsycc_master" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="cn" type="462c0819:PsiDirectoryNode" />
-              <item name="AssassinG" type="462c0819:PsiDirectoryNode" />
-              <item name="scsycc" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="scsycc_master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scsycc_master" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="cn" type="462c0819:PsiDirectoryNode" />
-              <item name="AssassinG" type="462c0819:PsiDirectoryNode" />
-              <item name="scsycc" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="scsycc_master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scsycc_master" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="cn" type="462c0819:PsiDirectoryNode" />
-              <item name="AssassinG" type="462c0819:PsiDirectoryNode" />
-              <item name="scsycc" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="dao" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="scsycc_master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scsycc_master" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="cn" type="462c0819:PsiDirectoryNode" />
-              <item name="AssassinG" type="462c0819:PsiDirectoryNode" />
-              <item name="scsycc" type="462c0819:PsiDirectoryNode" />
-              <item name="entitys" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="scsycc_master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scsycc_master" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="cn" type="462c0819:PsiDirectoryNode" />
-              <item name="AssassinG" type="462c0819:PsiDirectoryNode" />
-              <item name="scsycc" type="462c0819:PsiDirectoryNode" />
-              <item name="entitys" type="462c0819:PsiDirectoryNode" />
-              <item name="User" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="scsycc_master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scsycc_master" type="462c0819:PsiDirectoryNode" />
+              <item name="scsycc_master'" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scsycc_master'" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="scsycc_master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scsycc_master" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="mybatis" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="scsycc_master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scsycc_master" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="mybatis" type="462c0819:PsiDirectoryNode" />
-              <item name="mapper" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="scsycc_master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scsycc_master" type="462c0819:PsiDirectoryNode" />
+              <item name="scsycc_master'" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scsycc_master'" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="spring" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="scsycc_master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scsycc_master" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="spring" type="462c0819:PsiDirectoryNode" />
-              <item name="messages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="scsycc_master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scsycc_master" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="scsycc_master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scsycc_master" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="scsycc_master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scsycc_master" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="TestMyBatis" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="scsycc_master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scsycc_master" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="scsycc_master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scsycc_master" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="scsycc_master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scsycc_master" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="AndroidView" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="E:/software/Git/bin/git.exe" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -749,6 +588,11 @@
       <workItem from="1523668080111" duration="5897000" />
       <workItem from="1523719958202" duration="9000" />
       <workItem from="1523768410120" duration="8459000" />
+      <workItem from="1523931204106" duration="2638000" />
+      <workItem from="1524013123925" duration="3074000" />
+      <workItem from="1524100009623" duration="1830000" />
+      <workItem from="1524104205862" duration="1476000" />
+      <workItem from="1524109650396" duration="1966000" />
     </task>
     <task id="LOCAL-00001" summary="进度推进&#10;1.完成并测试userDao.listAll&#10;2.了解mybatis创建条件查询SQL&#10;3.测试userDao.getBy和userDao.listBy&#10;4.设计PageBean和页面查询&#10;5.测试userDao.listPage&#10;6.编写role的测试类，完成role的测试&#10;&#10;&#10;&#10;selectone插到多个结果时会报错，那么有什么用呢，直接用selectlist查再做判断反而省事，因为只有涉及到很少几个键的查询查询结果才会是唯一的">
       <created>1523263628435</created>
@@ -814,7 +658,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66091000" />
+    <option name="totallyTimeSpent" value="78702000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -827,42 +671,44 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="18" />
       <window_info anchor="bottom" id="Event Log" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Application Servers" order="7" weight="0.32938644" />
       <window_info anchor="right" id="Maven Projects" order="8" />
-      <window_info anchor="right" id="CDI" order="10" />
       <window_info anchor="bottom" id="Database Changes" order="15" weight="0.32901832" />
-      <window_info id="Capture Tool" order="13" />
+      <window_info anchor="right" id="CDI" order="10" />
       <window_info id="Designer" order="6" />
       <window_info anchor="right" id="Database" order="11" weight="0.32995737" />
-      <window_info anchor="right" id="JSF" order="12" />
       <window_info id="Structure" order="15" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="JSF" order="12" />
       <window_info anchor="right" id="Ant Build" order="20" weight="0.25" />
       <window_info id="UI Designer" order="8" />
       <window_info anchor="bottom" id="Debug" order="18" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="21" weight="0.32901832" />
-      <window_info anchor="bottom" id="Messages" order="0" weight="0.29126215" />
       <window_info anchor="right" id="Palette&#9;" order="13" />
-      <window_info id="Image Layers" order="9" />
       <window_info anchor="bottom" id="Java Enterprise" order="7" weight="0.32901832" />
-      <window_info anchor="right" id="Capture Analysis" order="14" />
-      <window_info anchor="bottom" id="Version Control" order="10" weight="0.3279396" />
-      <window_info anchor="bottom" id="Run" order="17" weight="0.41639698" />
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.16609393" />
+      <window_info anchor="bottom" id="Run" order="17" weight="0.41580757" />
       <window_info anchor="bottom" id="Spring" order="11" weight="0.32901832" />
-      <window_info anchor="bottom" id="Terminal" order="12" visible="true" weight="0.24811219" />
-      <window_info active="true" content_ui="combo" id="Project" order="14" visible="true" weight="0.18123667" />
+      <window_info anchor="bottom" id="Terminal" order="12" weight="0.24742268" />
+      <window_info content_ui="combo" id="Project" order="14" visible="true" weight="0.1875" />
       <window_info anchor="right" id="Bean Validation" order="15" />
       <window_info id="Web" order="10" side_tool="true" />
-      <window_info anchor="right" id="Theme Preview" order="16" />
+      <window_info id="Learn" />
       <window_info id="Favorites" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="Inspection" order="20" weight="0.4" />
+      <window_info anchor="right" id="Capture Analysis" order="14" />
       <window_info anchor="right" id="Commander" order="19" weight="0.4" />
-      <window_info anchor="bottom" id="Find" order="16" />
+      <window_info id="Image Layers" order="9" />
       <window_info anchor="bottom" id="Cvs" order="19" weight="0.25" />
+      <window_info id="Capture Tool" order="13" />
+      <window_info anchor="bottom" id="Messages" order="0" weight="0.29126215" />
       <window_info anchor="bottom" id="Message" order="14" />
+      <window_info anchor="right" id="Theme Preview" order="16" />
+      <window_info anchor="bottom" id="Inspection" order="20" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="21" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="16" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -907,12 +753,13 @@
     <option name="LAST_COMMIT_MESSAGE" value="进度推进&#10;1.设计了一个简单的用户注册登录功能&#10;2.修改了Entity：User包中所有Entity的mybatis XML映射文件的insert语句，createTime，updateTime，deleteTime和isDeleted不在从JavaBean属性获取，而是直接使用初始化值：now(),now(),null,false&#10;3.尝试了controller向jsp传值，但需要页面刷新一下才能将值更新到view，这里考虑下次改为ajax，并将传值的字符串改成能够适应国际化&#10;4.发现了一个问题：jdbc.properties配置时，url driver username password作为key时报错，使用jdbc.driver jdbc.url jdbc.username jdbc.password不报错。没找到错误原因，网上说是编写jdbc.properties文件时，key的名称不能与数据库表中的字段有重复，重复了就会导致上述错误" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/common/page/PageBean.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/entity/Role.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/common/page/PageParam.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/dao/RoleDao.java" />
     <entry file="file://$PROJECT_DIR$/src/doc/SQL/UserTableInit.sql" />
     <entry file="file://$PROJECT_DIR$/src/doc/SQL/RoleTableInit.sql" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/common/page/PageBean.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/entity/Role.java" />
     <entry file="file://$PROJECT_DIR$/src/doc/SQL/UserGroupTableInit.sql">
       <provider selected="true" editor-type-id="text-editor">
@@ -1028,13 +875,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="37">
-          <caret line="44" selection-start-line="44" selection-end-line="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/jdbc.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
@@ -1053,14 +893,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
           <caret line="26" column="40" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="40" />
-          <folding>
-            <element signature="e#3746#3750#0" expanded="true" />
-            <element signature="e#3828#3832#0" expanded="true" />
-            <element signature="e#3910#3914#0" expanded="true" />
-            <element signature="e#3992#3996#0" expanded="true" />
-            <element signature="e#4074#4078#0" expanded="true" />
-            <element signature="e#4156#4160#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1096,13 +928,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="28" column="36" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
-          <folding>
-            <element signature="e#1868#1874#0" expanded="true" />
-            <element signature="e#2537#2543#0" expanded="true" />
-            <element signature="e#3101#3117#0" expanded="true" />
-            <element signature="e#3380#3396#0" expanded="true" />
-            <element signature="e#3766#3782#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1131,17 +956,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
           <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/biz/UserServices.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-          <folding>
-            <element signature="e#908#909#0" expanded="true" />
-            <element signature="e#963#964#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1180,25 +994,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/messages/messages_zh.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-        </state>
-      </provider>
-      <provider editor-type-id="ResourceBundle" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/user/register.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
           <caret line="16" column="12" lean-forward="true" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/action/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="34" column="38" lean-forward="true" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -1227,6 +1026,41 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1219">
           <caret line="53" column="46" selection-start-line="53" selection-start-column="46" selection-end-line="53" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/common/page/PageParam.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="16" column="15" lean-forward="true" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/common/page/PageBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="36" column="7" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/action/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="34" column="38" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/biz/UserServices.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="183" column="36" selection-start-line="183" selection-start-column="36" selection-end-line="183" selection-end-column="36" />
         </state>
       </provider>
     </entry>
