@@ -8,32 +8,36 @@ import cn.AssassinG.scsycc.entitys.User.entity.User;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring/spring-mybatis.xml"})
+@ContextConfiguration(locations = {"classpath:spring/spring-mybatis.xml", "classpath:spring/beans/UserServiceImpl.xml"})
 public class TestUser {
     private static Logger logger = Logger.getLogger(TestUser.class);
-    private ApplicationContext ctx = new ClassPathXmlApplicationContext(new String[]{"spring/spring-mybatis.xml", "spring/beans/UserServiceImpl.xml"});
-    private UserServices userServices = (UserServices)ctx.getBean("Userservices");
-    private UserDaoImpl userDao = (UserDaoImpl)ctx.getBean("UserDao");
+    //    private ApplicationContext ctx = new ClassPathXmlApplicationContext(new String[]{"spring/spring-mybatis.xml", "spring/beans/UserServiceImpl.xml"});
+    //    private UserServices userServices = (UserServices)ctx.getBean("Userservices");
+    @Autowired
+    private UserServices userServices;
+    //    private UserDaoImpl userDao = (UserDaoImpl) ctx.getBean("UserDao");
+    @Autowired
+    private UserDaoImpl userDao;
+
     @Test
-    public void testInsert(){
+    public void testInsert() {
         User user = new User();
         user.setUsername("duyanting");
         user.setPassword("d123456");
 //        user.setCreateTime(new Date());
 //        user.setUpdateTime(new Date());
-        logger.info("Inserted id: "+userDao.insert(user));
+        logger.info("Inserted id: " + userDao.insert(user));
     }
 
     @Test
-    public void testBatchInsert(){
+    public void testBatchInsert() {
         User user = new User();
         user.setUsername("duyanting3");
         user.setCreateTime(new Date());
@@ -45,23 +49,23 @@ public class TestUser {
         List<User> users = new ArrayList<User>();
         users.add(user);
         users.add(user2);
-        logger.info("Inserted : "+userDao.insert(users)+" items");
+        logger.info("Inserted : " + userDao.insert(users) + " items");
     }
 
     @Test
-    public void testGetById(){
+    public void testGetById() {
         logger.info(userDao.getById(1));
     }
 
     @Test
-    public void testUpdate(){
+    public void testUpdate() {
         User user = userDao.getById(2);
         user.setUsername("updatedname2");
-        logger.info("Updated "+userDao.update(user)+" items");
+        logger.info("Updated " + userDao.update(user) + " items");
     }
 
     @Test
-    public void testBatchUpdate(){
+    public void testBatchUpdate() {
         User user2 = userDao.getById(2);
         User user3 = userDao.getById(3);
         user2.setUsername("updatedname2");
@@ -69,24 +73,24 @@ public class TestUser {
         List<User> users = new ArrayList<User>();
         users.add(user2);
         users.add(user3);
-        logger.info("Updated "+userDao.update(users)+" items");
+        logger.info("Updated " + userDao.update(users) + " items");
     }
 
     @Test
-    public void testDelete(){
+    public void testDelete() {
         User user = userDao.getById(1);
-        logger.info("Deleted "+userDao.delete(user)+" items");
+        logger.info("Deleted " + userDao.delete(user) + " items");
     }
 
     @Test
-    public void testListAll(){
+    public void testListAll() {
         List<User> users = userDao.listAll();
-        for(int i = 0; i < users.size(); i++)
-            logger.info("Item"+i+":"+users.get(i));
+        for (int i = 0; i < users.size(); i++)
+            logger.info("Item" + i + ":" + users.get(i));
     }
 
     @Test
-    public void testGetBy(){
+    public void testGetBy() {
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("pageFirst", 2);
         paramMap.put("pageSize", 2);
@@ -95,35 +99,35 @@ public class TestUser {
     }
 
     @Test
-    public void testListBy(){
+    public void testListBy() {
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("pageFirst", 2);
         paramMap.put("pageSize", 2);
         paramMap.put("isDeleted", true);
         List<User> users = userDao.listBy(paramMap);
-        for(int i = 0; i < users.size(); i++)
-            logger.info("Item"+i+":"+users.get(i));
+        for (int i = 0; i < users.size(); i++)
+            logger.info("Item" + i + ":" + users.get(i));
     }
 
     @Test
-    public void testListPage(){
+    public void testListPage() {
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("isDeleted", false);
         PageParam pageParam = new PageParam(2, 2);
         PageBean<User> pageBean = userDao.listPage(pageParam, paramMap);
         logger.info(pageBean);
         List<User> users = pageBean.getRecordList();
-        for(int i = 0; i < users.size(); i++)
-            logger.info("Item"+i+":"+users.get(i));
+        for (int i = 0; i < users.size(); i++)
+            logger.info("Item" + i + ":" + users.get(i));
     }
 
     @Test
-    public void testCreate(){
+    public void testCreate() {
         User user = new User();
         user.setUsername("duyanting");
         user.setPassword("123456");
 //        user.setCreateTime(new Date());
 //        user.setUpdateTime(new Date());
-        logger.info("Inserted id: "+userServices.create(user));
+        logger.info("Inserted id: " + userServices.create(user));
     }
 }

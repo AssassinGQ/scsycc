@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/security
+       http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <security:http pattern="/**/*.jpg" security="none" />
+    <security:http pattern="/**/*.png" security="none" />
+    <security:http pattern="/**/*.gif" security="none" />
+    <security:http pattern="/**/*.css" security="none" />
+    <security:http pattern="/**/*.js" security="none" />
+    <security:http pattern="/user/register" security="none" />
+    <security:http pattern="/user/Login" security="none" />
+
+    <security:http pattern="/user/sessionTimeOut" security="none" />
+    <!--<security:global-method-security secured-annotations="enabled" proxy-target-class="true"/>-->
+    <!--&lt;!&ndash; access-decision-manager-ref="accessDecisionManager"&ndash;&gt;-->
+    <!--<security:http auto-config="true" authentication-manager-ref="myAuthenticationManager" use-expressions="false">-->
+        <!--<security:form-login login-page="/js/user/login.jsp"-->
+                             <!--login-processing-url="/user/Login" username-parameter="username"-->
+                             <!--password-parameter="password" default-target-url="/js/home.jsp"/>-->
+        <!--<security:logout delete-cookies="JSESSIONID"/>-->
+        <!--<security:intercept-url pattern="/home" access="ROLE_PAGE_HOME"/>-->
+        <!--<security:intercept-url pattern="/js/home.jsp" access="ROLE_PAGE_HOME"/>-->
+    <!--</security:http>-->
+
+    <security:http auto-config="true" use-expressions="false" access-decision-manager-ref="accessDecisionManager" authentication-manager-ref="myAuthenticationManager">
+        <security:form-login
+                login-page="/user/login" login-processing-url="/user/dologin"
+                username-parameter="username" password-parameter="password"
+                default-target-url="/home" always-use-default-target="true"/>
+                <!--authentication-success-forward-url="/home" authentication-failure-forward-url="/js/user/sessionTimeOut.jsp"/>-->
+        <security:logout delete-cookies="JSESSIONID"/>
+        <security:csrf disabled="true"/>
+        <security:intercept-url pattern="/home" access="RES_PAGE_HOME"/>
+        <security:intercept-url pattern="/user/show" access="RES_PAGE_HOME" />
+    </security:http>
+
+    <!--自定义权限前缀-->
+    <bean id="accessDecisionManager" class="org.springframework.security.access.vote.AffirmativeBased">
+        <constructor-arg name="decisionVoters">
+            <list>
+                <ref bean="roleVoter"/>
+                <ref bean="authenticatedVoted"/>
+            </list>
+        </constructor-arg>
+    </bean>
+    <bean id="roleVoter" class="org.springframework.security.access.vote.RoleVoter">
+        <property name="rolePrefix" value="RES_"/>
+    </bean>
+    <bean id="authenticatedVoted" class="org.springframework.security.access.vote.AuthenticatedVoter"/>
+
+    <!--加载自定义的UserDetailsService-->
+    <security:authentication-manager alias="myAuthenticationManager">
+        <security:authentication-provider user-service-ref="userDetailsService"/>
+    </security:authentication-manager>
+    <bean id="userDetailsService" class="cn.AssassinG.scsycc.entitys.User.biz.MyUserDetailService"/>
+
+    <!--自定义支持Ehcache的UserDetailsService-->
+    <!--<bean id="cachingUserDetailsService" class="org.springframework.security.config.authentication.CachingUserDetailsService">-->
+    <!--<constructor-arg ref="userDetailsService"/>-->
+    <!--<property name="userCache" ref="userCache"/>-->
+    <!--</bean>-->
+    <!--<bean id="userCache" class="org.springframework.security.core.userdetails.cache.EhCacheBasedUserCache">-->
+    <!--<property name="cache" ref="ehcache4UserDetails"/>-->
+    <!--</bean>-->
+    <!--<bean id="ehcache4UserDetails" class="org.springframework.cache.ehcache.EhCacheFactoryBean"/>-->
+</beans>

@@ -2,6 +2,7 @@ package cn.AssassinG.scsycc.entitys.User.biz;
 
 import cn.AssassinG.scsycc.entitys.User.dao.UserDao;
 import cn.AssassinG.scsycc.entitys.User.entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class UserServices {
     private UserDao userDao;

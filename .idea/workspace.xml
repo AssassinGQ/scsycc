@@ -6,17 +6,61 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b2e9600-138b-4d4a-baf5-eae15b0250f4" name="Default" comment="进度推进&#10;1.设计了一个简单的用户注册登录功能&#10;2.修改了Entity：User包中所有Entity的mybatis XML映射文件的insert语句，createTime，updateTime，deleteTime和isDeleted不在从JavaBean属性获取，而是直接使用初始化值：now(),now(),null,false&#10;3.尝试了controller向jsp传值，但需要页面刷新一下才能将值更新到view，这里考虑下次改为ajax，并将传值的字符串改成能够适应国际化&#10;4.发现了一个问题：jdbc.properties配置时，url driver username password作为key时报错，使用jdbc.driver jdbc.url jdbc.username jdbc.password不报错。没找到错误原因，网上说是编写jdbc.properties文件时，key的名称不能与数据库表中的字段有重复，重复了就会导致上述错误">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_acl_5_0_4_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_config_5_0_4_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_core_5_0_4_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_taglibs_5_0_4_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_web_5_0_4_RELEASE.xml" afterDir="false" />
+    <list default="true" id="8b2e9600-138b-4d4a-baf5-eae15b0250f4" name="Default" comment="进度推进&#10;1.配置spring-security.xml&#10;1.1.spring-security5.0已经不支持&lt;security:http intercept-url=&quot;&quot; filter=&quot;none&quot;/&gt;,需要改为&lt;security:http pattern=&quot;&quot; security=&quot;none&quot;/&gt;&#10;1.2.配置了自定义的spring-security登录页面。spring-security自定义登录界面form-login中，login-page表示自定义的用来登录的网页，login-processing-url是用来处理登录的路径，具体是指什么呢，是指login-page中自定义的页面的action名称！！！&#10;1.3.计划构建RBAC的权限认证系统，方案是：usergroup，user，role，permission都存入数据库，使用4张表关联4个信息，permission表中一个字段表示资源的名称，即spring-security中的ROLE_*字符串。将所有的资源名称写死在代码这种，在permission表中保存系统中所有的资源，通过自定义的UserDetailsService查询某个用户拥有的permission即对资源进行操作的权限。（permission的形式后期可能还要改，比如分类：页面资源，方法资源，url资源等）&#10;1.4.初步实现了一个自定义的UserDetailsService，并通过IOC注入到spring-security中&#10;1.5.修改spring-security的ROLE_*前缀为RES_*，使之更加符合RBAC的思想&#10;1.6.添加Permission RolePermission PermissionDao RolePermissionDao&#10;1.7.将页面文件移出WEB-INF目录，更符合正常逻辑&#10;1.8.修改index.jsp文件，将jsp:forword修改为response:sendDirection，一开始是以为spring-security是通过url来定义自定义界面，其实并不是">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_sf_ehcache_ehcache_core_2_4_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_sf_ehcache_ehcache_web_2_0_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/doc/SQL/PermissionTableInit.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/doc/SQL/Role_PermissionTableInit.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/Home/action/HomeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/biz/MyUserDetailService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/dao/PermissionDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/dao/PermissionDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/dao/RolePermissionDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/dao/RolePermissionDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/entity/Permission.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/entity/Role_Permission.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/Permission.Mapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/RolePermission.Mapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/spring/spring-security.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/home.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/user/sessionTimeOut.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/scsycc_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/scsycc_war_exploded.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e79e7c53-052b-4e6c-bfcc-b6a7314605df.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/e79e7c53-052b-4e6c-bfcc-b6a7314605df.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/rc-web-boss.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/rc-web-boss.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scsycc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/scsycc.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/SQL/RoleTableInit.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/doc/SQL/RoleTableInit.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/SQL/UserTableInit.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/doc/SQL/UserTableInit.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/SQL/User_RoleTableInit.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/doc/SQL/User_RoleTableInit.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/action/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/action/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/biz/UserServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/biz/UserServices.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/entity/User_Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/entity/User_Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mybatis-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/spring/beans/UserServiceImpl.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/spring/beans/UserServiceImpl.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/spring/spring-content.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/spring/spring-content.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/spring/spring-mvc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/spring/spring-mvc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/test/java/TestMyBatis/TestUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/java/TestMyBatis/TestUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/user/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/user/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/user/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/user/register.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/user/show.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/user/show.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/user/success.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/user/success.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/AssassinG/scsycc/common/dao/BaseDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/AssassinG/scsycc/common/dao/BaseDaoImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/AssassinG/scsycc/entitys/User/action/UserController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/AssassinG/scsycc/entitys/User/biz/UserServices.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/AssassinG/scsycc/entitys/User/biz/UserServices.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/AssassinG/scsycc/entitys/User/entity/User_Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/AssassinG/scsycc/entitys/User/entity/User_Role.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/log4j.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/mybatis-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/spring/beans/UserServiceImpl.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/spring/beans/UserServiceImpl.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/spring/spring-content.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/spring/spring-content.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/spring/spring-mvc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/spring/spring-mvc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/TestMyBatis/TestUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/TestMyBatis/TestUser.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,9 +76,11 @@
     <option name="GROUP_SCHEMA" value="true" />
     <option name="GROUP_CONTENTS" value="false" />
     <option name="SORT_POSITIONED" value="false" />
-    <option name="SHOW_TABLE_DETAILS" value="true" />
     <option name="SHOW_EMPTY_GROUPS" value="false" />
     <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
     <expand />
     <select />
   </component>
@@ -45,11 +91,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="PageBean.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/common/page/PageBean.java">
+      <file leaf-file-name="MyUserDetailService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/biz/MyUserDetailService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="36" column="7" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="7" />
+            <state relative-caret-position="418">
+              <caret line="35" column="50" selection-start-line="35" selection-start-column="50" selection-end-line="35" selection-end-column="50" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/js/user/login.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="175">
+              <caret line="7" column="7" lean-forward="true" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="spring-security.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-security.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="597">
+              <caret line="32" column="75" lean-forward="true" selection-start-line="32" selection-start-column="75" selection-end-line="32" selection-end-column="75" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="web.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="343">
+              <caret line="49" column="21" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -57,26 +133,17 @@
       <file leaf-file-name="UserController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/action/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="34" column="38" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
+            <state relative-caret-position="900">
+              <caret line="54" column="5" lean-forward="true" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserServices.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/biz/UserServices.java">
+      <file leaf-file-name="index.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="7" selection-start-line="7" selection-end-line="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="183" column="36" selection-start-line="183" selection-start-column="36" selection-end-line="183" selection-end-column="36" />
+            <state relative-caret-position="25">
+              <caret line="1" column="41" lean-forward="true" selection-start-line="1" selection-start-column="41" selection-end-line="1" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -86,6 +153,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -98,12 +166,9 @@
       <find>user</find>
       <find>setRole_name</find>
       <find>role</find>
-      <find>t_role</find>
-      <find>Role</find>
       <find>roleDao</find>
       <find>useruserroleDao</find>
       <find>t_userrole</find>
-      <find>UserRole</find>
       <find>User_Role</find>
       <find>UserGroupRole</find>
       <find>t_usergrouprole</find>
@@ -111,10 +176,13 @@
       <find>usergrouproleDao</find>
       <find>setRoleId</find>
       <find>2l</find>
+      <find>UserRole</find>
+      <find>UserId</find>
+      <find>t_role</find>
+      <find>Role</find>
+      <find>filters</find>
     </findStrings>
     <replaceStrings>
-      <replace>t_role</replace>
-      <replace>Role</replace>
       <replace>setRole_name</replace>
       <replace>role</replace>
       <replace>setRoleName</replace>
@@ -135,7 +203,20 @@
       <replace>usergroupuser</replace>
       <replace>setUserId</replace>
       <replace>2L</replace>
+      <replace>t_rolepermission</replace>
+      <replace>RolePermission</replace>
+      <replace>permission_id</replace>
+      <replace>PermissionId</replace>
+      <replace>t_permission</replace>
+      <replace>PermissionName</replace>
+      <replace>permission_name</replace>
+      <replace>Permission</replace>
+      <replace>http</replace>
+      <replace>security</replace>
     </replaceStrings>
+    <dirStrings>
+      <dir>D:\WorkSpace\Idea\scsycc_master'\src\main\webapp\WEB-INF\user</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="ROOT_SYNC" value="DONT_SYNC" />
@@ -144,23 +225,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/common/page/PageParam.java" />
-        <option value="$PROJECT_DIR$/src/main/test/java/TestMyBatis/TestMyBatis.java" />
-        <option value="$PROJECT_DIR$/src/doc/SQL/RoleTableInit.sql" />
-        <option value="$PROJECT_DIR$/src/doc/SQL/User_RoleTableInit.sql" />
-        <option value="$PROJECT_DIR$/src/doc/SQL/UserGroup_RoleTableInit.sql" />
-        <option value="$PROJECT_DIR$/src/doc/SQL/UserGroup_UserTableInit.sql" />
-        <option value="$PROJECT_DIR$/src/doc/SQL/UserGroupTableInit.sql" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/common/page/PageBean.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/spring/beans/RoleServiceImpl.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/entity/Role.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/entity/UserGroup.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/spring/beans/UserGroupServiceImpl.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/spring/beans/UserServiceImpl.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/entity/User_Role.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/entity/UserGroup_Role.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mybatis/mybatis-config.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/entity/UserGroup_User.java" />
         <option value="$PROJECT_DIR$/src/main/test/java/TestMyBatis/TestUserRole.java" />
         <option value="$PROJECT_DIR$/src/main/test/java/TestMyBatis/TestUserGroup.java" />
         <option value="$PROJECT_DIR$/src/main/test/java/TestMyBatis/TestUserGroupRole.java" />
@@ -168,27 +232,50 @@
         <option value="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/common/dao/BaseDao.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/user/show.jsp" />
         <option value="$PROJECT_DIR$/src/main/test/java/TestMyBatis/TestRole.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/biz/UserServices.java" />
-        <option value="$PROJECT_DIR$/src/main/test/java/TestMyBatis/TestUser.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/index.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/jdbc.properties" />
         <option value="$PROJECT_DIR$/src/main/resources/spring/spring-mybatis.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/mybatis/mapper/User.Mapper.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/mybatis/mapper/Role.Mapper.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/mybatis/mapper/UserGroup.Mapper.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/mybatis/mapper/UserGroupRole.Mapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/mybatis/mapper/UserRole.Mapper.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/mybatis/mapper/UserGroupUser.Mapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/action/UserController.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/common/dao/BaseDaoImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/spring/spring-content.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/spring/messages/messages_en.properties" />
         <option value="$PROJECT_DIR$/src/main/resources/spring/messages/messages_zh.properties" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/user/login.jsp" />
-        <option value="$PROJECT_DIR$/src/main/resources/spring/spring-mvc.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/user/register.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/entity/Role_Permission.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/dao/RolePermissionDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/dao/RolePermissionDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis/mapper/UserRole.Mapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis/mapper/RolePermission.Mapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/dao/PermissionDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/dao/PermissionDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis/mybatis-config.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis/mapper/Permission.Mapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/spring/beans/UserServiceImpl.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/user/sessionTimeOut.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/home.jsp" />
+        <option value="$PROJECT_DIR$/src/doc/SQL/UserTableInit.sql" />
+        <option value="$PROJECT_DIR$/src/doc/SQL/RoleTableInit.sql" />
+        <option value="$PROJECT_DIR$/src/doc/SQL/PermissionTableInit.sql" />
+        <option value="$PROJECT_DIR$/src/doc/SQL/User_RoleTableInit.sql" />
+        <option value="$PROJECT_DIR$/src/doc/SQL/Role_PermissionTableInit.sql" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/biz/UserServices.java" />
+        <option value="$PROJECT_DIR$/src/main/test/java/TestMyBatis/TestUser.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/entity/Permission.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/entity/User_Role.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/spring/spring-mvc.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/Home/action/HomeController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/log4j.properties" />
+        <option value="$PROJECT_DIR$/src/main/resources/spring/spring-content.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/index.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/js/user/login.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/action/UserController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/spring/spring-security.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/biz/MyUserDetailService.java" />
       </list>
     </option>
   </component>
@@ -201,24 +288,26 @@
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
-    <option name="FILTER_INFO" value="true" />
-    <option name="FILTER_DEBUG" value="true" />
+    <option name="FILTER_INFO" value="false" />
+    <option name="FILTER_DEBUG" value="false" />
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="405" />
-    <option name="y" value="116" />
-    <option name="width" value="1273" />
-    <option name="height" value="884" />
+    <option name="x" value="122" />
+    <option name="y" value="401" />
+    <option name="width" value="1428" />
+    <option name="height" value="922" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
+      <flattenPackages ProjectPane="false" />
+      <hideEmptyPackages ProjectPane="false" />
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
@@ -239,6 +328,19 @@
               <item name="scsycc_master'" type="b2602c69:ProjectViewProjectNode" />
               <item name="scsycc_master'" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="doc" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="scsycc_master'" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scsycc_master'" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="doc" type="462c0819:PsiDirectoryNode" />
+              <item name="SQL" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="scsycc_master'" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scsycc_master'" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -253,6 +355,120 @@
               <item name="scsycc_master'" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="cn" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="scsycc_master'" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scsycc_master'" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="cn" type="462c0819:PsiDirectoryNode" />
+              <item name="AssassinG" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="scsycc_master'" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scsycc_master'" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="cn" type="462c0819:PsiDirectoryNode" />
+              <item name="AssassinG" type="462c0819:PsiDirectoryNode" />
+              <item name="scsycc" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="scsycc_master'" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scsycc_master'" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="cn" type="462c0819:PsiDirectoryNode" />
+              <item name="AssassinG" type="462c0819:PsiDirectoryNode" />
+              <item name="scsycc" type="462c0819:PsiDirectoryNode" />
+              <item name="entitys" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="scsycc_master'" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scsycc_master'" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="cn" type="462c0819:PsiDirectoryNode" />
+              <item name="AssassinG" type="462c0819:PsiDirectoryNode" />
+              <item name="scsycc" type="462c0819:PsiDirectoryNode" />
+              <item name="entitys" type="462c0819:PsiDirectoryNode" />
+              <item name="Home" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="scsycc_master'" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scsycc_master'" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="cn" type="462c0819:PsiDirectoryNode" />
+              <item name="AssassinG" type="462c0819:PsiDirectoryNode" />
+              <item name="scsycc" type="462c0819:PsiDirectoryNode" />
+              <item name="entitys" type="462c0819:PsiDirectoryNode" />
+              <item name="Home" type="462c0819:PsiDirectoryNode" />
+              <item name="action" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="scsycc_master'" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scsycc_master'" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="cn" type="462c0819:PsiDirectoryNode" />
+              <item name="AssassinG" type="462c0819:PsiDirectoryNode" />
+              <item name="scsycc" type="462c0819:PsiDirectoryNode" />
+              <item name="entitys" type="462c0819:PsiDirectoryNode" />
+              <item name="User" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="scsycc_master'" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scsycc_master'" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="cn" type="462c0819:PsiDirectoryNode" />
+              <item name="AssassinG" type="462c0819:PsiDirectoryNode" />
+              <item name="scsycc" type="462c0819:PsiDirectoryNode" />
+              <item name="entitys" type="462c0819:PsiDirectoryNode" />
+              <item name="User" type="462c0819:PsiDirectoryNode" />
+              <item name="action" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="scsycc_master'" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scsycc_master'" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="cn" type="462c0819:PsiDirectoryNode" />
+              <item name="AssassinG" type="462c0819:PsiDirectoryNode" />
+              <item name="scsycc" type="462c0819:PsiDirectoryNode" />
+              <item name="entitys" type="462c0819:PsiDirectoryNode" />
+              <item name="User" type="462c0819:PsiDirectoryNode" />
+              <item name="biz" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="scsycc_master'" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scsycc_master'" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="cn" type="462c0819:PsiDirectoryNode" />
+              <item name="AssassinG" type="462c0819:PsiDirectoryNode" />
+              <item name="scsycc" type="462c0819:PsiDirectoryNode" />
+              <item name="entitys" type="462c0819:PsiDirectoryNode" />
+              <item name="User" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="scsycc_master'" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scsycc_master'" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -261,7 +477,76 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="mybatis" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="scsycc_master'" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scsycc_master'" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="spring" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="scsycc_master'" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scsycc_master'" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="scsycc_master'" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scsycc_master'" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="scsycc_master'" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scsycc_master'" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="TestMyBatis" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="scsycc_master'" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scsycc_master'" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="scsycc_master'" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scsycc_master'" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="scsycc_master'" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scsycc_master'" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="scsycc_master'" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scsycc_master'" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="scsycc_master'" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scsycc_master'" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -274,11 +559,20 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="E:/software/Git/bin/git.exe" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Database" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\WorkSpace\Idea\scsycc_master'\src\main\webapp\js" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\WorkSpace\Idea\scsycc_master'\src\main\webapp\WEB-INF\user" />
+      <recent name="D:\WorkSpace\Idea\scsycc_master'\src\main\resources\mybatis\mapper" />
+      <recent name="D:\WorkSpace\Idea\scsycc_master'\src\doc\SQL" />
       <recent name="D:\WorkSpace\Idea\scsycc\src\main\java\cn\AssassinG\scsycc\common" />
     </key>
   </component>
@@ -303,31 +597,7 @@
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
-    <configuration name="TestRole and 5 more" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="scsycc" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="pattern" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <patterns>
-        <pattern testClass="TestMyBatis.TestRole" />
-        <pattern testClass="TestMyBatis.TestUser" />
-        <pattern testClass="TestMyBatis.TestUserGroup" />
-        <pattern testClass="TestMyBatis.TestUserGroupRole" />
-        <pattern testClass="TestMyBatis.TestUserGroupUser" />
-        <pattern testClass="TestMyBatis.TestUserRole" />
-      </patterns>
-    </configuration>
-    <configuration name="TestRole" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestRole.testListAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="scsycc" />
       <extension name="coverage">
         <pattern>
@@ -339,8 +609,8 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="TestMyBatis" />
       <option name="MAIN_CLASS_NAME" value="TestMyBatis.TestRole" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="METHOD_NAME" value="testListAll" />
+      <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
@@ -350,7 +620,7 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="TestRole.testGetBy" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestUserRole.testListAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="scsycc" />
       <extension name="coverage">
         <pattern>
@@ -361,8 +631,8 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="TestMyBatis" />
-      <option name="MAIN_CLASS_NAME" value="TestMyBatis.TestRole" />
-      <option name="METHOD_NAME" value="testGetBy" />
+      <option name="MAIN_CLASS_NAME" value="TestMyBatis.TestUserRole" />
+      <option name="METHOD_NAME" value="testListAll" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -371,14 +641,7 @@
       <option name="TEST_SEARCH_SCOPE">
         <value defaultName="singleModule" />
       </option>
-      <patterns>
-        <pattern testClass="TestMyBatis.TestRole" />
-        <pattern testClass="TestMyBatis.TestUser" />
-        <pattern testClass="TestMyBatis.TestUserGroup" />
-        <pattern testClass="TestMyBatis.TestUserGroupRole" />
-        <pattern testClass="TestMyBatis.TestUserGroupUser" />
-        <pattern testClass="TestMyBatis.TestUserRole" />
-      </patterns>
+      <patterns />
     </configuration>
     <configuration name="TestUser.testCreate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="scsycc" />
@@ -416,6 +679,29 @@
       <option name="PACKAGE_NAME" value="TestMyBatis" />
       <option name="MAIN_CLASS_NAME" value="TestMyBatis.TestUser" />
       <option name="METHOD_NAME" value="testInsert" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration name="TestUser.testListAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="scsycc" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="TestMyBatis.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="TestMyBatis" />
+      <option name="MAIN_CLASS_NAME" value="TestMyBatis.TestUser" />
+      <option name="METHOD_NAME" value="testListAll" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -535,34 +821,21 @@
         </option>
       </method>
     </configuration>
-    <configuration default="true" type="Remote" factoryName="Remote">
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" value="javadebug" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
-    </configuration>
-    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
-      <module name="" />
-      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
-      <option name="PROGRAM_PARAMETERS" />
-      <predefined_log_file id="idea.log" enabled="true" />
-    </configuration>
     <list>
       <item itemvalue="Tomcat Server.Tomcat" />
-      <item itemvalue="JUnit.TestRole" />
-      <item itemvalue="JUnit.TestRole and 5 more" />
-      <item itemvalue="JUnit.TestRole.testGetBy" />
       <item itemvalue="JUnit.TestUser.testCreate" />
       <item itemvalue="JUnit.TestUser.testInsert" />
+      <item itemvalue="JUnit.TestRole.testListAll" />
+      <item itemvalue="JUnit.TestUser.testListAll" />
+      <item itemvalue="JUnit.TestUserRole.testListAll" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestUser.testInsert" />
         <item itemvalue="JUnit.TestUser.testCreate" />
-        <item itemvalue="JUnit.TestRole" />
-        <item itemvalue="JUnit.TestRole and 5 more" />
-        <item itemvalue="JUnit.TestRole.testGetBy" />
+        <item itemvalue="JUnit.TestUserRole.testListAll" />
+        <item itemvalue="JUnit.TestUser.testListAll" />
+        <item itemvalue="JUnit.TestRole.testListAll" />
+        <item itemvalue="JUnit.TestUser.testInsert" />
       </list>
     </recent_temporary>
   </component>
@@ -592,7 +865,19 @@
       <workItem from="1524013123925" duration="3074000" />
       <workItem from="1524100009623" duration="1830000" />
       <workItem from="1524104205862" duration="1476000" />
-      <workItem from="1524109650396" duration="1966000" />
+      <workItem from="1524109650396" duration="2373000" />
+      <workItem from="1524127788629" duration="600000" />
+      <workItem from="1524622956228" duration="1467000" />
+      <workItem from="1524811132054" duration="6103000" />
+      <workItem from="1525310213815" duration="783000" />
+      <workItem from="1525311303974" duration="600000" />
+      <workItem from="1525941497129" duration="20000" />
+      <workItem from="1525941602994" duration="7211000" />
+      <workItem from="1526001755428" duration="18646000" />
+      <workItem from="1526035459742" duration="43000" />
+      <workItem from="1526130636529" duration="1298000" />
+      <workItem from="1526137292851" duration="5000" />
+      <workItem from="1526200727268" duration="12602000" />
     </task>
     <task id="LOCAL-00001" summary="进度推进&#10;1.完成并测试userDao.listAll&#10;2.了解mybatis创建条件查询SQL&#10;3.测试userDao.getBy和userDao.listBy&#10;4.设计PageBean和页面查询&#10;5.测试userDao.listPage&#10;6.编写role的测试类，完成role的测试&#10;&#10;&#10;&#10;selectone插到多个结果时会报错，那么有什么用呢，直接用selectlist查再做判断反而省事，因为只有涉及到很少几个键的查询查询结果才会是唯一的">
       <created>1523263628435</created>
@@ -622,22 +907,17 @@
       <option name="project" value="LOCAL" />
       <updated>1523539910765</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="进度推进&#10;1.添加了spring-security依赖。。。">
+      <created>1524126999372</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1524126999372</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TestRole_and_5_more - 2018.04.12 at 10h 53m 20s.xml">
-      <configuration name="TestRole and 5 more" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestRole_testGetBy - 2018.04.12 at 10h 50m 48s.xml">
-      <configuration name="TestRole.testGetBy" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestUserRole_testInsert - 2018.04.09 at 22h 47m 20s.xml">
-      <configuration name="TestUserRole.testInsert" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestUser_and_4_more - 2018.04.12 at 10h 43m 04s.xml">
-      <configuration name="TestUser and 4 more" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="TestUser_testCreate - 2018.04.12 at 17h 11m 50s.xml">
       <configuration name="TestUser.testCreate" configurationId="JUnit" />
     </history-entry>
@@ -656,9 +936,21 @@
     <history-entry file="TestUser_testInsert - 2018.04.12 at 19h 30m 17s.xml">
       <configuration name="TestUser.testInsert" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="TestRole_testListAll - 2018.05.11 at 15h 07m 27s.xml">
+      <configuration name="TestRole.testListAll" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestUser_testListAll - 2018.05.11 at 15h 07m 41s.xml">
+      <configuration name="TestUser.testListAll" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestUserRole_testListAll - 2018.05.11 at 15h 07m 57s.xml">
+      <configuration name="TestUserRole.testListAll" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestUser_testCreate - 2018.05.11 at 16h 13m 46s.xml">
+      <configuration name="TestUser.testCreate" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78702000" />
+    <option name="totallyTimeSpent" value="128487000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -674,42 +966,80 @@
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="18" />
-      <window_info anchor="bottom" id="Event Log" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Application Servers" order="7" weight="0.32938644" />
+      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.71875" side_tool="true" weight="0.37578946" />
+      <window_info anchor="bottom" id="Application Servers" order="2" weight="0.32938644" />
       <window_info anchor="right" id="Maven Projects" order="8" />
-      <window_info anchor="bottom" id="Database Changes" order="15" weight="0.32901832" />
       <window_info anchor="right" id="CDI" order="10" />
-      <window_info id="Designer" order="6" />
+      <window_info anchor="bottom" id="Database Changes" order="8" weight="0.32901832" />
+      <window_info id="Designer" order="0" />
       <window_info anchor="right" id="Database" order="11" weight="0.32995737" />
-      <window_info id="Structure" order="15" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="JSF" order="12" />
+      <window_info id="Structure" order="7" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="20" weight="0.25" />
-      <window_info id="UI Designer" order="8" />
-      <window_info anchor="bottom" id="Debug" order="18" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="21" weight="0.32901832" />
+      <window_info id="UI Designer" order="1" />
+      <window_info anchor="bottom" id="Debug" order="10" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="13" weight="0.32901832" />
+      <window_info anchor="bottom" id="Messages" order="0" weight="0.29126215" />
       <window_info anchor="right" id="Palette&#9;" order="13" />
-      <window_info anchor="bottom" id="Java Enterprise" order="7" weight="0.32901832" />
-      <window_info anchor="bottom" id="Version Control" order="10" weight="0.16609393" />
-      <window_info anchor="bottom" id="Run" order="17" weight="0.41580757" />
-      <window_info anchor="bottom" id="Spring" order="11" weight="0.32901832" />
-      <window_info anchor="bottom" id="Terminal" order="12" weight="0.24742268" />
-      <window_info content_ui="combo" id="Project" order="14" visible="true" weight="0.1875" />
+      <window_info anchor="bottom" id="Java Enterprise" order="3" weight="0.32901832" />
+      <window_info anchor="bottom" id="Version Control" order="4" weight="0.16526316" />
+      <window_info anchor="bottom" id="Run" order="14" sideWeight="0.7192708" side_tool="true" weight="0.37578946" />
+      <window_info anchor="bottom" id="Spring" order="5" weight="0.32901832" />
+      <window_info anchor="bottom" id="Terminal" order="6" sideWeight="0.28072917" weight="0.37578946" />
+      <window_info content_ui="combo" id="Project" order="6" visible="true" weight="0.178125" />
       <window_info anchor="right" id="Bean Validation" order="15" />
-      <window_info id="Web" order="10" side_tool="true" />
-      <window_info id="Learn" />
-      <window_info id="Favorites" order="11" side_tool="true" />
+      <window_info id="Web" order="3" side_tool="true" />
+      <window_info id="Learn" order="8" />
+      <window_info id="Favorites" order="4" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="14" />
       <window_info anchor="right" id="Commander" order="19" weight="0.4" />
-      <window_info id="Image Layers" order="9" />
-      <window_info anchor="bottom" id="Cvs" order="19" weight="0.25" />
-      <window_info id="Capture Tool" order="13" />
-      <window_info anchor="bottom" id="Messages" order="0" weight="0.29126215" />
-      <window_info anchor="bottom" id="Message" order="14" />
+      <window_info anchor="bottom" id="Inspection" order="12" weight="0.4" />
+      <window_info id="Image Layers" order="2" />
+      <window_info anchor="bottom" id="Cvs" order="11" weight="0.25" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info anchor="bottom" id="Message" order="7" />
       <window_info anchor="right" id="Theme Preview" order="16" />
-      <window_info anchor="bottom" id="Inspection" order="20" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="21" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="16" />
+      <window_info anchor="bottom" id="Find" order="9" />
     </layout>
+    <layout-to-restore>
+      <window_info anchor="bottom" id="Application Servers" order="2" weight="0.32938644" />
+      <window_info id="Designer" order="0" />
+      <window_info anchor="right" id="Palette" order="8" />
+      <window_info active="true" anchor="bottom" id="Run" order="14" sideWeight="0.7192708" side_tool="true" visible="true" weight="0.37578946" />
+      <window_info anchor="bottom" id="Spring" order="5" weight="0.32901832" />
+      <window_info id="Image Layers" order="2" />
+      <window_info anchor="right" id="Commander" order="9" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="11" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="10" weight="0.25" />
+      <window_info id="UI Designer" order="1" />
+      <window_info id="Favorites" order="4" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="6" sideWeight="0.28072917" visible="true" weight="0.37578946" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="JSF" order="3" />
+      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.71875" side_tool="true" weight="0.37578946" />
+      <window_info anchor="bottom" id="Messages" order="0" weight="0.29126215" />
+      <window_info anchor="bottom" id="TODO" order="13" weight="0.32901832" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="11" weight="0.25" />
+      <window_info anchor="bottom" id="Java Enterprise" order="3" weight="0.32901832" />
+      <window_info anchor="bottom" id="Database Changes" order="8" weight="0.32901832" />
+      <window_info anchor="bottom" id="Version Control" order="4" weight="0.16526316" />
+      <window_info anchor="right" id="Maven Projects" order="0" />
+      <window_info anchor="bottom" id="Find" order="9" />
+      <window_info content_ui="combo" id="Project" order="6" weight="0.178125" />
+      <window_info id="Learn" order="8" />
+      <window_info anchor="right" id="Database" order="2" weight="0.32995737" />
+      <window_info anchor="bottom" id="Message" order="7" />
+      <window_info id="Web" order="3" side_tool="true" />
+      <window_info anchor="right" id="Palette&#9;" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="7" />
+      <window_info id="Structure" order="7" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="CDI" order="1" />
+      <window_info anchor="bottom" id="Inspection" order="12" weight="0.4" />
+      <window_info anchor="bottom" id="Debug" order="10" weight="0.4" />
+      <window_info anchor="right" id="Bean Validation" order="6" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -750,215 +1080,10 @@
     <MESSAGE value="进度推进&#10;1.添加了deleteById&#10;2.在UserService中的getById中添加了is_deleted=false的约束" />
     <MESSAGE value="进度推进&#10;1.修改UserController，开始设计注册功能&#10;2.添加UserService的create方法的测试&#10;3.发现了一个bug，mybatis的xml配置中，如果JavaBean的属性为空，会报错（废话），这个要十分小心，可能需要后期再进行数据库操作前，在biz层先对JavaBean进行验证" />
     <MESSAGE value="进度推进&#10;1.设计了一个简单的用户注册登录功能&#10;2.修改了Entity：User包中所有Entity的mybatis XML映射文件的insert语句，createTime，updateTime，deleteTime和isDeleted不在从JavaBean属性获取，而是直接使用初始化值：now(),now(),null,false&#10;3.尝试了controller向jsp传值，但需要页面刷新一下才能将值更新到view，这里考虑下次改为ajax，并将传值的字符串改成能够适应国际化&#10;4.发现了一个问题：jdbc.properties配置时，url driver username password作为key时报错，使用jdbc.driver jdbc.url jdbc.username jdbc.password不报错。没找到错误原因，网上说是编写jdbc.properties文件时，key的名称不能与数据库表中的字段有重复，重复了就会导致上述错误" />
-    <option name="LAST_COMMIT_MESSAGE" value="进度推进&#10;1.设计了一个简单的用户注册登录功能&#10;2.修改了Entity：User包中所有Entity的mybatis XML映射文件的insert语句，createTime，updateTime，deleteTime和isDeleted不在从JavaBean属性获取，而是直接使用初始化值：now(),now(),null,false&#10;3.尝试了controller向jsp传值，但需要页面刷新一下才能将值更新到view，这里考虑下次改为ajax，并将传值的字符串改成能够适应国际化&#10;4.发现了一个问题：jdbc.properties配置时，url driver username password作为key时报错，使用jdbc.driver jdbc.url jdbc.username jdbc.password不报错。没找到错误原因，网上说是编写jdbc.properties文件时，key的名称不能与数据库表中的字段有重复，重复了就会导致上述错误" />
+    <MESSAGE value="进度推进&#10;1.添加了spring-security依赖。。。" />
+    <option name="LAST_COMMIT_MESSAGE" value="进度推进&#10;1.添加了spring-security依赖。。。" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/common/page/PageBean.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/entity/Role.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/dao/RoleDao.java" />
-    <entry file="file://$PROJECT_DIR$/src/doc/SQL/UserTableInit.sql" />
-    <entry file="file://$PROJECT_DIR$/src/doc/SQL/RoleTableInit.sql" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/entity/Role.java" />
-    <entry file="file://$PROJECT_DIR$/src/doc/SQL/UserGroupTableInit.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="17" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/beans/UserGroupServiceImpl.xml" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/entity/UserGroup.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="6" column="30" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/beans/RoleServiceImpl.xml" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/entity/User_Role.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="6" column="23" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/beans/UserServiceImpl.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="36" column="30" selection-start-line="36" selection-start-column="14" selection-end-line="36" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/mybatis-config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="33">
-          <caret line="43" column="39" selection-start-line="43" selection-start-column="26" selection-end-line="43" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/doc/SQL/UserGroup_RoleTableInit.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="10" column="18" lean-forward="true" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/entity/UserGroup_Role.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-230">
-          <caret line="5" column="28" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/doc/SQL/UserGroup_UserTableInit.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="9" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/entity/UserGroup_User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="6" column="23" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/test/java/TestMyBatis/TestUserRole.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="27" column="43" lean-forward="true" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/test/java/TestMyBatis/TestUserGroup.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="20" column="72" lean-forward="true" selection-start-line="20" selection-start-column="72" selection-end-line="20" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/test/java/TestMyBatis/TestUserGroupUser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="68" column="41" selection-start-line="68" selection-start-column="41" selection-end-line="68" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/common/dao/BaseDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="17" column="11" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/dao/RoleDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/entity/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/test/java/TestMyBatis/TestUserGroupRole.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1173">
-          <caret line="65" column="66" selection-start-line="65" selection-start-column="66" selection-end-line="65" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/jdbc.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="8" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/mapper/Role.Mapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="25" column="40" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/mapper/User.Mapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="26" column="40" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/mapper/UserGroup.Mapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="26" column="40" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/mapper/UserGroupRole.Mapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="26" column="40" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/mapper/UserRole.Mapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="26" column="40" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/mapper/UserGroupUser.Mapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
-          <caret line="25" column="60" lean-forward="true" selection-start-line="25" selection-start-column="60" selection-end-line="25" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/test/java/TestMyBatis/TestUser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="28" column="36" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/test/java/TestMyBatis/TestRole.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="38" column="40" selection-start-line="38" selection-start-column="40" selection-end-line="38" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/dao/UserDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/common/dao/BaseDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="43" selection-start-line="43" selection-end-line="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/dao/UserDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/spring/messages/messages_en.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="46">
@@ -966,45 +1091,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="30" selection-start-column="30" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/user/login.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="6" column="63" lean-forward="true" selection-start-line="6" selection-start-column="63" selection-end-line="6" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/user/show.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="56" selection-start-line="2" selection-start-column="56" selection-end-line="2" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/user/success.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="1" column="4" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/user/register.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/user/register.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
           <caret line="16" column="12" lean-forward="true" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-mvc.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="21" column="64" selection-start-line="21" selection-start-column="64" selection-end-line="21" selection-end-column="64" />
         </state>
       </provider>
     </entry>
@@ -1012,20 +1102,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-46">
           <caret line="13" column="42" selection-start-line="13" selection-start-column="42" selection-end-line="13" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-content.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="24" column="32" lean-forward="true" selection-start-line="24" selection-start-column="32" selection-end-line="24" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1219">
-          <caret line="53" column="46" selection-start-line="53" selection-start-column="46" selection-end-line="53" selection-end-column="46" />
         </state>
       </provider>
     </entry>
@@ -1038,31 +1114,412 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/common/page/PageBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="850">
           <caret line="36" column="7" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/action/UserController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/dao/UserDaoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="34" column="38" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
+        <state relative-caret-position="100">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/dao/UserDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/mapper/User.Mapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1675">
+          <caret line="26" column="40" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/mapper/RolePermission.Mapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="8" column="40" lean-forward="true" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/dao/RolePermissionDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="5" column="100" selection-start-line="5" selection-start-column="100" selection-end-line="5" selection-end-column="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/entity/Role_Permission.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/dao/RolePermissionDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="5" column="66" selection-start-line="5" selection-start-column="66" selection-end-line="5" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/dao/PermissionDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="5" column="89" selection-start-line="5" selection-start-column="89" selection-end-line="5" selection-end-column="89" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/entity/Role.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/dao/PermissionDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="5" column="60" selection-start-line="5" selection-start-column="60" selection-end-line="5" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/mybatis-config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="42" column="36" selection-start-line="42" selection-start-column="36" selection-end-line="42" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/mapper/Permission.Mapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2657">
+          <caret line="5" column="47" lean-forward="true" selection-start-line="5" selection-start-column="47" selection-end-line="5" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/common/dao/BaseDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="17" column="11" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/mapper/UserRole.Mapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2425">
+          <caret line="5" column="37" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/common/dao/BaseDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2850">
+          <caret line="114" column="13" selection-start-line="114" selection-start-column="13" selection-end-line="114" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/user/sessionTimeOut.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="1" column="9" selection-end-line="1" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-core/5.0.4.RELEASE/spring-security-core-5.0.4.RELEASE.jar!/org/springframework/security/access/vote/AffirmativeBased.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/doc/SQL/UserTableInit.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="22" column="25" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/doc/SQL/RoleTableInit.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="7" column="65" selection-start-line="7" selection-start-column="65" selection-end-line="7" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/doc/SQL/PermissionTableInit.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="16" column="65" selection-start-line="16" selection-start-column="65" selection-end-line="16" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/doc/SQL/User_RoleTableInit.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="13" column="42" selection-start-line="13" selection-start-column="42" selection-end-line="13" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/doc/SQL/Role_PermissionTableInit.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/test/java/TestMyBatis/TestRole.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="85" column="45" lean-forward="true" selection-start-line="85" selection-start-column="45" selection-end-line="85" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/test/java/TestMyBatis/TestUserRole.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="84" column="39" selection-start-line="84" selection-start-column="39" selection-end-line="84" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/biz/UserServices.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        <state relative-caret-position="100">
+          <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/beans/UserServiceImpl.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="68" column="26" selection-start-line="68" selection-start-column="14" selection-end-line="68" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/user/show.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="2" column="56" selection-start-line="2" selection-start-column="56" selection-end-line="2" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/entity/Permission.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="183" column="36" selection-start-line="183" selection-start-column="36" selection-end-line="183" selection-end-column="36" />
+        <state relative-caret-position="234">
+          <caret line="173" column="26" selection-start-line="173" selection-start-column="26" selection-end-line="173" selection-end-column="26" />
         </state>
       </provider>
     </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context-support/5.0.4.RELEASE/spring-context-support-5.0.4.RELEASE.jar!/org/springframework/cache/ehcache/EhCacheFactoryBean.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2550">
+          <caret line="46" column="24" selection-start-line="46" selection-start-column="24" selection-end-line="46" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/entity/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/entity/User_Role.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="700">
+          <caret line="28" column="18" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/test/java/TestMyBatis/TestUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="19" column="68" lean-forward="true" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/user/success.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="1" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/home.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="1" column="4" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-core/5.0.4.RELEASE/spring-security-core-5.0.4.RELEASE.jar!/org/springframework/security/authentication/AuthenticationManager.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/Home/action/HomeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/log4j.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-mvc.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="24" column="42" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-content.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="27" column="40" lean-forward="true" selection-start-line="27" selection-start-column="40" selection-end-line="27" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="49" column="21" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="1" column="41" lean-forward="true" selection-start-line="1" selection-start-column="41" selection-end-line="1" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/user/login.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="7" column="7" lean-forward="true" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/action/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="900">
+          <caret line="54" column="5" lean-forward="true" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/AssassinG/scsycc/entitys/User/biz/MyUserDetailService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="35" column="50" selection-start-line="35" selection-start-column="50" selection-end-line="35" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-security.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="597">
+          <caret line="32" column="75" lean-forward="true" selection-start-line="32" selection-start-column="75" selection-end-line="32" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>scsycc:war</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Spring</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>scsycc</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: aopalliance:aopalliance:1.0</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

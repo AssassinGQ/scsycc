@@ -26,6 +26,14 @@
             <ref bean="sessionTemplate"/>
         </property>
     </bean>
+    <bean id="PermissionDao" class="cn.AssassinG.scsycc.entitys.User.dao.PermissionDaoImpl">
+        <property name="sessionTemplate">
+            <ref bean="sessionTemplate"/>
+        </property>
+        <property name="sqlSessionTemplate">
+            <ref bean="sessionTemplate"/>
+        </property>
+    </bean>
     <bean id="UserRoleDao" class="cn.AssassinG.scsycc.entitys.User.dao.UserRoleDaoImpl">
         <property name="sessionTemplate">
             <ref bean="sessionTemplate"/>
@@ -43,6 +51,14 @@
         </property>
     </bean>
     <bean id="UserGroupUserDao" class="cn.AssassinG.scsycc.entitys.User.dao.UserGroupUserDaoImpl">
+        <property name="sessionTemplate">
+            <ref bean="sessionTemplate"/>
+        </property>
+        <property name="sqlSessionTemplate">
+            <ref bean="sessionTemplate"/>
+        </property>
+    </bean>
+    <bean id="RolePermission" class="cn.AssassinG.scsycc.entitys.User.dao.RolePermissionDaoImpl">
         <property name="sessionTemplate">
             <ref bean="sessionTemplate"/>
         </property>

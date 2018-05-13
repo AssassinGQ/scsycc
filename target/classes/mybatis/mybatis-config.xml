@@ -40,18 +40,22 @@
 		<typeAlias alias="User" type="cn.AssassinG.scsycc.entitys.User.entity.User" />
 		<typeAlias alias="UserGroup" type="cn.AssassinG.scsycc.entitys.User.entity.UserGroup" />
 		<typeAlias alias="Role" type="cn.AssassinG.scsycc.entitys.User.entity.Role" />
+		<typeAlias alias="Permission" type="cn.AssassinG.scsycc.entitys.User.entity.Permission" />
 		<typeAlias alias="UserRole" type="cn.AssassinG.scsycc.entitys.User.entity.User_Role" />
 		<typeAlias alias="UserGroupUser" type="cn.AssassinG.scsycc.entitys.User.entity.UserGroup_User" />
 		<typeAlias alias="UserGroupRole" type="cn.AssassinG.scsycc.entitys.User.entity.UserGroup_Role" />
+		<typeAlias alias="RolePermission" type="cn.AssassinG.scsycc.entitys.User.entity.Role_Permission" />
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="mybatis/mapper/User.Mapper.xml" />
         <mapper resource="mybatis/mapper/Role.Mapper.xml" />
 		<mapper resource="mybatis/mapper/UserGroup.Mapper.xml" />
+		<mapper resource="mybatis/mapper/Permission.Mapper.xml" />
         <mapper resource="mybatis/mapper/UserRole.Mapper.xml" />
         <mapper resource="mybatis/mapper/UserGroupRole.Mapper.xml" />
         <mapper resource="mybatis/mapper/UserGroupUser.Mapper.xml" />
+		<mapper resource="mybatis/mapper/RolePermission.Mapper.xml" />
 	</mappers>
 
 </configuration>

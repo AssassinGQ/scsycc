@@ -24,4 +24,12 @@ public class User_Role extends BaseEntity {
     public void setRoleId(Long roleId) {
         RoleId = roleId;
     }
+
+    @Override
+    public String toString() {
+        return "User_Role{" +
+                "UserId=" + UserId +
+                ", RoleId=" + RoleId +
+                '}';
+    }
 }
