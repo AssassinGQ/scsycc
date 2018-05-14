@@ -66,9 +66,10 @@
             <ref bean="sessionTemplate"/>
         </property>
     </bean>
-    <bean id="Userservices" class="cn.AssassinG.scsycc.entitys.User.biz.UserServices">
-        <property name="userDao">
-            <ref bean="UserDao"/>
-        </property>
-    </bean>
+    <!--<bean id="Userservices" class="cn.AssassinG.scsycc.entitys.User.biz.UserServices">-->
+        <!--<property name="userDao">-->
+            <!--<ref bean="UserDao"/>-->
+        <!--</property>-->
+    <!--</bean>-->
+    <bean id="HomeService" class="cn.AssassinG.scsycc.entitys.Home.biz.HomeServices"/>
 </beans>

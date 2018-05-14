@@ -15,4 +15,6 @@ alter table t_role_permission comment '角色权限关联表';
 
 ## 用户角色关联信息初始化
 insert into t_role_permission(permission_id, role_id) values ("1", "1");
+insert into t_role_permission(permission_id, role_id) values ("3", "1");
+insert into t_role_permission(permission_id, role_id) values ("1", "2");
 insert into t_role_permission(permission_id, role_id) values ("2", "2");

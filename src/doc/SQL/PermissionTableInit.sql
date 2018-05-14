@@ -15,3 +15,4 @@ alter table t_permission comment '权限信息表';
 ## 权限的初始化数据
 insert into t_permission(permission_name) values ("RES_PAGE_HOME");
 insert into t_permission(permission_name) values ("RES_PAGE_HOME2");
+insert into t_permission(permission_name) values ("RES_METHOD_HELLO");

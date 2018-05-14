@@ -45,6 +45,7 @@ public class MyUserDetailService implements UserDetailsService {
             paramMap.put("RoleId", user_role.getRoleId());
             List<Role_Permission> role_permissions = rolePermissionDao.listBy(paramMap);
             for(Role_Permission role_permission : role_permissions){
+                logger.info(role_permission);
                 permissions.add(permissionDao.getById(role_permission.getPermissionId()));
             }
         }

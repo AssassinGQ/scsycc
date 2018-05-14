@@ -3,8 +3,11 @@ package cn.AssassinG.scsycc.entitys.User.biz;
 import cn.AssassinG.scsycc.entitys.User.dao.UserDao;
 import cn.AssassinG.scsycc.entitys.User.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserServices {
+    @Autowired
     private UserDao userDao;
 
     public UserDao getUserDao() {
