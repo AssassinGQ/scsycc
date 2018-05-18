@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="scsycc:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="scsycc.war">
-      <element id="artifact" artifact-name="scsycc:war exploded" />
-    </root>
-  </artifact>
-</component>
