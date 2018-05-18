@@ -23,6 +23,7 @@ public class HomeController {
         return "home";
     }
 
+
     @RequestMapping(value = "/home2", method = RequestMethod.GET)
     public String getHome2(ModelMap model) {
         return "home";
