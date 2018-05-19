@@ -4,7 +4,8 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-public class HomeServices {
+@Service
+public class HomeServiceImpl implements HomeService {
 
     @Secured("ROLE_METHOD_HELLO")
     public String sayHello(){

@@ -7,7 +7,7 @@
        http://www.springframework.org/schema/security
        http://www.springframework.org/schema/security/spring-security.xsd">
 
-    <security:global-method-security secured-annotations="enabled"/>
+    <!--<security:global-method-security secured-annotations="enabled"/>-->
     <security:http pattern="/**/*.jpg" security="none" />
     <security:http pattern="/**/*.png" security="none" />
     <security:http pattern="/**/*.gif" security="none" />

@@ -1,15 +1,9 @@
 package cn.AssassinG.scsycc.entitys.User.action;
 
-import cn.AssassinG.scsycc.entitys.User.biz.UserServices;
+import cn.AssassinG.scsycc.entitys.User.biz.UserService;
 import cn.AssassinG.scsycc.entitys.User.entity.User;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,15 +11,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 @Controller
 @RequestMapping("/user")
 public class UserController {
     private static Logger logger = Logger.getLogger(UserController.class);
     @Autowired
-    private UserServices userServices;
+    private UserService userService;
 
     @RequestMapping(value = "/reg", method = RequestMethod.GET)//注册页面
     public String toReg(ModelMap model){
@@ -44,9 +35,9 @@ public class UserController {
             model.put("registe_info", "请输入密码");
             return "user/register";
         }
-        User p_user = userServices.findUserByUname(user.getUsername());
+        User p_user = userService.findUserByUname(user.getUsername());
         if(p_user == null){
-            userServices.create(user);
+            userService.create(user);
             return "redirect:/user/Login";
         }else{
             model.put("registe_info", "重复的用户名");
@@ -101,7 +92,7 @@ public class UserController {
 //        return model;
 //
 //        model.put("User", user);
-//        User p_user = userServices.findUserByUname(user.getUsername());
+//        User p_user = userService.findUserByUname(user.getUsername());
 //        if(p_user == null){
 //            model.put("login_info", "查无此用户");
 //            return "user/login";

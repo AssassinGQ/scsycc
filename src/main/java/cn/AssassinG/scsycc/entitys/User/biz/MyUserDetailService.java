@@ -19,7 +19,7 @@ import java.util.Map;
 
 public class MyUserDetailService implements UserDetailsService {
     @Autowired
-    private UserServices userServices;
+    private UserService userServices;
     @Autowired
     private UserRoleDaoImpl userRoleDao;
     @Autowired

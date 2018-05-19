@@ -7,12 +7,15 @@ import org.apache.ibatis.exceptions.TooManyResultsException;
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class BaseDaoImpl<T extends BaseEntity> extends SqlSessionDaoSupport implements BaseDao<T> {
+public abstract class BaseDaoImpl<T extends BaseEntity> extends SqlSessionDaoSupport implements BaseDao<T> {
 
     public static final String SQL_INSERT = "insert";
     public static final String SQL_BATCH_INSERT = "batchInsert";
@@ -27,7 +30,10 @@ public class BaseDaoImpl<T extends BaseEntity> extends SqlSessionDaoSupport impl
     public static final String SQL_LIST_PAGE = "listPage";
 //    public static final String SQL_COUNT_BY_PAGE_PARAM = "countByPageParam"; // 根据当前分页参数进行统计
 
+    @Autowired
+    @Qualifier("sessionTemplate")
     private SqlSessionTemplate sessionTemplate;
+
     public SqlSessionTemplate getSessionTemplate() {
         return sessionTemplate;
     }

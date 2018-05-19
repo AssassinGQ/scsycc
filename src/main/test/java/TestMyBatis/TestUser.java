@@ -2,8 +2,8 @@ package TestMyBatis;
 
 import cn.AssassinG.scsycc.common.page.PageBean;
 import cn.AssassinG.scsycc.common.page.PageParam;
-import cn.AssassinG.scsycc.entitys.User.biz.UserServices;
-import cn.AssassinG.scsycc.entitys.User.dao.UserDaoImpl;
+import cn.AssassinG.scsycc.entitys.User.biz.UserService;
+import cn.AssassinG.scsycc.entitys.User.dao.UserDao;
 import cn.AssassinG.scsycc.entitys.User.entity.User;
 import org.apache.log4j.Logger;
 import org.junit.Test;
@@ -15,16 +15,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring/spring-mybatis.xml", "classpath:spring/beans/UserServiceImpl.xml"})
+@ContextConfiguration(locations = {"classpath:spring/spring-mybatis.xml", "classpath:spring/spring-content.xml"})
 public class TestUser {
     private static Logger logger = Logger.getLogger(TestUser.class);
-    //    private ApplicationContext ctx = new ClassPathXmlApplicationContext(new String[]{"spring/spring-mybatis.xml", "spring/beans/UserServiceImpl.xml"});
-    //    private UserServices userServices = (UserServices)ctx.getBean("Userservices");
     @Autowired
-    private UserServices userServices;
-    //    private UserDaoImpl userDao = (UserDaoImpl) ctx.getBean("UserDao");
+    private UserService userService;
     @Autowired
-    private UserDaoImpl userDao;
+    private UserDao userDao;
 
     @Test
     public void testInsert() {
@@ -128,6 +125,6 @@ public class TestUser {
         user.setPassword("123456");
 //        user.setCreateTime(new Date());
 //        user.setUpdateTime(new Date());
-        logger.info("Inserted id: " + userServices.create(user));
+        logger.info("Inserted id: " + userService.create(user));
     }
 }

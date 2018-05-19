@@ -6,13 +6,15 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans 
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/security
+       http://www.springframework.org/schema/security/spring-security.xsd">
 
     <!--自动扫描-->
     <context:component-scan base-package="cn.AssassinG.scsycc.entitys"/>
 
     <!--spring security start-->
-    <!--<security:global-method-security jsr250-annotations="enabled"/>-->
+    <security:global-method-security jsr250-annotations="enabled"/>
     <!--spring security end-->
 
     <!--避免AJAX请求时返回JSON出现下载文件-->
