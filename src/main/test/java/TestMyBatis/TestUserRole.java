@@ -2,11 +2,13 @@ package TestMyBatis;
 
 import cn.AssassinG.scsycc.common.page.PageBean;
 import cn.AssassinG.scsycc.common.page.PageParam;
+import cn.AssassinG.scsycc.entitys.User.dao.UserRoleDao;
 import cn.AssassinG.scsycc.entitys.User.dao.UserRoleDaoImpl;
 import cn.AssassinG.scsycc.entitys.User.entity.User_Role;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
@@ -15,11 +17,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring/spring-mybatis.xml"})
+@ContextConfiguration(locations = {"classpath:spring/spring-content.xml"})
 public class TestUserRole {
     private static Logger logger = Logger.getLogger(TestUserRole.class);
-    private ApplicationContext ctx = new ClassPathXmlApplicationContext("spring/spring-mybatis.xml", "spring/beans/UserServiceImpl.xml");
-    private UserRoleDaoImpl userroleDao = (UserRoleDaoImpl)ctx.getBean("UserRoleDao");
+    @Autowired
+    private UserRoleDao userroleDao;
+
     @Test
     public void testInsert(){
         User_Role userrole = new User_Role();

@@ -4,7 +4,7 @@ import cn.AssassinG.scsycc.entitys.User.entity.User;
 
 public interface UserService {
     long create(User user);
-    User getById(Long userId);
     void deleteUserById(long userId);
+    User findUserById(Long userId);
     User findUserByUname(String username);
 }

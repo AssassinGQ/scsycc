@@ -12,19 +12,20 @@
         <result column="delete_time" property="deleteTime" />
         <result column="is_deleted" property="isDeleted" />
         <result column="usergroup_name" property="UserGroupName" />
-        <result column="father_group_id" property="FatherGroupId" />
+        <result column="usergroup_desc" property="UserGroupDesc" />
+        <result column="fathergroup_name" property="FatherGroupName" />
     </resultMap>
 
     <insert id="insert" parameterType="UserGroup" keyProperty="id" useGeneratedKeys="true">
-        insert into <include refid="t_usergroup"/> (create_time, update_time, delete_time, is_deleted, usergroup_name, father_group_id)
-        values (now(), now(), NULL, FALSE, #{UserGroupName}, #{FatherGroupId})
+        insert into <include refid="t_usergroup"/> (create_time, update_time, delete_time, is_deleted, usergroup_name, usergroup_desc, fathergroup_name)
+        values (now(), now(), NULL, FALSE, #{UserGroupName}, #{FatherGroupDesc}, #{FatherGroupName})
     </insert>
 
     <insert id="batchInsert" parameterType="List" keyProperty="id" useGeneratedKeys="true">
-        insert into <include refid="t_usergroup"/> (create_time, update_time, delete_time, is_deleted, usergroup_name, father_group_id)
+        insert into <include refid="t_usergroup"/> (create_time, update_time, delete_time, is_deleted, usergroup_desc, fathergroup_name)
         values
         <foreach collection="list" item="obj" separator=",">
-            (now(), now(), NULL, FALSE, #{obj.UserGroupName}, #{obj.FatherGroupId})
+            (now(), now(), NULL, FALSE, #{obj.UserGroupName}, #{obj.UserGroupDesc}, #{obj.FatherGroupName})
         </foreach>
     </insert>
 
@@ -33,7 +34,8 @@
         <set>
             update_time = now(),
             usergroup_name =  #{UserGroupName},
-            father_group_id = #{FatherGroupId}
+            usergroup_desc =  #{UserGroupDesc},
+            fathergroup_name = #{FatherGroupName}
         </set>
         <where>
             ID = #{id}
@@ -55,10 +57,17 @@
                     </if>
                 </foreach>
             </trim>
-            <trim prefix="father_group_id =case" suffix="end,">
+            <trim prefix="usergroup_desc =case" suffix="end,">
                 <foreach collection="list" item="item">
-                    <if test="item.FatherGroupId!=null">
-                        when id=#{item.id} then #{item.FatherGroupId}
+                    <if test="item.UserGroupDesc!=null">
+                        when id=#{item.id} then #{item.UserGroupDesc}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="fathergroup_name =case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.FatherGroupName!=null">
+                        when id=#{item.id} then #{item.FatherGroupName}
                     </if>
                 </foreach>
             </trim>
@@ -111,9 +120,10 @@
         <if test="deleteTimeBegin != null"> and delete_time &gt;= #{deleteTimeBegin}</if>
         <if test="deleteTimeEnd != null"> and delete_time &lt;= #{deleteTimeEnd}</if>
         <if test="isDeleted != null"> and is_deleted = #{isDeleted}</if>
-        <if test="FatherGroupId != null"> and father_group_id = #{FatherGroupId}</if>
         <!-- Like query -->
         <if test="UserGroupName != null and UserGroupName != ''"> and usergroup_name like CONCAT(CONCAT('%', #{UserGroupName}), '%')</if>
+        <if test="UserGroupDesc != null and UserGroupDesc != ''"> and usergroup_desc like CONCAT(CONCAT('%', #{UserGroupDesc}), '%')</if>
+        <if test="FatherGroupName != null and FatherGroupName != ''"> and fathergroup_name like CONCAT(CONCAT('%', #{FatherGroupName}), '%')</if>
     </sql>
 
     <select id="listBy" parameterType="java.util.Map" resultMap="beanMap">

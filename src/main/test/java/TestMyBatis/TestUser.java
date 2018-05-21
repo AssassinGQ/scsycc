@@ -15,11 +15,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring/spring-mybatis.xml", "classpath:spring/spring-content.xml"})
+@ContextConfiguration(locations = {"classpath:spring/spring-content.xml"})
 public class TestUser {
     private static Logger logger = Logger.getLogger(TestUser.class);
-    @Autowired
-    private UserService userService;
+    //测试UserDao
     @Autowired
     private UserDao userDao;
 
@@ -89,8 +88,6 @@ public class TestUser {
     @Test
     public void testGetBy() {
         Map<String, Object> paramMap = new HashMap<String, Object>();
-        paramMap.put("pageFirst", 2);
-        paramMap.put("pageSize", 2);
         paramMap.put("isDeleted", true);
         logger.info(userDao.getBy(paramMap));
     }
@@ -98,9 +95,7 @@ public class TestUser {
     @Test
     public void testListBy() {
         Map<String, Object> paramMap = new HashMap<String, Object>();
-        paramMap.put("pageFirst", 2);
-        paramMap.put("pageSize", 2);
-        paramMap.put("isDeleted", true);
+        paramMap.put("isDeleted", false);
         List<User> users = userDao.listBy(paramMap);
         for (int i = 0; i < users.size(); i++)
             logger.info("Item" + i + ":" + users.get(i));
@@ -118,13 +113,36 @@ public class TestUser {
             logger.info("Item" + i + ":" + users.get(i));
     }
 
+    //测试UserService
+    @Autowired
+    private UserService userService;
+
     @Test
     public void testCreate() {
         User user = new User();
         user.setUsername("duyanting");
         user.setPassword("123456");
-//        user.setCreateTime(new Date());
-//        user.setUpdateTime(new Date());
         logger.info("Inserted id: " + userService.create(user));
+    }
+
+    @Test
+    public void testDeleteUserById() {
+        userService.deleteUserById(1L);
+    }
+
+    @Test
+    public void testFindUserById() {
+        User user = new User();
+        user.setUsername("duyanting");
+        user.setPassword("123456");
+        logger.info("Inserted id: " + userService.findUserById(1L));
+    }
+
+    @Test
+    public void testFindUserByUname() {
+        User user = new User();
+        user.setUsername("duyanting");
+        user.setPassword("123456");
+        logger.info("Inserted id: " + userService.findUserByUname("superadmin"));
     }
 }

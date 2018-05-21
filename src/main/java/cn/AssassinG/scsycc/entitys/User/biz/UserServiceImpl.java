@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService{
         return userDao.insert(user);
     }
 
-    public User getById(Long userId) {
+    public User findUserById(Long userId) {
         User user = userDao.getById(userId);
         if(user.isDeleted())
             return null;

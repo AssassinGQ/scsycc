@@ -4,7 +4,8 @@ import cn.AssassinG.scsycc.common.entity.BaseEntity;
 
 public class UserGroup extends BaseEntity {
     private String UserGroupName;
-    private Long FatherGroupId;
+    private String UserGroupDesc;
+    private String FatherGroupName;
 
     public UserGroup() {
     }
@@ -17,11 +18,19 @@ public class UserGroup extends BaseEntity {
         UserGroupName = userGroupName;
     }
 
-    public Long getFatherGroupId() {
-        return FatherGroupId;
+    public String getUserGroupDesc() {
+        return UserGroupDesc;
     }
 
-    public void setFatherGroupId(Long fatherGroupId) {
-        FatherGroupId = fatherGroupId;
+    public void setUserGroupDesc(String userGroupDesc) {
+        UserGroupDesc = userGroupDesc;
+    }
+
+    public String getFatherGroupName() {
+        return FatherGroupName;
+    }
+
+    public void setFatherGroupName(String fatherGroupName) {
+        FatherGroupName = fatherGroupName;
     }
 }

@@ -30,20 +30,25 @@ public abstract class BaseDaoImpl<T extends BaseEntity> extends SqlSessionDaoSup
     public static final String SQL_LIST_PAGE = "listPage";
 //    public static final String SQL_COUNT_BY_PAGE_PARAM = "countByPageParam"; // 根据当前分页参数进行统计
 
-    @Autowired
-    @Qualifier("sessionTemplate")
+
     private SqlSessionTemplate sessionTemplate;
 
     public SqlSessionTemplate getSessionTemplate() {
         return sessionTemplate;
     }
-
+    @Autowired
+    @Qualifier("sessionTemplate")
     public void setSessionTemplate(SqlSessionTemplate sessionTemplate) {
         this.sessionTemplate = sessionTemplate;
     }
 
     public SqlSession getSqlSession() {
         return super.getSqlSession();
+    }
+    @Autowired
+    @Qualifier("sessionTemplate")
+    public void setSqlSession(SqlSessionTemplate sessionTemplate){
+        super.setSqlSessionTemplate(sessionTemplate);
     }
 
     public long insert(T entity) {
