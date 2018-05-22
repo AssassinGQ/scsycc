@@ -14,7 +14,45 @@
 		<result column="user_name" property="username" />
         <result column="_password" property="password" />
 	</resultMap>
-	
+
+	<!--<resultMap id="beanMap2" type="cn.AssassinG.scsycc.entitys.User.entity.UserWithRole">-->
+		<!--<id column="id" property="id" />-->
+		<!--<result column="create_time" property="createTime" />-->
+		<!--<result column="update_time" property="updateTime" />-->
+		<!--<result column="delete_time" property="deleteTime" />-->
+		<!--<result column="is_deleted" property="isDeleted" />-->
+		<!--<result column="user_name" property="username" />-->
+		<!--<result column="_password" property="password" />-->
+		<!--<collection property="roles" ofType="cn.AssassinG.scsycc.entitys.User.entity.Role">-->
+			<!--<id column="id" property="id" />-->
+			<!--<result column="create_time" property="createTime" />-->
+			<!--<result column="update_time" property="updateTime" />-->
+			<!--<result column="delete_time" property="deleteTime" />-->
+			<!--<result column="is_deleted" property="isDeleted" />-->
+			<!--<result column="role_name" property="RoleName" />-->
+			<!--<result column="role_desc" property="RoleDesc" />-->
+			<!--<result column="superrole_name" property="SuperRoleName" />-->
+		<!--</collection>-->
+	<!--</resultMap>-->
+
+	<!--<resultMap id="beanMap3" type="cn.AssassinG.scsycc.entitys.User.entity.UserWithPermission">-->
+		<!--<id column="id" property="id" />-->
+		<!--<result column="create_time" property="createTime" />-->
+		<!--<result column="update_time" property="updateTime" />-->
+		<!--<result column="delete_time" property="deleteTime" />-->
+		<!--<result column="is_deleted" property="isDeleted" />-->
+		<!--<result column="user_name" property="username" />-->
+		<!--<result column="_password" property="password" />-->
+		<!--<collection property="permissions" ofType="cn.AssassinG.scsycc.entitys.User.entity.Permission">-->
+			<!--<id column="id" property="id" />-->
+			<!--<result column="create_time" property="createTime" />-->
+			<!--<result column="update_time" property="updateTime" />-->
+			<!--<result column="delete_time" property="deleteTime" />-->
+			<!--<result column="is_deleted" property="isDeleted" />-->
+			<!--<result column="permission_name" property="PermissionName" />-->
+		<!--</collection>-->
+	<!--</resultMap>-->
+
 	<insert id="insert" parameterType="User" keyProperty="id" useGeneratedKeys="true">
 		insert into <include refid="t_user"/> (create_time, update_time, delete_time, is_deleted, user_name, _password)
 		values (now(), now(), NULL , FALSE , #{username}, #{password})
@@ -101,6 +139,23 @@
   	<select id="findByUserNo" parameterType="string" resultMap="beanMap">
     	select * from <include refid="t_user"/> where user_name= #{username}
   	</select>
+
+	<!--<select id="findUserWithRoleById" parameterType="long" resultMap="beanMap2">-->
+		<!--SELECT u.*, r.*-->
+		<!--FROM t_user u-->
+		<!--LEFT JOIN t_user_role ur ON (ur.user_id = u.id)-->
+		<!--LEFT JOIN t_role r ON (ur.role_id = r.id)-->
+		<!--where u.id= #{id}-->
+	<!--</select>-->
+
+	<!--<select id="findUserWithPermissionById" parameterType="long" resultMap="beanMap3">-->
+		<!--SELECT u.*, p.*-->
+		<!--FROM t_user u-->
+		<!--LEFT JOIN t_user_role ur ON (ur.user_id = u.id)-->
+		<!--LEFT JOIN t_role_permission rp ON (rp.role_id = ur.role_id)-->
+		<!--LEFT JOIN t_permission p ON (p.id = rp.permission_id)-->
+		<!--where u.id= #{id}-->
+	<!--</select>-->
   	
   	<select id="listAll" resultMap="beanMap">
     	select * from <include refid="t_user"/> order by id

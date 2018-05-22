@@ -15,9 +15,8 @@ create table t_user (
   PRIMARY KEY (id)
 );
 
-alter table t_user
-  comment '用户信息表';
+alter table t_user comment '用户信息表';
 
-## 用户的初始化数据（密码123456）
-insert into t_user (user_name, _password) values ("superadmin", "123456");
-insert into t_user (user_name, _password) values ("hgq", "123456");
+## 用户的初始化数据(密码123456)
+insert into t_user (user_name, _password) values ("superadmin", "{noop}123456");
+insert into t_user (user_name, _password) values ("hgq", "{noop}123456");

@@ -12,18 +12,20 @@
         <result column="delete_time" property="deleteTime" />
         <result column="is_deleted" property="isDeleted" />
         <result column="role_name" property="RoleName" />
+        <result column="role_desc" property="RoleDesc" />
+        <result column="superrole_name" property="SuperRoleName" />
     </resultMap>
 
     <insert id="insert" parameterType="Role" keyProperty="id" useGeneratedKeys="true">
-        insert into <include refid="t_role"/> (create_time, update_time, delete_time, is_deleted, role_name)
-        values (now(), now(), NULL, FALSE, #{RoleName})
+        insert into <include refid="t_role"/> (create_time, update_time, delete_time, is_deleted, role_name, role_desc, superrole_name)
+        values (now(), now(), NULL, FALSE, #{RoleName}, #{RoleDesc}, #{SuperRoleName})
     </insert>
 
     <insert id="batchInsert" parameterType="List" keyProperty="id" useGeneratedKeys="true">
-        insert into <include refid="t_role"/> (create_time, update_time, delete_time, is_deleted, role_name)
+        insert into <include refid="t_role"/> (create_time, update_time, delete_time, is_deleted, role_name, role_desc, superrole_name)
         values
         <foreach collection="list" item="obj" separator=",">
-            (now(), now(), NULL, FALSE, #{obj.RoleName})
+            (now(), now(), NULL, FALSE, #{obj.RoleName}, #{obj.RoleDesc}, #{obj.SuperRoleName})
         </foreach>
     </insert>
 
@@ -31,7 +33,8 @@
         update <include refid="t_role"/>
         <set>
             update_time = now(),
-            role_name =  #{RoleName}
+            role_name =  #{RoleName},
+            role_desc = #{RoleDesc}
         </set>
         <where>
             ID = #{id}
@@ -50,6 +53,20 @@
                 <foreach collection="list" item="item">
                     <if test="item.RoleName!=null">
                         when id=#{item.id} then #{item.RoleName}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="role_desc =case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.RoleDesc!=null">
+                        when id=#{item.id} then #{item.RoleDesc}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="superrole_name =case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.SuperRoleName!=null">
+                        when id=#{item.id} then #{item.SuperRoleName}
                     </if>
                 </foreach>
             </trim>
@@ -93,6 +110,21 @@
         select * from <include refid="t_role"/> order by id
     </select>
 
+    <select id="listByUserId" parameterType="long" resultMap="beanMap">
+        SELECT r.*
+        FROM t_role r
+        LEFT JOIN t_user_role ur ON (ur.user_id = #{id})
+        WHERE r.id = ur.role_id
+    </select>
+
+    <select id="listByUsername" parameterType="string" resultMap="beanMap">
+        SELECT r.*
+        FROM t_role r
+        LEFT JOIN t_user u ON (u.user_name = #{username})
+        LEFT JOIN t_user_role ur ON (ur.user_id = u.id)
+        WHERE r.id = ur.role_id
+    </select>
+
     <sql id="condition_sql">
         <!-- Equal query -->
         <if test="createTimeBegin != null"> and create_time &gt;= #{createTimeBegin}</if>
@@ -104,6 +136,8 @@
         <if test="isDeleted != null"> and is_deleted = #{isDeleted}</if>
         <!-- Like query -->
         <if test="RoleName != null and RoleName != ''"> and role_name like CONCAT(CONCAT('%', #{RoleName}), '%')</if>
+        <if test="RoleDesc != null and RoleDesc != ''"> and role_desc like CONCAT(CONCAT('%', #{RoleDesc}), '%')</if>
+        <if test="SuperRoleName != null and SuperRoleName != ''"> and superrole_name like CONCAT(CONCAT('%', #{SuperRoleName}), '%')</if>
     </sql>
 
     <select id="listBy" parameterType="java.util.Map" resultMap="beanMap">

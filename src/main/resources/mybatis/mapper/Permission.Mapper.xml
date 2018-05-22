@@ -93,6 +93,23 @@
         select * from <include refid="t_permission"/> order by id
     </select>
 
+    <select id="listByUserId" parameterType="long" resultMap="beanMap">
+        SELECT p.*
+        FROM t_permission p
+        LEFT JOIN t_user_role ur ON (ur.user_id = #{id})
+        LEFT JOIN t_role_permission rp ON (rp.role_id = ur.role_id)
+        WHERE p.id = rp.permission_id
+    </select>
+
+    <select id="listByUsername" parameterType="string" resultMap="beanMap">
+        SELECT p.*
+        FROM t_permission p
+        LEFT JOIN t_user u ON (u.user_name = #{username})
+        LEFT JOIN t_user_role ur ON (ur.user_id = u.id)
+        LEFT JOIN t_role_permission rp ON (rp.role_id = ur.role_id)
+        WHERE p.id = rp.permission_id
+    </select>
+
     <sql id="condition_sql">
         <!-- Equal query -->
         <if test="createTimeBegin != null"> and create_time &gt;= #{createTimeBegin}</if>

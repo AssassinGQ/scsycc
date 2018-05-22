@@ -90,6 +90,16 @@ public class TestRole {
     }
 
     @Test
+    public void testFindByUserId() {
+        logger.info(roleDao.findByUserId(1L));
+    }
+
+    @Test
+    public void testFindByUsername() {
+        logger.info(roleDao.findByUsername("superadmin"));
+    }
+
+    @Test
     public void testGetBy(){
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("pageFirst", 2);

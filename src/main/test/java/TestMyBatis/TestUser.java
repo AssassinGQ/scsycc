@@ -113,6 +113,12 @@ public class TestUser {
             logger.info("Item" + i + ":" + users.get(i));
     }
 
+//    @Test
+//    public void testFindRoleById() {
+//        UserWithRole userWithRole = userDao.findRoleById(1);
+//        logger.info(userWithRole);
+//    }
+
     //测试UserService
     @Autowired
     private UserService userService;
