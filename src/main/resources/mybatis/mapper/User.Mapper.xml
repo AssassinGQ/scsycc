@@ -15,44 +15,6 @@
         <result column="_password" property="password" />
 	</resultMap>
 
-	<!--<resultMap id="beanMap2" type="cn.AssassinG.scsycc.entitys.User.entity.UserWithRole">-->
-		<!--<id column="id" property="id" />-->
-		<!--<result column="create_time" property="createTime" />-->
-		<!--<result column="update_time" property="updateTime" />-->
-		<!--<result column="delete_time" property="deleteTime" />-->
-		<!--<result column="is_deleted" property="isDeleted" />-->
-		<!--<result column="user_name" property="username" />-->
-		<!--<result column="_password" property="password" />-->
-		<!--<collection property="roles" ofType="cn.AssassinG.scsycc.entitys.User.entity.Role">-->
-			<!--<id column="id" property="id" />-->
-			<!--<result column="create_time" property="createTime" />-->
-			<!--<result column="update_time" property="updateTime" />-->
-			<!--<result column="delete_time" property="deleteTime" />-->
-			<!--<result column="is_deleted" property="isDeleted" />-->
-			<!--<result column="role_name" property="RoleName" />-->
-			<!--<result column="role_desc" property="RoleDesc" />-->
-			<!--<result column="superrole_name" property="SuperRoleName" />-->
-		<!--</collection>-->
-	<!--</resultMap>-->
-
-	<!--<resultMap id="beanMap3" type="cn.AssassinG.scsycc.entitys.User.entity.UserWithPermission">-->
-		<!--<id column="id" property="id" />-->
-		<!--<result column="create_time" property="createTime" />-->
-		<!--<result column="update_time" property="updateTime" />-->
-		<!--<result column="delete_time" property="deleteTime" />-->
-		<!--<result column="is_deleted" property="isDeleted" />-->
-		<!--<result column="user_name" property="username" />-->
-		<!--<result column="_password" property="password" />-->
-		<!--<collection property="permissions" ofType="cn.AssassinG.scsycc.entitys.User.entity.Permission">-->
-			<!--<id column="id" property="id" />-->
-			<!--<result column="create_time" property="createTime" />-->
-			<!--<result column="update_time" property="updateTime" />-->
-			<!--<result column="delete_time" property="deleteTime" />-->
-			<!--<result column="is_deleted" property="isDeleted" />-->
-			<!--<result column="permission_name" property="PermissionName" />-->
-		<!--</collection>-->
-	<!--</resultMap>-->
-
 	<insert id="insert" parameterType="User" keyProperty="id" useGeneratedKeys="true">
 		insert into <include refid="t_user"/> (create_time, update_time, delete_time, is_deleted, user_name, _password)
 		values (now(), now(), NULL , FALSE , #{username}, #{password})
@@ -139,30 +101,14 @@
   	<select id="findByUserNo" parameterType="string" resultMap="beanMap">
     	select * from <include refid="t_user"/> where user_name= #{username}
   	</select>
-
-	<!--<select id="findUserWithRoleById" parameterType="long" resultMap="beanMap2">-->
-		<!--SELECT u.*, r.*-->
-		<!--FROM t_user u-->
-		<!--LEFT JOIN t_user_role ur ON (ur.user_id = u.id)-->
-		<!--LEFT JOIN t_role r ON (ur.role_id = r.id)-->
-		<!--where u.id= #{id}-->
-	<!--</select>-->
-
-	<!--<select id="findUserWithPermissionById" parameterType="long" resultMap="beanMap3">-->
-		<!--SELECT u.*, p.*-->
-		<!--FROM t_user u-->
-		<!--LEFT JOIN t_user_role ur ON (ur.user_id = u.id)-->
-		<!--LEFT JOIN t_role_permission rp ON (rp.role_id = ur.role_id)-->
-		<!--LEFT JOIN t_permission p ON (p.id = rp.permission_id)-->
-		<!--where u.id= #{id}-->
-	<!--</select>-->
   	
   	<select id="listAll" resultMap="beanMap">
     	select * from <include refid="t_user"/> order by id
   	</select>
 
-	<sql id="condition_sql">
+	<sql id="condition_sql_like">
 		<!-- Equal query -->
+		<if test="id != null"> and id = #{id}</if>
 		<if test="createTimeBegin != null"> and create_time &gt;= #{createTimeBegin}</if>
 		<if test="createTimeEnd != null"> and create_time &lt;= #{createTimeEnd}</if>
 		<if test="updateTimeBegin != null"> and update_time &gt;= #{updateTimeBegin}</if>
@@ -175,29 +121,69 @@
 		<if test="username != null and username != ''"> and user_name like CONCAT(CONCAT('%', #{username}), '%')</if>
 	</sql>
 
+	<sql id="condition_sql_nolike">
+		<!-- Equal query -->
+		<if test="id != null"> and id = #{id}</if>
+		<if test="createTimeBegin != null"> and create_time &gt;= #{createTimeBegin}</if>
+		<if test="createTimeEnd != null"> and create_time &lt;= #{createTimeEnd}</if>
+		<if test="updateTimeBegin != null"> and update_time &gt;= #{updateTimeBegin}</if>
+		<if test="updateTimeEnd != null"> and update_time &lt;= #{updateTimeEnd}</if>
+		<if test="deleteTimeBegin != null"> and delete_time &gt;= #{deleteTimeBegin}</if>
+		<if test="deleteTimeEnd != null"> and delete_time &lt;= #{deleteTimeEnd}</if>
+		<if test="isDeleted != null"> and is_deleted = #{isDeleted}</if>
+		<if test="password != null and password != ''"> and _password = #{password}</if>
+		<if test="username != null and username != ''"> and username = #{username}</if>
+	</sql>
+
 	<select id="listBy" parameterType="java.util.Map" resultMap="beanMap">
 		select * from
 		<include refid="t_user"/>
 		<where>
-			<include refid="condition_sql" />
+			<include refid="condition_sql_nolike" />
+		</where>
+		order by id desc
+	</select>
+
+	<select id="listByLike" parameterType="java.util.Map" resultMap="beanMap">
+		select * from
+		<include refid="t_user"/>
+		<where>
+			<include refid="condition_sql_like" />
 		</where>
 		order by id desc
 	</select>
 
 	<select id="listPage" parameterType="java.util.Map" resultMap="beanMap">
-		select * from  
+		select * from
 		<include refid="t_user"/>
 		<where>
-			<include refid="condition_sql" />
+			<include refid="condition_sql_nolike" />
 		</where>
-		order by id desc 
-		limit #{pageFirst} , #{pageSize} 
+		order by id desc
+		limit #{pageFirst} , #{pageSize}
+	</select>
+
+	<select id="listPageLike" parameterType="java.util.Map" resultMap="beanMap">
+		select * from
+		<include refid="t_user"/>
+		<where>
+			<include refid="condition_sql_like" />
+		</where>
+		order by id desc
+		limit #{pageFirst} , #{pageSize}
 	</select>
 	
 	<select id="listPageCount" parameterType="java.util.Map" resultType="long">
 		select count(1) from <include refid="t_user"/>
 		<where>
-			<include refid="condition_sql"/>
+			<include refid="condition_sql_nolike"/>
+		</where>
+	</select>
+
+	<select id="listPageCountLike" parameterType="java.util.Map" resultType="long">
+		select count(1) from <include refid="t_user"/>
+		<where>
+			<include refid="condition_sql_like"/>
 		</where>
 	</select>
 	

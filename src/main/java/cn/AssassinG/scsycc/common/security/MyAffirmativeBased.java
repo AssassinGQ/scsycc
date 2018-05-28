@@ -1,4 +1,4 @@
-package cn.AssassinG.scsycc.entitys.User.biz;
+package cn.AssassinG.scsycc.common.security;
 
 import org.springframework.security.access.AccessDecisionVoter;
 import org.springframework.security.access.AccessDeniedException;

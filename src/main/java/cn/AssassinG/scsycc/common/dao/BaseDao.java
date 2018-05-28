@@ -9,17 +9,20 @@ import java.util.List;
 import java.util.Map;
 
 public interface BaseDao<T> {
-    public SqlSessionTemplate getSessionTemplate();
-    public SqlSession getSqlSession();
+//    public SqlSessionTemplate getSessionTemplate();
+//    public SqlSession getSqlSession();
     long insert(T entity);
     long insert(List<T> list);
     int update(T entity);
     int update(List<T> list);
-    T getById(long id);
-    int deleteById(long id);
+    int delete(long id);
     int delete(T entity);
-    public List<T> listAll();
-    public T getBy(Map<String, Object> paramMap);
-    public List<T> listBy(Map<String, Object> paramMap);
-    public PageBean<T> listPage(PageParam pageParam, Map<String, Object> paramMap);
+    T getById(long id);
+    List<T> listAll();
+    T getBy(Map<String, Object> paramMap);
+    T getBy(Map<String, Object> paramMap, boolean islike);
+    List<T> listBy(Map<String, Object> paramMap);
+    List<T> listBy(Map<String, Object> paramMap, boolean islike);
+    PageBean<T> listPage(PageParam pageParam, Map<String, Object> paramMap);
+    PageBean<T> listPage(PageParam pageParam, Map<String, Object> paramMap, boolean islike);
 }

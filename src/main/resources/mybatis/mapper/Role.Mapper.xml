@@ -125,7 +125,25 @@
         WHERE r.id = ur.role_id
     </select>
 
-    <sql id="condition_sql">
+    <sql id="condition_sql_nolike">
+        <!-- Equal query -->
+        <if test="createTimeBegin != null"> and create_time &gt;= #{createTimeBegin}</if>
+        <if test="createTimeEnd != null"> and create_time &lt;= #{createTimeEnd}</if>
+        <if test="updateTimeBegin != null"> and update_time &gt;= #{updateTimeBegin}</if>
+        <if test="updateTimeEnd != null"> and update_time &lt;= #{updateTimeEnd}</if>
+        <if test="deleteTimeBegin != null"> and delete_time &gt;= #{deleteTimeBegin}</if>
+        <if test="deleteTimeEnd != null"> and delete_time &lt;= #{deleteTimeEnd}</if>
+        <if test="isDeleted != null"> and is_deleted = #{isDeleted}</if>
+        <if test="RoleName != null"> and role_name = #{RoleName}</if>
+        <if test="RoleDesc != null"> and role_desc = #{RoleDesc}</if>
+        <if test="SuperRoleName != null"> and superrole_name = #{SuperRoleName}</if>
+        <!-- Like query -->
+        <!--<if test="RoleName != null and RoleName != ''"> and role_name like CONCAT(CONCAT('%', #{RoleName}), '%')</if>-->
+        <!--<if test="RoleDesc != null and RoleDesc != ''"> and role_desc like CONCAT(CONCAT('%', #{RoleDesc}), '%')</if>-->
+        <!--<if test="SuperRoleName != null and SuperRoleName != ''"> and superrole_name like CONCAT(CONCAT('%', #{SuperRoleName}), '%')</if>-->
+    </sql>
+
+    <sql id="condition_sql_like">
         <!-- Equal query -->
         <if test="createTimeBegin != null"> and create_time &gt;= #{createTimeBegin}</if>
         <if test="createTimeEnd != null"> and create_time &lt;= #{createTimeEnd}</if>
@@ -144,7 +162,16 @@
         select * from
         <include refid="t_role"/>
         <where>
-            <include refid="condition_sql" />
+            <include refid="condition_sql_nolike" />
+        </where>
+        order by id desc
+    </select>
+
+    <select id="listByLike" parameterType="java.util.Map" resultMap="beanMap">
+        select * from
+        <include refid="t_role"/>
+        <where>
+            <include refid="condition_sql_like" />
         </where>
         order by id desc
     </select>
@@ -153,7 +180,17 @@
         select * from
         <include refid="t_role"/>
         <where>
-            <include refid="condition_sql" />
+            <include refid="condition_sql_nolike" />
+        </where>
+        order by id desc
+        limit #{pageFirst} , #{pageSize}
+    </select>
+
+    <select id="listPageLike" parameterType="java.util.Map" resultMap="beanMap">
+        select * from
+        <include refid="t_role"/>
+        <where>
+            <include refid="condition_sql_like" />
         </where>
         order by id desc
         limit #{pageFirst} , #{pageSize}
@@ -162,8 +199,14 @@
     <select id="listPageCount" parameterType="java.util.Map" resultType="long">
         select count(1) from <include refid="t_role"/>
         <where>
-            <include refid="condition_sql"/>
+            <include refid="condition_sql_nolike"/>
         </where>
     </select>
 
+    <select id="listPageCountLike" parameterType="java.util.Map" resultType="long">
+        select count(1) from <include refid="t_role"/>
+        <where>
+            <include refid="condition_sql_like"/>
+        </where>
+    </select>
 </mapper>

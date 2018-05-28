@@ -1,6 +1,7 @@
 package cn.AssassinG.scsycc.entitys.User.dao;
 
 import cn.AssassinG.scsycc.common.dao.BaseDaoImpl;
+import cn.AssassinG.scsycc.common.exception.DaoException;
 import cn.AssassinG.scsycc.entitys.User.entity.*;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,30 +14,14 @@ import java.util.List;
 @Repository
 public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 
-//    public static final String SQL_FINDWITHROLE = "findUserWithRoleById";
-//    public static final String SQL_FINDWITHPERMISSION = "findUserWithPermissionById";
-
+    @Override
     public User findByUserName(String userName) {
-        return super.getSessionTemplate().selectOne(super.getStatement("findByUserNo"), userName);
+        List<User> results = super.getSessionTemplate().selectList(super.getStatement("findByUserNo"), userName);
+        if (results.size() == 0)
+            return null;
+        else if(results.size() > 1)
+            throw DaoException.DB_FINDBYUSERNAME_TOOMANY_RESULT.newInstance("数据库操作,findByUserName返回多个结果.{%s},UserName{%s}", getStatement("findByUserNo"), userName);
+        else
+            return results.get(0);
     }
-
-//    @Override
-//    public UserWithRole findRoleById(long id) {
-//        return super.getSessionTemplate().selectOne(super.getStatement("findUserWithRoleById"), id);
-//    }
-//
-//    @Override
-//    public UserWithPermission findPermissionById(long id) {
-//        return super.getSessionTemplate().selectOne(super.getStatement("findUserWithPermissionById"), id);
-//    }
-//
-//    @Override
-//    public UserWithRole findRoleByUserName(String userName) {
-//        return null;
-//    }
-//
-//    @Override
-//    public UserWithPermission findPermissionByUserName(String userName) {
-//        return null;
-//    }
 }

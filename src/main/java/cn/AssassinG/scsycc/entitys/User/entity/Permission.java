@@ -2,10 +2,9 @@ package cn.AssassinG.scsycc.entitys.User.entity;
 
 import cn.AssassinG.scsycc.common.entity.BaseEntity;
 
-import java.util.Objects;
-
 public class Permission extends BaseEntity {
     private String PermissionName;
+    private String PermissionDesc;
 
     public Permission() {
     }
@@ -18,10 +17,19 @@ public class Permission extends BaseEntity {
         PermissionName = permissionName;
     }
 
+    public String getPermissionDesc() {
+        return PermissionDesc;
+    }
+
+    public void setPermissionDesc(String permissionDesc) {
+        PermissionDesc = permissionDesc;
+    }
+
     @Override
     public String toString() {
         return "Permission{" +
                 "PermissionName='" + PermissionName + '\'' +
+                ", PermissionDesc='" + PermissionDesc + '\'' +
                 '}';
     }
 
@@ -32,11 +40,15 @@ public class Permission extends BaseEntity {
 
         Permission that = (Permission) o;
 
-        return PermissionName != null ? PermissionName.equals(that.PermissionName) : that.PermissionName == null;
+        if (PermissionName != null ? !PermissionName.equals(that.PermissionName) : that.PermissionName != null)
+            return false;
+        return PermissionDesc != null ? PermissionDesc.equals(that.PermissionDesc) : that.PermissionDesc == null;
     }
 
     @Override
     public int hashCode() {
-        return PermissionName != null ? PermissionName.hashCode() : 0;
+        int result = PermissionName != null ? PermissionName.hashCode() : 0;
+        result = 31 * result + (PermissionDesc != null ? PermissionDesc.hashCode() : 0);
+        return result;
     }
 }

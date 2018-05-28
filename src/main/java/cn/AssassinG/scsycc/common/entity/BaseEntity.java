@@ -4,11 +4,11 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class BaseEntity implements Serializable {
-    private Long id;
-    private Date createTime;
-    private Date updateTime;
-    private Date deleteTime;
-    private boolean isDeleted;
+    protected Long id;
+    protected Date createTime;
+    protected Date updateTime;
+    protected Date deleteTime;
+    protected boolean isDeleted;
 
     public Long getId() {
         return id;

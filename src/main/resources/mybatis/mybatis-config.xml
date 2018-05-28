@@ -33,6 +33,8 @@
 		<setting name="localCacheScope" value="SESSION" />
 		<setting name="jdbcTypeForNull" value="OTHER" />
 		<setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString" />
+		<!--打印SQL语句-->
+		<setting name="logImpl" value="STDOUT_LOGGING"/>
 	</settings>
 
 	 <!--类型别名是为 Java类型命名一个短的名字。 它只和 XML配置有关,只用来减少类完全 限定名的多余部分-->

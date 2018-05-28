@@ -19,10 +19,4 @@ public class HomeController {
         homeServices.sayHello();
         return "home";
     }
-
-    @Secured("ROLE_MPAGE_HOME2")
-    @RequestMapping(value = "/home2", method = RequestMethod.GET)
-    public String getHome2(ModelMap model) {
-        return "home";
-    }
 }

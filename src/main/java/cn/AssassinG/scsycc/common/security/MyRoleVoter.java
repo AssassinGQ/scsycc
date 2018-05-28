@@ -1,4 +1,4 @@
-package cn.AssassinG.scsycc.entitys.User.biz;
+package cn.AssassinG.scsycc.common.security;
 
 import org.apache.log4j.Logger;
 import org.springframework.security.access.AccessDecisionVoter;

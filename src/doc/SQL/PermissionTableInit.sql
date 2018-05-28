@@ -7,12 +7,14 @@ create table t_permission (
   delete_time DATETIME COMMENT '删除时间',
   is_deleted   BOOLEAN NOT NULL DEFAULT false COMMENT '数据是否已经删除',
   permission_name   VARCHAR(20) COMMENT '权限名称',
+  permission_desc   VARCHAR(20) COMMENT '权限描述',
   PRIMARY KEY (id)
 );
 
 alter table t_permission comment '权限信息表';
 
 ## 权限的初始化数据
-insert into t_permission(permission_name) values ("RES_PAGE_HOME");
-insert into t_permission(permission_name) values ("RES_PAGE_HOME2");
-insert into t_permission(permission_name) values ("RES_METHOD_HELLO");
+insert into t_permission(permission_name, permission_desc) values ("ROLE_URL_HOME", "访问主页");
+insert into t_permission(permission_name, permission_desc) values ("ROLE_URL_AUTHCONFIG", "访问权限配置页面");
+insert into t_permission(permission_name, permission_desc) values ("RES_SER_AUTHREAD", "读取所有权限配置");
+insert into t_permission(permission_name, permission_desc) values ("RES_SER_AUTHCONFIG", "修改所有权限配置");

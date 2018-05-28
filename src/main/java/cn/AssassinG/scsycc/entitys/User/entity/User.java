@@ -30,6 +30,11 @@ public class User extends BaseEntity {
         return "User{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", id=" + id +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", deleteTime=" + deleteTime +
+                ", isDeleted=" + isDeleted +
                 '}';
     }
 }

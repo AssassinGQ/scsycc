@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class HomeServiceImpl implements HomeService {
 
-    @Secured("ROLE_METHOD_HELLO")
     public String sayHello(){
         return "Hello, I'm HomeServices";
     }

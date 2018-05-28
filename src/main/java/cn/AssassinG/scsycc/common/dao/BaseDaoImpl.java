@@ -1,6 +1,7 @@
 package cn.AssassinG.scsycc.common.dao;
 
 import cn.AssassinG.scsycc.common.entity.BaseEntity;
+import cn.AssassinG.scsycc.common.exception.DaoException;
 import cn.AssassinG.scsycc.common.page.PageBean;
 import cn.AssassinG.scsycc.common.page.PageParam;
 import org.apache.ibatis.exceptions.TooManyResultsException;
@@ -26,8 +27,11 @@ public abstract class BaseDaoImpl<T extends BaseEntity> extends SqlSessionDaoSup
     public static final String SQL_DELETE = "delete";
     public static final String SQL_LIST_ALL = "listAll";
     public static final String SQL_LIST_BY = "listBy";
-    public static final String SQL_LIST_PAGE_COUNT = "listPageCount";
+    public static final String SQL_LIST_BY_LIKE = "listByLike";
     public static final String SQL_LIST_PAGE = "listPage";
+    public static final String SQL_LIST_PAGE_LIKE = "listPageLike";
+    public static final String SQL_LIST_PAGE_COUNT = "listPageCount";
+    public static final String SQL_LIST_PAGE_COUNT_LIKE = "listPageCountLike";
 //    public static final String SQL_COUNT_BY_PAGE_PARAM = "countByPageParam"; // 根据当前分页参数进行统计
 
 
@@ -55,8 +59,7 @@ public abstract class BaseDaoImpl<T extends BaseEntity> extends SqlSessionDaoSup
         int result = sessionTemplate.insert(getStatement(SQL_INSERT), entity);
 
         if (result <= 0) {
-            //throw BizException.DB_INSERT_RESULT_0.newInstance("数据库操作,insert返回0.{%s}", getStatement(SQL_INSERT));
-            throw new RuntimeException("数据库insert操作返回0");
+            throw DaoException.DB_INSERT_RESULT_0.newInstance("数据库操作,insert返回0.{%s}", getStatement(SQL_INSERT));
         }
 
         if (entity != null && entity.getId() != null && result > 0) {
@@ -74,8 +77,7 @@ public abstract class BaseDaoImpl<T extends BaseEntity> extends SqlSessionDaoSup
         int result = sessionTemplate.insert(getStatement(SQL_BATCH_INSERT), list);
 
         if (result <= 0) {
-            //throw BizException.DB_INSERT_RESULT_0.newInstance("数据库操作,insert返回0.{%s}", getStatement(SQL_INSERT));
-            throw new RuntimeException("数据库insert操作返回0");
+            throw DaoException.DB_INSERT_RESULT_0.newInstance("数据库操作,insert返回0.{%s}", getStatement(SQL_INSERT));
         }
         return result;
     }
@@ -83,8 +85,7 @@ public abstract class BaseDaoImpl<T extends BaseEntity> extends SqlSessionDaoSup
     public int update(T entity) {
         int result = sessionTemplate.update(getStatement(SQL_UPDATE), entity);
         if (result <= 0) {
-            //throw BizException.DB_UPDATE_RESULT_0.newInstance("数据库操作,update返回0.{%s}", getStatement(SQL_UPDATE));
-            throw new RuntimeException("数据库update操作返回0");
+            throw DaoException.DB_UPDATE_RESULT_0.newInstance("数据库操作,update返回0.{%s}", getStatement(SQL_UPDATE));
         }
         return result;
     }
@@ -96,8 +97,19 @@ public abstract class BaseDaoImpl<T extends BaseEntity> extends SqlSessionDaoSup
 
         int result = sessionTemplate.update(getStatement(SQL_BATCH_UPDATE), list);
         if (result <= 0) {
-//            throw BizException.DB_UPDATE_RESULT_0.newInstance("数据库操作,update返回0.{%s}", getStatement(SQL_UPDATE));
-            throw new RuntimeException("数据库update操作返回0");
+            throw DaoException.DB_UPDATE_RESULT_0.newInstance("数据库操作,update返回0.{%s}", getStatement(SQL_UPDATE));
+        }
+        return result;
+    }
+
+    public int delete(long id) {
+        return (int) sessionTemplate.delete(getStatement(SQL_DELETE_BY_ID), id);
+    }
+
+    public int delete(T entity) {
+        int result = sessionTemplate.update(getStatement(SQL_DELETE), entity);
+        if (result <= 0) {
+            throw DaoException.DB_UPDATE_RESULT_0.newInstance("数据库操作,delete返回0.{%s}", getStatement(SQL_DELETE));
         }
         return result;
     }
@@ -106,42 +118,52 @@ public abstract class BaseDaoImpl<T extends BaseEntity> extends SqlSessionDaoSup
         return sessionTemplate.selectOne(getStatement(SQL_GET_BY_ID), id);
     }
 
-    public int deleteById(long id) {
-        return (int) sessionTemplate.delete(getStatement(SQL_DELETE_BY_ID), id);
-    }
-
-    public int delete(T entity) {
-        int result = sessionTemplate.update(getStatement(SQL_DELETE), entity);
-        if (result <= 0) {
-            //throw BizException.DB_UPDATE_RESULT_0.newInstance("数据库操作,update返回0.{%s}", getStatement(SQL_UPDATE));
-            throw new RuntimeException("数据库delete操作返回0");
-        }
-        return result;
-    }
-
     public List<T> listAll() {
         return sessionTemplate.selectList(getStatement(SQL_LIST_ALL));
     }
 
     public T getBy(Map<String, Object> paramMap) {
+        return getBy(paramMap, false);
+    }
+
+    public T getBy(Map<String, Object> paramMap, boolean islike) {
         if (paramMap == null || paramMap.isEmpty()) {
             return null;
         }
-        try{
-            return sessionTemplate.selectOne(getStatement(SQL_LIST_BY), paramMap);
-        }catch (TooManyResultsException e){
-            throw new RuntimeException("数据库查询到多个结果");
+        List<T> results = null;
+        if(islike){
+            results = sessionTemplate.selectList(getStatement(SQL_LIST_BY_LIKE), paramMap);
+        }else{
+            results = sessionTemplate.selectList(getStatement(SQL_LIST_BY), paramMap);
         }
+        if(results.size() > 1)
+            throw DaoException.DB_GETBY_TOOMANY_RESULT.newInstance("数据库操作,getBy返回多个结果.{%s}", getStatement(SQL_LIST_BY));
+        else if(results.size() == 0)
+            return null;
+        else
+            return results.get(0);
     }
 
     public List<T> listBy(Map<String, Object> paramMap) {
+        return listBy(paramMap, false);
+    }
+
+    public List<T> listBy(Map<String, Object> paramMap, boolean islike) {
         if (paramMap == null || paramMap.isEmpty()) {
             return null;
         }
-        return sessionTemplate.selectList(getStatement(SQL_LIST_BY), paramMap);
+
+        if(islike)
+            return sessionTemplate.selectList(getStatement(SQL_LIST_BY_LIKE), paramMap);
+        else
+            return sessionTemplate.selectList(getStatement(SQL_LIST_BY), paramMap);
     }
 
-    public PageBean<T> listPage(PageParam pageParam, Map<String, Object> paramMap) {
+    public PageBean<T> listPage(PageParam pageParam, Map<String, Object> paramMap){
+        return listPage(pageParam, paramMap, false);
+    }
+
+    public PageBean<T> listPage(PageParam pageParam, Map<String, Object> paramMap, boolean islike) {
         if (paramMap == null) {
             paramMap = new HashMap<String, Object>();
         }
@@ -153,10 +175,16 @@ public abstract class BaseDaoImpl<T extends BaseEntity> extends SqlSessionDaoSup
         paramMap.put("endRowNum", pageParam.getPageNum() * pageParam.getNumPerPage());
 
         // 统计总记录数
-        Long count = sessionTemplate.selectOne(getStatement(SQL_LIST_PAGE_COUNT), paramMap);
-
+        Long count;
         // 获取分页数据集
-        List<T> list = sessionTemplate.selectList(getStatement(SQL_LIST_PAGE), paramMap);
+        List<T> list;
+        if(islike){
+            count = sessionTemplate.selectOne(getStatement(SQL_LIST_PAGE_COUNT_LIKE), paramMap);
+            list = sessionTemplate.selectList(getStatement(SQL_LIST_PAGE_LIKE), paramMap);
+        }else{
+            count = sessionTemplate.selectOne(getStatement(SQL_LIST_PAGE_COUNT), paramMap);
+            list = sessionTemplate.selectList(getStatement(SQL_LIST_PAGE), paramMap);
+        }
 
         Object isCount = paramMap.get("isCount"); // 是否统计当前分页条件下的数据：1:是，其他为否
         if (isCount != null && "1".equals(isCount.toString())) {

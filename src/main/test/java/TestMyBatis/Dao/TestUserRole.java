@@ -1,16 +1,13 @@
-package TestMyBatis;
+package TestMyBatis.Dao;
 
 import cn.AssassinG.scsycc.common.page.PageBean;
 import cn.AssassinG.scsycc.common.page.PageParam;
 import cn.AssassinG.scsycc.entitys.User.dao.UserRoleDao;
-import cn.AssassinG.scsycc.entitys.User.dao.UserRoleDaoImpl;
 import cn.AssassinG.scsycc.entitys.User.entity.User_Role;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
