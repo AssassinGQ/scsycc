@@ -18,103 +18,120 @@ import java.util.*;
 public class TestUserRole {
     private static Logger logger = Logger.getLogger(TestUserRole.class);
     @Autowired
-    private UserRoleDao userroleDao;
+    private UserRoleDao user_roleDao;
 
     @Test
-    public void testInsert(){
-        User_Role userrole = new User_Role();
-        userrole.setRoleId(1L);
-        userrole.setUserId(1L);
-        userrole.setCreateTime(new Date());
-        userrole.setUpdateTime(new Date());
-        logger.info("Inserted id: "+userroleDao.insert(userrole));
+    public void testGetById() {
+        Long user_role_id = 1L;
+        logger.info("The user_role who's id = "+user_role_id+" : "+user_roleDao.getById(user_role_id));
     }
 
     @Test
-    public void testBatchInsert(){
-        User_Role userrole = new User_Role();
-        userrole.setRoleId(1L);
-        userrole.setUserId(1L);
-        userrole.setCreateTime(new Date());
-        userrole.setUpdateTime(new Date());
-        User_Role userrole2 = new User_Role();
-        userrole.setRoleId(2L);
-        userrole.setUserId(2L);
-        userrole2.setCreateTime(new Date());
-        userrole2.setUpdateTime(new Date());
-        List<User_Role> userroles = new ArrayList<User_Role>();
-        userroles.add(userrole);
-        userroles.add(userrole2);
-        logger.info("Inserted : "+userroleDao.insert(userroles)+" items");
+    public void testInsert() {
+        User_Role user_role = new User_Role();
+        user_role.setRoleId(1L);
+        user_roleDao.insert(user_role);
+        Long id = user_role.getId();
+        if(id == null){
+            logger.info("Inserted nothing");
+        }else
+            logger.info("Inserted : " + user_roleDao.getById(id));
     }
 
     @Test
-    public void testGetById(){
-        logger.info(userroleDao.getById(1));
+    public void testBatchInsert() {
+        User_Role user_role = new User_Role();
+        user_role.setRoleId(1L);
+        User_Role user_role2 = new User_Role();
+        user_role2.setRoleId(2L);
+        List<User_Role> user_roles = new ArrayList<User_Role>();
+        user_roles.add(user_role);
+        user_roles.add(user_role2);
+        user_roleDao.insert(user_roles);
+        if(user_roles.get(0).getId() != null)
+            logger.info("Inserted : " + user_roleDao.getById(user_roles.get(0).getId()));
+        if(user_roles.get(1).getId() != null)
+            logger.info("Inserted : " + user_roleDao.getById(user_roles.get(1).getId()));
     }
 
     @Test
-    public void testUpdate(){
-        User_Role userrole = userroleDao.getById(2);
-        userrole.setRoleId(11L);
-        userrole.setUserId(11L);
-        logger.info("Updated "+userroleDao.update(userrole)+" items");
+    public void testUpdate() {
+        User_Role user_role = user_roleDao.getById(2);
+        logger.info("Before Update: "+user_role);
+        user_role.setRoleId(1L);
+        user_roleDao.update(user_role);
+        logger.info("After Updated: " + user_roleDao.getById(2));
     }
 
     @Test
-    public void testBatchUpdate(){
-        User_Role userrole2 = userroleDao.getById(2);
-        User_Role userrole3 = userroleDao.getById(3);
-        userrole2.setRoleId(22L);
-        userrole3.setUserId(333L);
-        List<User_Role> userroles = new ArrayList<User_Role>();
-        userroles.add(userrole2);
-        userroles.add(userrole3);
-        logger.info("Updated "+userroleDao.update(userroles)+" items");
+    public void testBatchUpdate() {
+        User_Role user_role2 = user_roleDao.getById(2);
+        User_Role user_role4 = user_roleDao.getById(4);
+        logger.info("User_Role2 Before Update: "+user_role2);
+        logger.info("User_Role4 Before Update: "+user_role4);
+        user_role2.setRoleId(1L);
+        user_role4.setRoleId(2L);
+        List<User_Role> user_roles = new ArrayList<User_Role>();
+        user_roles.add(user_role2);
+        user_roles.add(user_role4);
+        user_roleDao.update(user_roles);
+        logger.info("User_Role2 After Updated: " + user_roleDao.getById(2));
+        logger.info("User_Role4 After Updated: " + user_roleDao.getById(4));
     }
 
     @Test
-    public void testDelete(){
-        User_Role userrole = userroleDao.getById(2);
-        logger.info("Deleted "+userroleDao.delete(userrole)+" items");
+    public void testDeleteById() {
+        Long delete_id = 2L;
+        logger.info("Before Delete " + user_roleDao.getById(delete_id));
+        user_roleDao.delete(delete_id);
+        logger.info("After Deleted " + user_roleDao.getById(delete_id));
     }
 
     @Test
-    public void testListAll(){
-        List<User_Role> userroles = userroleDao.listAll();
-        for(int i = 0; i < userroles.size(); i++)
-            logger.info("Item"+i+":"+userroles.get(i));
+    public void testDelete() {
+        Long delete_id = 4L;
+        User_Role user_role = user_roleDao.getById(delete_id);
+        logger.info("Before Delete " + user_roleDao.getById(delete_id));
+        user_roleDao.delete(user_role);
+        logger.info("After Deleted " + user_roleDao.getById(delete_id));
     }
 
     @Test
-    public void testGetBy(){
+    public void testListAll() {
+        List<User_Role> user_roles = user_roleDao.listAll();
+        for (int i = 0; i < user_roles.size(); i++)
+            logger.info("Item" + i + ":" + user_roles.get(i));
+    }
+
+    @Test
+    public void testGetBy() {
+        boolean islike = false;
         Map<String, Object> paramMap = new HashMap<String, Object>();
-        paramMap.put("pageFirst", 2);
-        paramMap.put("pageSize", 2);
         paramMap.put("isDeleted", true);
-        logger.info(userroleDao.getBy(paramMap));
+        paramMap.put("id", 1L);
+        logger.info(user_roleDao.getBy(paramMap, islike));
     }
 
     @Test
-    public void testListBy(){
+    public void testListBy() {
+        boolean islike = true;
         Map<String, Object> paramMap = new HashMap<String, Object>();
-        paramMap.put("pageFirst", 2);
-        paramMap.put("pageSize", 2);
         paramMap.put("isDeleted", false);
-        List<User_Role> userroles = userroleDao.listBy(paramMap);
-        for(int i = 0; i < userroles.size(); i++)
-            logger.info("Item"+i+":"+userroles.get(i));
+        List<User_Role> user_roles = user_roleDao.listBy(paramMap, islike);
+        for (int i = 0; i < user_roles.size(); i++)
+            logger.info("Item" + i + ":" + user_roles.get(i));
     }
 
     @Test
-    public void testListPage(){
+    public void testListPage() {
+        boolean islike = false;
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("isDeleted", false);
         PageParam pageParam = new PageParam(2, 2);
-        PageBean<User_Role> pageBean = userroleDao.listPage(pageParam, paramMap);
+        PageBean<User_Role> pageBean = user_roleDao.listPage(pageParam, paramMap, islike);
         logger.info(pageBean);
-        List<User_Role> userroles = pageBean.getRecordList();
-        for(int i = 0; i < userroles.size(); i++)
-            logger.info("Item"+i+":"+userroles.get(i));
+        List<User_Role> user_roles = pageBean.getRecordList();
+        for (int i = 0; i < user_roles.size(); i++)
+            logger.info("Item" + i + ":" + user_roles.get(i));
     }
 }

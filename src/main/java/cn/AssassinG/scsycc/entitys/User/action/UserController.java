@@ -1,7 +1,10 @@
 package cn.AssassinG.scsycc.entitys.User.action;
 
 import cn.AssassinG.scsycc.entitys.User.biz.UserService;
+import cn.AssassinG.scsycc.entitys.User.entity.Permission;
 import cn.AssassinG.scsycc.entitys.User.entity.User;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,7 +12,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/user")
@@ -22,6 +28,11 @@ public class UserController {
     public String toReg(ModelMap model){
         model.put("registe_info", "");
         return "user/register";
+    }
+
+    @RequestMapping(value = "/authconfig", method = RequestMethod.GET)
+    public String toAuthConfig(ModelMap model){
+        return "auth/AuthConfig";
     }
 
     @RequestMapping(value = "/reg", method = RequestMethod.POST)//提交注册
@@ -59,6 +70,21 @@ public class UserController {
         }
         model.setViewName("user/login");
         return model;
+    }
+
+    @RequestMapping(value="/authconfig/getAllPermission", method = RequestMethod.GET)
+    @ResponseBody
+    public JSONObject getAllPermission(){
+        List<Permission> permissions = userService.findAll();
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("status", 1);
+        jsonObject.put("msg", "请求成功");
+        JSONArray jsonArray = new JSONArray();
+        for(Permission permission : permissions){
+            jsonArray.add(permission.getPermissionName());
+        }
+        jsonObject.put("data", jsonArray);
+        return jsonObject;
     }
 
 //    @Autowired

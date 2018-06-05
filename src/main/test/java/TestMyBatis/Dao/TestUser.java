@@ -32,7 +32,7 @@ public class TestUser {
     @Test
     public void testInsert() {
         User user = new User();
-        user.setUsername("duyanting");
+        user.setUsername("asddf");
         user.setPassword("d123456");
         userDao.insert(user);
         Long id = user.getId();
@@ -45,9 +45,9 @@ public class TestUser {
     @Test
     public void testBatchInsert() {
         User user = new User();
-        user.setUsername("duyanting3");
+        user.setUsername("asddf3");
         User user2 = new User();
-        user2.setUsername("duyanting4");
+        user2.setUsername("asddf4");
         List<User> users = new ArrayList<User>();
         users.add(user);
         users.add(user2);

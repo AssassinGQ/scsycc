@@ -30,7 +30,7 @@ public class TestPermission {
     @Test
     public void testInsert() {
         Permission permission = new Permission();
-        permission.setPermissionName("duyanting");
+        permission.setPermissionName("asddf");
         permissionDao.insert(permission);
         Long id = permission.getId();
         if(id == null){
@@ -42,9 +42,9 @@ public class TestPermission {
     @Test
     public void testBatchInsert() {
         Permission permission = new Permission();
-        permission.setPermissionName("duyanting3");
+        permission.setPermissionName("asddf3");
         Permission permission2 = new Permission();
-        permission2.setPermissionName("duyanting4");
+        permission2.setPermissionName("asddf4");
         List<Permission> permissions = new ArrayList<Permission>();
         permissions.add(permission);
         permissions.add(permission2);
