@@ -1,3 +1,15 @@
+
+*, body, ul, li, h1, h2 {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+ul{
+    list-style-type: none;
+}
+.nodisplay {
+    display: none;
+}
 #full-height-container{
     height: 100%;
     width: 100%;
@@ -44,7 +56,7 @@
     min-height: 500px;
     font-size: 14px;
 }
-.m-splitter-left {
+.m-splitter-l {
     float: left;
     width: 270px;
 }
@@ -94,3 +106,43 @@
     height: 100%;
     margin-left: 270px;
 }
+
+#roles-container{
+    height: 100%;
+    width: 270px;
+    float: left;
+    z-index: 11;
+    overflow-y: auto;
+    position:fixed;
+}
+#roles-permissions-drager{
+    right: -6px;
+    left:540px;
+    top: 56px;
+    /*background: rgba(0, 0, 0, 0) url("../image/common/none.gif") repeat scroll 0 0;*/
+    border-left: 1px solid #ccc;
+    cursor: col-resize;
+    height: 100%;
+    margin: 0;
+    overflow: visible;
+    padding: 0;
+    width: 7px;
+    z-index: 12;
+    position: fixed;
+}
+#permissions-container{
+    width: auto;
+    position: relative;
+    background-color: #FFF;
+    padding: 0px 40px 20px;
+    min-height: 850px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #CCC;
+    overflow: hidden;
+    width: auto;
+    float: none;
+    border: 0 none;
+    height: 100%;
+    margin-left: 270px;
+}
+

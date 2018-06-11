@@ -1,3 +1,6 @@
+#remote
+#MmabCD123419930926
+
 drop table if exists t_user;
 
 create table t_user (

@@ -76,24 +76,24 @@ public class TestUser {
         logger.info("Find user who's username = superadmin: " + userService.findUserByUname("superadmin"));
     }
 
-    @Test
-    public void testFindUserPermission(){
-        String username = "superadmin";
-        Set<Permission> permissions = userService.findUserPermissions(username);
-        logger.info("The user named "+username+" has following permissions:");
-        for(Permission permission : permissions){
-            logger.info(permission);
-        }
-    }
+//    @Test
+//    public void testFindUserPermission(){
+//        String username = "superadmin";
+//        Set<Permission> permissions = userService.findUserPermissions(username);
+//        logger.info("The user named "+username+" has following permissions:");
+//        for(Permission permission : permissions){
+//            logger.info(permission);
+//        }
+//    }
 
-    @Test
-    public void testFindAll(){
-        logger.info("All permissions in DB:");
-        List<Permission> permissions = userService.findAll();
-        for(Permission permission : permissions){
-            logger.info(permission);
-        }
-    }
+//    @Test
+//    public void testFindAll(){
+//        logger.info("All permissions in DB:");
+//        List<Permission> permissions = userService.findAll();
+//        for(Permission permission : permissions){
+//            logger.info(permission);
+//        }
+//    }
 
     @Test
     public void testAddPermissionToRole(){
@@ -149,5 +149,13 @@ public class TestUser {
         logger.info("After The user who's id = "+user_id+" has roles:");
         for(Role role : roles)
             logger.info(role);
+    }
+
+    @Test
+    public void testFindFatherRolePermissions(){
+        Long role_id = 4L;
+        Set<Permission> permissions = userService.findFatherRolePermissions(role_id);
+        for(Permission permission : permissions)
+            logger.info(permission);
     }
 }

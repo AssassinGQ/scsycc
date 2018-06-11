@@ -2,6 +2,7 @@ package cn.AssassinG.scsycc.entitys.User.dao;
 
 import cn.AssassinG.scsycc.common.dao.BaseDaoImpl;
 import cn.AssassinG.scsycc.entitys.User.entity.Permission;
+import cn.AssassinG.scsycc.entitys.User.entity.Role;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashSet;

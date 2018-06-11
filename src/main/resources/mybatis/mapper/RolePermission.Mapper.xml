@@ -121,7 +121,7 @@
         <where>
             <include refid="condition_sql" />
         </where>
-        order by id desc
+        order by id asc
     </select>
 
     <select id="listByLike" parameterType="java.util.Map" resultMap="beanMap">
@@ -130,7 +130,7 @@
         <where>
             <include refid="condition_sql" />
         </where>
-        order by id desc
+        order by id asc
     </select>
 
     <select id="listPage" parameterType="java.util.Map" resultMap="beanMap">
@@ -139,7 +139,7 @@
         <where>
             <include refid="condition_sql" />
         </where>
-        order by id desc
+        order by id asc
         limit #{pageFirst} , #{pageSize}
     </select>
 
@@ -149,7 +149,7 @@
         <where>
             <include refid="condition_sql" />
         </where>
-        order by id desc
+        order by id asc
         limit #{pageFirst} , #{pageSize}
     </select>
 

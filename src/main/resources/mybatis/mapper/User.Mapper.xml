@@ -103,7 +103,7 @@
   	</select>
   	
   	<select id="listAll" resultMap="beanMap">
-    	select * from <include refid="t_user"/> order by id
+    	select * from <include refid="t_user"/> order by id asc
   	</select>
 
 	<sql id="condition_sql_like">
@@ -141,7 +141,7 @@
 		<where>
 			<include refid="condition_sql_nolike" />
 		</where>
-		order by id desc
+		order by id asc
 	</select>
 
 	<select id="listByLike" parameterType="java.util.Map" resultMap="beanMap">
@@ -150,7 +150,7 @@
 		<where>
 			<include refid="condition_sql_like" />
 		</where>
-		order by id desc
+		order by id asc
 	</select>
 
 	<select id="listPage" parameterType="java.util.Map" resultMap="beanMap">
@@ -159,7 +159,7 @@
 		<where>
 			<include refid="condition_sql_nolike" />
 		</where>
-		order by id desc
+		order by id asc
 		limit #{pageFirst} , #{pageSize}
 	</select>
 
@@ -169,7 +169,7 @@
 		<where>
 			<include refid="condition_sql_like" />
 		</where>
-		order by id desc
+		order by id asc
 		limit #{pageFirst} , #{pageSize}
 	</select>
 	

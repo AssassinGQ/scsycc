@@ -63,10 +63,58 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public Set<Permission> findUserPermissions(String username) {
-        User user = userDao.findByUserName(username);
+    public Set<Role> findUserRoles(Long userid) {
+        User user = userDao.getById(userid);
         if(user == null || user.isDeleted())
-            return null;
+            return new HashSet<Role>();
+        return roleDao.findByUserId(userid);
+    }
+
+    @Override
+    public List<Role> findAllRoles() {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("isDeleted", false);
+        return roleDao.listBy(params);
+    }
+
+    @Override
+    public Role findRoleByRoleName(String rolename) {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("isDeleted", false);
+        params.put("RoleName", rolename);
+        List<Role> roles = roleDao.listBy(params);
+        if(roles.size() >= 1)
+            return roles.get(0);
+        else
+            return  null;
+    }
+
+//    @Override
+//    public List<Role> findRolesInherit() {
+//        return null;
+//    }
+//
+//    @Override
+//    public List<Role> findChileRoles(Long fatherid) {
+//        if(fatherid == null || fatherid.longValue() < 0)
+//            return new ArrayList<Role>();
+//        List<Role> ret = new ArrayList<Role>();
+//        if(fatherid.longValue() == 0) {
+//            ret.add(roleDao.getById(1L));
+//            return ret;
+//        }
+//        Role father_role = roleDao.getById(fatherid);
+//        Map<String, Object> params = new HashMap<String, Object>();
+//        params.put("SuperRoleName", father_role.getRoleName());
+//        ret = roleDao.listBy(params);
+//        return ret;
+//    }
+
+    @Override
+    public Set<Permission> findUserPermissions(Long userid) {
+        User user = userDao.getById(userid);
+        if(user == null || user.isDeleted())
+            return new HashSet<Permission>();
         Set<Role> roles = roleDao.findByUserId(user.getId());
         Set<Permission> permissions = new HashSet<Permission>();
         for(Role role : roles){
@@ -76,7 +124,63 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public List<Permission> findAll() {
+    public Set<Permission> findRolePermissions(Long roleid) {
+        Role role = roleDao.getById(roleid);
+        if(role == null || role.isDeleted())
+            return new HashSet<Permission>();
+        return permissionDao.findByRoleId(roleid);
+    }
+
+    @Override
+    public Set<Permission> findFatherRolePermissions(Long roleid) {
+        Role role = roleDao.getById(roleid);
+        if(role == null || role.isDeleted())
+            return new HashSet<Permission>();
+        Set<Permission> permissions = new HashSet<Permission>();
+        Role thisrole = role;
+        while(thisrole.getSuperRoleName() != null){
+            Map<String, Object> params = new HashMap<String, Object>();
+            params.put("isDeleted", false);
+            params.put("RoleName", thisrole.getSuperRoleName());
+            List<Role> super_roles = roleDao.listBy(params);
+            if(super_roles.size() >= 1){
+                thisrole = super_roles.get(0);
+            }else{
+                thisrole = null;
+            }
+            permissions.addAll(permissionDao.findByRoleId(thisrole.getId()));
+        }
+        return permissions;
+    }
+
+//    @Override
+//    public Set<Permission> findInheritRolePermissions(Long roleid) {
+//        Role role = roleDao.getById(roleid);
+//        if(role == null || role.isDeleted())
+//            return new HashSet<Permission>();
+//        Set<Role> roles = new HashSet<Role>();
+//        roles.add(role);
+//        Queue<Role> queue = new LinkedList<Role>();
+//        queue.offer(role);
+//        while(queue.size() > 0){
+//            Role tmprole = queue.poll();
+//            Map<String, Object> params = new HashMap<String, Object>();
+//            params.put("SuperRoleName", tmprole.getRoleName());
+//            List<Role> tmproles = roleDao.listBy(params);
+//            roles.addAll(tmproles);
+//            for(Role r : tmproles){
+//                queue.offer(r);
+//            }
+//        }
+//        Set<Permission> permissions = new HashSet<Permission>();
+//        for(Role role1 : roles){
+//            permissions.addAll(permissionDao.findByRoleId(role1.getId()));
+//        }
+//        return permissions;
+//    }
+
+    @Override
+    public List<Permission> findAllPermission() {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("isDeleted", false);
         return permissionDao.listBy(params);
