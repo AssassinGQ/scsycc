@@ -19,7 +19,7 @@
     <security:http auto-config="true" use-expressions="false" authentication-manager-ref="myAuthenticationManager">
         <security:form-login
                 login-page="/user/login" login-processing-url="/user/dologin"
-                username-parameter="username" password-parameter="password"
+                username-parameter="UserName" password-parameter="PassWord"
                 default-target-url="/home" always-use-default-target="true"/>
                 <!--authentication-success-forward-url="/home" authentication-failure-forward-url="/js/user/sessionTimeOut.jsp"/>-->
         <security:logout delete-cookies="JSESSIONID"/>

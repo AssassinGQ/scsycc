@@ -26,7 +26,7 @@
 		<setting name="useGeneratedKeys" value="false" />
 		<!-- 配置默认的执行器。SIMPLE 执行器没 有什么特别之处。REUSE 执行器重用 预处理语句。BATCH 执行器重用语句 和批量更新 -->
 		<setting name="defaultExecutorType" value="SIMPLE" />
-		<!-- 设置超时时间, 它决定驱动等待一个数 据库响应的时间 -->
+		<!-- 设置超时时间, 它决定驱动等待一个数据库响应的时间 -->
 		<setting name="defaultStatementTimeout" value="100" />
 		<setting name="safeRowBoundsEnabled" value="false" />
 		<setting name="mapUnderscoreToCamelCase" value="false" />
@@ -34,11 +34,12 @@
 		<setting name="jdbcTypeForNull" value="OTHER" />
 		<setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString" />
 		<!--打印SQL语句-->
-		<!--<setting name="logImpl" value="STDOUT_LOGGING"/>-->
+		<setting name="logImpl" value="STDOUT_LOGGING"/>
 	</settings>
 
-	 <!--类型别名是为 Java类型命名一个短的名字。 它只和 XML配置有关,只用来减少类完全 限定名的多余部分-->
+	 <!--类型别名是为Java类型命名一个短的名字。 它只和 XML配置有关,只用来减少类完全限定名的多余部分-->
 	<typeAliases>
+		<typeAlias alias="Test" type="cn.AssassinG.scsycc.entitys.User.entity.Test" />
 		<typeAlias alias="User" type="cn.AssassinG.scsycc.entitys.User.entity.User" />
 		<typeAlias alias="UserRole" type="cn.AssassinG.scsycc.entitys.User.entity.User_Role" />
 		<typeAlias alias="Role" type="cn.AssassinG.scsycc.entitys.User.entity.Role" />
@@ -47,6 +48,7 @@
 	</typeAliases>
 
 	<mappers>
+		<mapper resource="mybatis/mapper/Test.Mapper.xml" />
 		<mapper resource="mybatis/mapper/User.Mapper.xml" />
 		<mapper resource="mybatis/mapper/UserRole.Mapper.xml" />
 		<mapper resource="mybatis/mapper/Role.Mapper.xml" />

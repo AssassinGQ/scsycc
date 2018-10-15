@@ -13,7 +13,7 @@ public class HomeController {
     @Autowired
     private HomeService homeServices;
 
-    @Secured("ROLE_MPAGE_HOME")
+    @Secured("ROLE_PAGE_HOME")
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String getHome(ModelMap model) {
         homeServices.sayHello();

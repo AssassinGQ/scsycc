@@ -34,5 +34,5 @@ insert into t_role(role_name, role_desc, superrole_name) values ("partner_manufa
 insert into t_role(role_name, role_desc, superrole_name) values ("partner_receiver", "收货方", "corp_partner");##12
 insert into t_role(role_name, role_desc, superrole_name) values ("employee_driver", "驾驶员", "corp_employee");##13
 insert into t_role(role_name, role_desc, superrole_name) values ("employee_supervisor", "监装员", "corp_employee");##14
-insert into t_role(role_name, role_desc, superrole_name) values ("employee_craneman", "起重工", "corp_employee");##15
-insert into t_role(role_name, role_desc, superrole_name) values ("employee_cranedriver", "行车工", "corp_employee");##16
+insert into t_role(role_name, role_desc, superrole_name) values ("employee_leftworker", "起重工", "corp_employee");##15
+insert into t_role(role_name, role_desc, superrole_name) values ("employee_driveworker", "行车工", "corp_employee");##16

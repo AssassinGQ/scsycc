@@ -26,6 +26,6 @@ public class MyUserDetailService implements UserDetailsService {
             logger.info(permission);
             authorities.add(new SimpleGrantedAuthority(permission.getPermissionName()));
         }
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
+        return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassWord(), authorities);
     }
 }

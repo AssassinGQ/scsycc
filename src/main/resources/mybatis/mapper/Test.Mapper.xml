@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.AssassinG.scsycc.entitys.User.dao.TestDaoImpl">
+
+	<!-- 用户信息表 -->
+	<sql id="t_test"> t_test </sql>
+
+	<resultMap id="beanMap" type="Test">
+		<id column="id" property="id" />
+		<result column="create_time" property="createTime" />
+		<result column="update_time" property="updateTime" />
+		<result column="delete_time" property="deleteTime" />
+        <result column="is_deleted" property="isDeleted" />
+		<result column="_ip" property="IP" />
+	</resultMap>
+
+	<insert id="insert" parameterType="Test" keyProperty="id" useGeneratedKeys="true">
+		insert into <include refid="t_test"/> (create_time, update_time, delete_time, is_deleted, _ip)
+		values (now(), now(), NULL , FALSE , #{IP})
+	</insert>
+
+	<insert id="batchInsert" parameterType="List" keyProperty="id" useGeneratedKeys="true">
+		insert into <include refid="t_test"/> (create_time, update_time, delete_time, is_deleted, _ip)
+		values
+        <foreach collection="list" item="obj" separator=",">
+            (now(), now(), NULL, FALSE, #{obj.IP})
+        </foreach>
+	</insert>
+	
+	<update id="update" parameterType="Test">
+		update <include refid="t_test"/>
+		<set>
+			update_time = now(),
+			_ip =  #{IP}
+		</set>
+		<where>
+			ID = #{id}
+		</where>
+	</update>
+
+    <update id="batchUpdate" parameterType="List">
+        update <include refid="t_test"/>
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="update_time =case" suffix="end,">
+                <foreach collection="list" item="item">
+                    when id=#{item.id} then now()
+                </foreach>
+            </trim>
+            <trim prefix="_ip =case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.IP!=null">
+                        when id=#{item.id} then #{item.IP}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        <where>
+            <foreach collection="list" separator="or" item="item">
+                id=#{item.id}
+            </foreach>
+        </where>
+    </update>
+
+    <update id="delete" parameterType="Test">
+        update <include refid="t_test"/>
+        <set>
+            delete_time = now(),
+			update_time = now(),
+            is_deleted =  true
+        </set>
+        <where>
+            ID = #{id}
+        </where>
+    </update>
+
+	<update id="deleteById" parameterType="long">
+		update <include refid="t_test"/>
+		<set>
+			delete_time = now(),
+			update_time = now(),
+			is_deleted =  true
+		</set>
+		<where>
+			ID = #{id}
+		</where>
+	</update>
+	
+  	<select id="getById" parameterType="long" resultMap="beanMap">
+    	select * from <include refid="t_test"/> where id = #{id}
+  	</select>
+  	
+  	<select id="listAll" resultMap="beanMap">
+    	select * from <include refid="t_test"/> order by id asc
+  	</select>
+
+	<sql id="condition_sql_like">
+		<!-- Equal query -->
+		<if test="id != null"> and id = #{id}</if>
+		<if test="createTimeBegin != null"> and create_time &gt;= #{createTimeBegin}</if>
+		<if test="createTimeEnd != null"> and create_time &lt;= #{createTimeEnd}</if>
+		<if test="updateTimeBegin != null"> and update_time &gt;= #{updateTimeBegin}</if>
+		<if test="updateTimeEnd != null"> and update_time &lt;= #{updateTimeEnd}</if>
+		<if test="deleteTimeBegin != null"> and delete_time &gt;= #{deleteTimeBegin}</if>
+		<if test="deleteTimeEnd != null"> and delete_time &lt;= #{deleteTimeEnd}</if>
+		<if test="isDeleted != null"> and is_deleted = #{isDeleted}</if>
+		<!-- Like query -->
+		<if test="IP != null and IP != ''"> and _ip like CONCAT(CONCAT('%', #{IP}), '%')</if>
+	</sql>
+
+	<sql id="condition_sql_nolike">
+		<!-- Equal query -->
+		<if test="id != null"> and id = #{id}</if>
+		<if test="createTimeBegin != null"> and create_time &gt;= #{createTimeBegin}</if>
+		<if test="createTimeEnd != null"> and create_time &lt;= #{createTimeEnd}</if>
+		<if test="updateTimeBegin != null"> and update_time &gt;= #{updateTimeBegin}</if>
+		<if test="updateTimeEnd != null"> and update_time &lt;= #{updateTimeEnd}</if>
+		<if test="deleteTimeBegin != null"> and delete_time &gt;= #{deleteTimeBegin}</if>
+		<if test="deleteTimeEnd != null"> and delete_time &lt;= #{deleteTimeEnd}</if>
+		<if test="isDeleted != null"> and is_deleted = #{isDeleted}</if>
+		<if test="IP != null and IP != ''"> and _ip = #{IP}</if>
+	</sql>
+
+	<select id="listBy" parameterType="java.util.Map" resultMap="beanMap">
+		select * from
+		<include refid="t_test"/>
+		<where>
+			<include refid="condition_sql_nolike" />
+		</where>
+		order by id asc
+	</select>
+
+	<select id="listByLike" parameterType="java.util.Map" resultMap="beanMap">
+		select * from
+		<include refid="t_test"/>
+		<where>
+			<include refid="condition_sql_like" />
+		</where>
+		order by id asc
+	</select>
+
+	<select id="listPage" parameterType="java.util.Map" resultMap="beanMap">
+		select * from
+		<include refid="t_test"/>
+		<where>
+			<include refid="condition_sql_nolike" />
+		</where>
+		order by id asc
+		limit #{pageFirst} , #{pageSize}
+	</select>
+
+	<select id="listPageLike" parameterType="java.util.Map" resultMap="beanMap">
+		select * from
+		<include refid="t_test"/>
+		<where>
+			<include refid="condition_sql_like" />
+		</where>
+		order by id asc
+		limit #{pageFirst} , #{pageSize}
+	</select>
+	
+	<select id="listPageCount" parameterType="java.util.Map" resultType="long">
+		select count(1) from <include refid="t_test"/>
+		<where>
+			<include refid="condition_sql_nolike"/>
+		</where>
+	</select>
+
+	<select id="listPageCountLike" parameterType="java.util.Map" resultType="long">
+		select count(1) from <include refid="t_test"/>
+		<where>
+			<include refid="condition_sql_like"/>
+		</where>
+	</select>
+	
+</mapper>

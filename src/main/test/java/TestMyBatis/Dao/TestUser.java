@@ -32,8 +32,8 @@ public class TestUser {
     @Test
     public void testInsert() {
         User user = new User();
-        user.setUsername("asddf");
-        user.setPassword("d123456");
+        user.setUserName("asddf");
+        user.setPassWord("d123456");
         userDao.insert(user);
         Long id = user.getId();
         if(id == null){
@@ -45,9 +45,9 @@ public class TestUser {
     @Test
     public void testBatchInsert() {
         User user = new User();
-        user.setUsername("asddf3");
+        user.setUserName("asddf3");
         User user2 = new User();
-        user2.setUsername("asddf4");
+        user2.setUserName("asddf4");
         List<User> users = new ArrayList<User>();
         users.add(user);
         users.add(user2);
@@ -62,7 +62,7 @@ public class TestUser {
     public void testUpdate() {
         User user = userDao.getById(2);
         logger.info("Before Update: "+user);
-        user.setUsername("updatedname3");
+        user.setUserName("updatedname3");
         userDao.update(user);
         logger.info("After Updated: " + userDao.getById(2));
     }
@@ -73,8 +73,8 @@ public class TestUser {
         User user4 = userDao.getById(4);
         logger.info("User2 Before Update: "+user2);
         logger.info("User4 Before Update: "+user4);
-        user2.setUsername("updatedname4");
-        user4.setUsername("updatedname5");
+        user2.setUserName("updatedname4");
+        user4.setUserName("updatedname5");
         List<User> users = new ArrayList<User>();
         users.add(user2);
         users.add(user4);

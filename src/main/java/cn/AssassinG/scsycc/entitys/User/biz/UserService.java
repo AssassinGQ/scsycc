@@ -13,6 +13,7 @@ public interface UserService {
     void deleteUserById(long userId);
     User findUserById(Long userId);
     User findUserByUname(String username);
+    User findUserByPhone(String phone);
     Set<Role> findUserRoles(Long userid);
     List<Role> findAllRoles();
     Role findRoleByRoleName(String rolename);

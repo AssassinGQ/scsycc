@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.List;
 import java.util.Set;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -35,8 +34,8 @@ public class TestUser {
     @Test
     public void testSerCreate() {
         User user = new User();
-        user.setUsername("duyanting");
-        user.setPassword("123456");
+        user.setUserName("duyanting");
+        user.setPassWord("123456");
         userService.create(user);
         Long id = user.getId();
         if(id == null){
@@ -49,8 +48,8 @@ public class TestUser {
     public void testSerUpdate() {
         User user = userDao.getById(2);
         logger.info("Before Update: "+user);
-        user.setUsername("duyanting2");
-        user.setPassword("123456");
+        user.setUserName("duyanting2");
+        user.setPassWord("123456");
         userService.update(user);
         logger.info("After Updated: " + userDao.getById(2));
     }
@@ -71,8 +70,8 @@ public class TestUser {
     @Test
     public void testFindUserByUname() {
         User user = new User();
-        user.setUsername("duyanting");
-        user.setPassword("123456");
+        user.setUserName("duyanting");
+        user.setPassWord("123456");
         logger.info("Find user who's username = superadmin: " + userService.findUserByUname("superadmin"));
     }
 

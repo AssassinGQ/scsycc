@@ -120,7 +120,7 @@
     <select id="listByUsername" parameterType="string" resultMap="beanMap">
         SELECT r.*
         FROM t_role r
-        LEFT JOIN t_user u ON (u.user_name = #{username})
+        LEFT JOIN t_user u ON (u.user_name = #{userName})
         LEFT JOIN t_user_role ur ON (ur.user_id = u.id)
         WHERE r.id = ur.role_id
     </select>

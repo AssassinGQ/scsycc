@@ -11,20 +11,23 @@
 		<result column="update_time" property="updateTime" />
 		<result column="delete_time" property="deleteTime" />
         <result column="is_deleted" property="isDeleted" />
-		<result column="user_name" property="username" />
-        <result column="_password" property="password" />
+		<result column="user_name" property="UserName" />
+        <result column="_password" property="PassWord" />
+		<result column="phone" property="Phone" />
+		<result column="vcode" property="Vcode" />
+		<result column="vcode_time" property="VcodeTime" />
 	</resultMap>
 
 	<insert id="insert" parameterType="User" keyProperty="id" useGeneratedKeys="true">
-		insert into <include refid="t_user"/> (create_time, update_time, delete_time, is_deleted, user_name, _password)
-		values (now(), now(), NULL , FALSE , #{username}, #{password})
+		insert into <include refid="t_user"/> (create_time, update_time, delete_time, is_deleted, user_name, _password, phone, vcode, vcode_time, is_registered, user_type, user_info)
+		values (now(), now(), NULL , FALSE , #{UserName}, #{PassWord}, #{Phone}, #{Vcode}, #{VcodeTime}, #{IsRegistered}, #{UserType}, #{UserInfo})
 	</insert>
 
 	<insert id="batchInsert" parameterType="List" keyProperty="id" useGeneratedKeys="true">
-		insert into <include refid="t_user"/> (create_time, update_time, delete_time, is_deleted, user_name, _password)
+		insert into <include refid="t_user"/> (create_time, update_time, delete_time, is_deleted, user_name, _password, phone, vcode, vcode_time, is_registered, user_type, user_info)
 		values
         <foreach collection="list" item="obj" separator=",">
-            (now(), now(), NULL, FALSE, #{obj.username}, #{obj.password})
+            (now(), now(), NULL, FALSE, #{obj.UserName}, #{obj.PassWord}, #{obj.Phone}, #{obj.Vcode}, #{obj.VcodeTime}, #{obj.IsRegistered}, #{obj.UserType}, #{obj.UserInfo})
         </foreach>
 	</insert>
 	
@@ -32,8 +35,14 @@
 		update <include refid="t_user"/>
 		<set>
 			update_time = now(),
-			user_name =  #{username},
-            _password =  #{password}
+			user_name =  #{UserName},
+            _password =  #{PassWord},
+			phone = #{Phone},
+			vcode = #{Vcode},
+			vcode_time = #{VcodeTime}
+			is_registered = #{IsRegistered}
+			user_type = #{UserType}
+			user_info = #{UserInfo}
 		</set>
 		<where>
 			ID = #{id}
@@ -50,18 +59,60 @@
             </trim>
             <trim prefix="user_name =case" suffix="end,">
                 <foreach collection="list" item="item">
-                    <if test="item.username!=null">
-                        when id=#{item.id} then #{item.username}
+                    <if test="item.UserName!=null">
+                        when id=#{item.id} then #{item.UserName}
                     </if>
                 </foreach>
             </trim>
             <trim prefix="_password =case" suffix="end,">
                 <foreach collection="list" item="item">
-                    <if test="item.password!=null">
-                        when id=#{item.id} then #{item.password}
+                    <if test="item.PassWord!=null">
+                        when id=#{item.id} then #{item.PassWord}
                     </if>
                 </foreach>
             </trim>
+			<trim prefix="phone =case" suffix="end,">
+				<foreach collection="list" item="item">
+					<if test="item.Phone!=null">
+						when id=#{item.id} then #{item.Phone}
+					</if>
+				</foreach>
+			</trim>
+			<trim prefix="vcode =case" suffix="end,">
+				<foreach collection="list" item="item">
+					<if test="item.Vcode!=null">
+						when id=#{item.id} then #{item.Vcode}
+					</if>
+				</foreach>
+			</trim>
+			<trim prefix="vcode_time =case" suffix="end,">
+				<foreach collection="list" item="item">
+					<if test="item.VcodeTime!=null">
+						when id=#{item.id} then #{item.VcodeTime}
+					</if>
+				</foreach>
+			</trim>
+			<trim prefix="is_registered =case" suffix="end,">
+				<foreach collection="list" item="item">
+					<if test="item.IsRegistered!=null">
+						when id=#{item.id} then #{item.IsRegistered}
+					</if>
+				</foreach>
+			</trim>
+			<trim prefix="user_type =case" suffix="end,">
+				<foreach collection="list" item="item">
+					<if test="item.UserType!=null">
+						when id=#{item.id} then #{item.UserType}
+					</if>
+				</foreach>
+			</trim>
+			<trim prefix="user_info =case" suffix="end,">
+				<foreach collection="list" item="item">
+					<if test="item.UserInfo!=null">
+						when id=#{item.id} then #{item.UserInfo}
+					</if>
+				</foreach>
+			</trim>
         </trim>
         <where>
             <foreach collection="list" separator="or" item="item">
@@ -99,7 +150,7 @@
   	</select>
   	
   	<select id="findByUserNo" parameterType="string" resultMap="beanMap">
-    	select * from <include refid="t_user"/> where user_name= #{username}
+    	select * from <include refid="t_user"/> where user_name= #{UserName}
   	</select>
   	
   	<select id="listAll" resultMap="beanMap">
@@ -116,9 +167,13 @@
 		<if test="deleteTimeBegin != null"> and delete_time &gt;= #{deleteTimeBegin}</if>
 		<if test="deleteTimeEnd != null"> and delete_time &lt;= #{deleteTimeEnd}</if>
 		<if test="isDeleted != null"> and is_deleted = #{isDeleted}</if>
-		<if test="password != null and password != ''"> and _password = #{password}</if>
+		<if test="PassWord != null and PassWord != ''"> and _password = #{PassWord}</if>
+		<if test="IsRegistered != null and IsRegistered != ''"> and is_registered = #{IsRegistered}</if>
+		<!--<if test="UserType != null and UserType != ''"> and user_type = #{UserType}</if>-->
+		<!--<if test="UserInfo != null and UserInfo != ''"> and user_info = #{UserInfo}</if>-->
 		<!-- Like query -->
-		<if test="username != null and username != ''"> and user_name like CONCAT(CONCAT('%', #{username}), '%')</if>
+		<if test="UserName != null and UserName != ''"> and user_name like CONCAT(CONCAT('%', #{UserName}), '%')</if>
+		<if test="Phone != null and Phone != ''"> and phone like CONCAT(CONCAT('%', #{Phone}), '%')</if>
 	</sql>
 
 	<sql id="condition_sql_nolike">
@@ -131,8 +186,12 @@
 		<if test="deleteTimeBegin != null"> and delete_time &gt;= #{deleteTimeBegin}</if>
 		<if test="deleteTimeEnd != null"> and delete_time &lt;= #{deleteTimeEnd}</if>
 		<if test="isDeleted != null"> and is_deleted = #{isDeleted}</if>
-		<if test="password != null and password != ''"> and _password = #{password}</if>
-		<if test="username != null and username != ''"> and username = #{username}</if>
+		<if test="PassWord != null and PassWord != ''"> and _password = #{PassWord}</if>
+		<if test="UserName != null and UserName != ''"> and user_name = #{UserName}</if>
+		<if test="Phone != null and Phone != ''"> and phone = #{Phone}</if>
+		<if test="IsRegistered != null and IsRegistered != ''"> and is_registered = #{IsRegistered}</if>
+		<!--<if test="UserType != null and UserType != ''"> and user_type = #{UserType}</if>-->
+		<!--<if test="UserInfo != null and UserInfo != ''"> and user_info = #{UserInfo}</if>-->
 	</sql>
 
 	<select id="listBy" parameterType="java.util.Map" resultMap="beanMap">

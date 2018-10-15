@@ -62,6 +62,19 @@ public class UserServiceImpl implements UserService{
             return user;
     }
 
+    public User findUserByPhone(String phone){
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("isDeleted", false);
+        params.put("Phone", phone);
+        List<User> users = userDao.listBy(params);
+        if(users.size() > 1){
+            return users.get(0);
+        }else if(users.size() == 1){
+            return users.get(0);
+        }else
+            return null;
+    }
+
     @Override
     public Set<Role> findUserRoles(Long userid) {
         User user = userDao.getById(userid);

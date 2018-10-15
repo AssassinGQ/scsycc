@@ -2,7 +2,7 @@ $(document).ready(function () {
     // var task1 = false;
     // var task2 = false;
     $.ajax({
-        url: "/user/authconfig/getAllPermissions",
+        url: "/auth/authconfig/getAllPermissions",
         async: false,
         type: "get",
         success:function (data) {
@@ -29,7 +29,7 @@ $(document).ready(function () {
         }
     });
     $.ajax({
-        url: "/user/authconfig/getAllRolesInherit",
+        url: "/auth/authconfig/getAllRolesInherit",
         async: true,
         type: "get",
         success:function (data) {
@@ -88,7 +88,7 @@ function SaveButtonClick(){
 
 function getRolePermission(id) {
     $.ajax({
-        url: "/user/authconfig/getRolePermission",
+        url: "/auth/authconfig/getRolePermission",
         async: true,
         type: "get",
         data: {roleid: id},
@@ -114,7 +114,7 @@ function getRolePermission(id) {
 
 function getFatherRolePermission(id) {
     $.ajax({
-        url: "/user/authconfig/getFatherRolePermission",
+        url: "/auth/authconfig/getFatherRolePermission",
         async: true,
         type: "get",
         data: {roleid: id},

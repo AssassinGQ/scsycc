@@ -4,7 +4,7 @@
         <%--<meta http-equiv="Content-Type" content="text/html; charset=utf-8">--%>
         <title>权限管理</title>
         <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
-        <link rel="stylesheet" href="../../css/frame.css" type="text/css">
+        <link rel="stylesheet" href="../../css/AuthConfig.css" type="text/css">
         <script src="../../js/auth/AuthConfig.js" type="text/javascript"></script>
         <script src="../../js/auth/TreeBuilder.js" type="text/javascript"></script>
     </head>
