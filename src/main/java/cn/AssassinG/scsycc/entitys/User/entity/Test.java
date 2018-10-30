@@ -20,8 +20,8 @@ public class Test extends BaseEntity {
     public String toString() {
         return "Test{" +
                 "IP='" + IP + '\'' +
-                ", updateTime=" + updateTime +
-                ", isDeleted=" + isDeleted +
+                ", UpdateTime=" + UpdateTime +
+                ", IsDeleted=" + IsDeleted +
                 '}';
     }
 }

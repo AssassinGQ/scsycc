@@ -102,8 +102,8 @@ public abstract class BaseDaoImpl<T extends BaseEntity> extends SqlSessionDaoSup
         return result;
     }
 
-    public int delete(long id) {
-        return (int) sessionTemplate.delete(getStatement(SQL_DELETE_BY_ID), id);
+    public int delete(long Id) {
+        return (int) sessionTemplate.delete(getStatement(SQL_DELETE_BY_ID), Id);
     }
 
     public int delete(T entity) {
@@ -114,8 +114,8 @@ public abstract class BaseDaoImpl<T extends BaseEntity> extends SqlSessionDaoSup
         return result;
     }
 
-    public T getById(long id) {
-        return sessionTemplate.selectOne(getStatement(SQL_GET_BY_ID), id);
+    public T getById(long Id) {
+        return sessionTemplate.selectOne(getStatement(SQL_GET_BY_ID), Id);
     }
 
     public List<T> listAll() {
@@ -126,16 +126,16 @@ public abstract class BaseDaoImpl<T extends BaseEntity> extends SqlSessionDaoSup
         return getBy(paramMap, false);
     }
 
-    public T getBy(Map<String, Object> paramMap, boolean islike) {
+    private T getBy(Map<String, Object> paramMap, boolean islike) {
         if (paramMap == null || paramMap.isEmpty()) {
             return null;
         }
         List<T> results = null;
-        if(islike){
-            results = sessionTemplate.selectList(getStatement(SQL_LIST_BY_LIKE), paramMap);
-        }else{
+//        if(islike){
+//            results = sessionTemplate.selectList(getStatement(SQL_LIST_BY_LIKE), paramMap);
+//        }else{
             results = sessionTemplate.selectList(getStatement(SQL_LIST_BY), paramMap);
-        }
+//        }
         if(results.size() > 1)
             throw DaoException.DB_GETBY_TOOMANY_RESULT.newInstance("数据库操作,getBy返回多个结果.{%s}", getStatement(SQL_LIST_BY));
         else if(results.size() == 0)
@@ -148,14 +148,14 @@ public abstract class BaseDaoImpl<T extends BaseEntity> extends SqlSessionDaoSup
         return listBy(paramMap, false);
     }
 
-    public List<T> listBy(Map<String, Object> paramMap, boolean islike) {
+    private List<T> listBy(Map<String, Object> paramMap, boolean islike) {
         if (paramMap == null || paramMap.isEmpty()) {
             return null;
         }
 
-        if(islike)
-            return sessionTemplate.selectList(getStatement(SQL_LIST_BY_LIKE), paramMap);
-        else
+//        if(islike)
+//            return sessionTemplate.selectList(getStatement(SQL_LIST_BY_LIKE), paramMap);
+//        else
             return sessionTemplate.selectList(getStatement(SQL_LIST_BY), paramMap);
     }
 
@@ -163,7 +163,7 @@ public abstract class BaseDaoImpl<T extends BaseEntity> extends SqlSessionDaoSup
         return listPage(pageParam, paramMap, false);
     }
 
-    public PageBean<T> listPage(PageParam pageParam, Map<String, Object> paramMap, boolean islike) {
+    private PageBean<T> listPage(PageParam pageParam, Map<String, Object> paramMap, boolean islike) {
         if (paramMap == null) {
             paramMap = new HashMap<String, Object>();
         }
@@ -178,13 +178,13 @@ public abstract class BaseDaoImpl<T extends BaseEntity> extends SqlSessionDaoSup
         Long count;
         // 获取分页数据集
         List<T> list;
-        if(islike){
-            count = sessionTemplate.selectOne(getStatement(SQL_LIST_PAGE_COUNT_LIKE), paramMap);
-            list = sessionTemplate.selectList(getStatement(SQL_LIST_PAGE_LIKE), paramMap);
-        }else{
+//        if(islike){
+//            count = sessionTemplate.selectOne(getStatement(SQL_LIST_PAGE_COUNT_LIKE), paramMap);
+//            list = sessionTemplate.selectList(getStatement(SQL_LIST_PAGE_LIKE), paramMap);
+//        }else{
             count = sessionTemplate.selectOne(getStatement(SQL_LIST_PAGE_COUNT), paramMap);
             list = sessionTemplate.selectList(getStatement(SQL_LIST_PAGE), paramMap);
-        }
+//        }
 
         Object isCount = paramMap.get("isCount"); // 是否统计当前分页条件下的数据：1:是，其他为否
         if (isCount != null && "1".equals(isCount.toString())) {

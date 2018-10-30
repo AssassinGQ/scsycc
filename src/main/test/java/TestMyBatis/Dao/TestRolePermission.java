@@ -108,31 +108,28 @@ public class TestRolePermission {
 
     @Test
     public void testGetBy() {
-        boolean islike = false;
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("isDeleted", true);
-        paramMap.put("id", 1L);
-        logger.info(rolePermissionDao.getBy(paramMap, islike));
+        paramMap.put("Id", 1L);
+        logger.info(rolePermissionDao.getBy(paramMap));
     }
 
     @Test
     public void testListBy() {
-        boolean islike = true;
         Map<String, Object> paramMap = new HashMap<String, Object>();
-//        paramMap.put("isDeleted", false);
-        paramMap.put("role_permissionname", "admi");
-        List<Role_Permission> role_permissions = rolePermissionDao.listBy(paramMap, islike);
+//        paramMap.put("IsDeleted", false);
+        paramMap.put("rIole_permissionname", "admi");
+        List<Role_Permission> role_permissions = rolePermissionDao.listBy(paramMap);
         for (int i = 0; i < role_permissions.size(); i++)
             logger.info("Item" + i + ":" + role_permissions.get(i));
     }
 
     @Test
     public void testListPage() {
-        boolean islike = false;
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("isDeleted", false);
         PageParam pageParam = new PageParam(2, 2);
-        PageBean<Role_Permission> pageBean = rolePermissionDao.listPage(pageParam, paramMap, islike);
+        PageBean<Role_Permission> pageBean = rolePermissionDao.listPage(pageParam, paramMap);
         logger.info(pageBean);
         List<Role_Permission> role_permissions = pageBean.getRecordList();
         for (int i = 0; i < role_permissions.size(); i++)

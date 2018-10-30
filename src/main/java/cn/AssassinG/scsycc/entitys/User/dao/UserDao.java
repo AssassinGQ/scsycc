@@ -7,5 +7,5 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 public interface UserDao extends BaseDao<User> {
-    User findByUserName(String userName);
+    User findByUserName(String UserName);
 }

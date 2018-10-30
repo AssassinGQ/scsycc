@@ -5,12 +5,7 @@
     <!-- 用户信息表 -->
     <sql id="t_role"> t_role </sql>
 
-    <resultMap id="beanMap" type="Role">
-        <id column="id" property="id" />
-        <result column="create_time" property="createTime" />
-        <result column="update_time" property="updateTime" />
-        <result column="delete_time" property="deleteTime" />
-        <result column="is_deleted" property="isDeleted" />
+    <resultMap id="beanMap" type="Role" extends="cn.AssassinG.scsycc.common.entity.BaseEntity.BaseEntityMap">
         <result column="role_name" property="RoleName" />
         <result column="role_desc" property="RoleDesc" />
         <result column="superrole_name" property="SuperRoleName" />
@@ -37,7 +32,7 @@
             role_desc = #{RoleDesc}
         </set>
         <where>
-            ID = #{id}
+            id = #{Id}
         </where>
     </update>
 
@@ -46,34 +41,34 @@
         <trim prefix="set" suffixOverrides=",">
             <trim prefix="update_time =case" suffix="end,">
                 <foreach collection="list" item="item">
-                    when id=#{item.id} then now()
+                    when id=#{item.Id} then now()
                 </foreach>
             </trim>
             <trim prefix="role_name =case" suffix="end,">
                 <foreach collection="list" item="item">
                     <if test="item.RoleName!=null">
-                        when id=#{item.id} then #{item.RoleName}
+                        when id=#{item.Id} then #{item.RoleName}
                     </if>
                 </foreach>
             </trim>
             <trim prefix="role_desc =case" suffix="end,">
                 <foreach collection="list" item="item">
                     <if test="item.RoleDesc!=null">
-                        when id=#{item.id} then #{item.RoleDesc}
+                        when id=#{item.Id} then #{item.RoleDesc}
                     </if>
                 </foreach>
             </trim>
             <trim prefix="superrole_name =case" suffix="end,">
                 <foreach collection="list" item="item">
                     <if test="item.SuperRoleName!=null">
-                        when id=#{item.id} then #{item.SuperRoleName}
+                        when id=#{item.Id} then #{item.SuperRoleName}
                     </if>
                 </foreach>
             </trim>
         </trim>
         <where>
             <foreach collection="list" separator="or" item="item">
-                id=#{item.id}
+                id=#{item.Id}
             </foreach>
         </where>
     </update>
@@ -86,7 +81,7 @@
             is_deleted =  true
         </set>
         <where>
-            ID = #{id}
+            id = #{Id}
         </where>
     </update>
 
@@ -98,12 +93,12 @@
             is_deleted =  true
         </set>
         <where>
-            ID = #{id}
+            id = #{Id}
         </where>
     </update>
 
     <select id="getById" parameterType="long" resultMap="beanMap">
-        select * from <include refid="t_role"/> where id = #{id}
+        select * from <include refid="t_role"/> where id = #{Id}
     </select>
 
     <select id="listAll" resultMap="beanMap">
@@ -113,45 +108,28 @@
     <select id="listByUserId" parameterType="long" resultMap="beanMap">
         SELECT r.*
         FROM t_role r
-        LEFT JOIN t_user_role ur ON (ur.user_id = #{id})
+        LEFT JOIN t_user_role ur ON (ur.user_id = #{Id})
         WHERE r.id = ur.role_id
     </select>
 
     <select id="listByUsername" parameterType="string" resultMap="beanMap">
         SELECT r.*
         FROM t_role r
-        LEFT JOIN t_user u ON (u.user_name = #{userName})
+        LEFT JOIN t_user u ON (u.user_name = #{UserName})
         LEFT JOIN t_user_role ur ON (ur.user_id = u.id)
         WHERE r.id = ur.role_id
     </select>
 
-    <sql id="condition_sql_nolike">
+    <sql id="condition_sql">
         <!-- Equal query -->
+        <if test="Id != null"> and id = #{Id}</if>
         <if test="createTimeBegin != null"> and create_time &gt;= #{createTimeBegin}</if>
         <if test="createTimeEnd != null"> and create_time &lt;= #{createTimeEnd}</if>
         <if test="updateTimeBegin != null"> and update_time &gt;= #{updateTimeBegin}</if>
         <if test="updateTimeEnd != null"> and update_time &lt;= #{updateTimeEnd}</if>
         <if test="deleteTimeBegin != null"> and delete_time &gt;= #{deleteTimeBegin}</if>
         <if test="deleteTimeEnd != null"> and delete_time &lt;= #{deleteTimeEnd}</if>
-        <if test="isDeleted != null"> and is_deleted = #{isDeleted}</if>
-        <if test="RoleName != null"> and role_name = #{RoleName}</if>
-        <if test="RoleDesc != null"> and role_desc = #{RoleDesc}</if>
-        <if test="SuperRoleName != null"> and superrole_name = #{SuperRoleName}</if>
-        <!-- Like query -->
-        <!--<if test="RoleName != null and RoleName != ''"> and role_name like CONCAT(CONCAT('%', #{RoleName}), '%')</if>-->
-        <!--<if test="RoleDesc != null and RoleDesc != ''"> and role_desc like CONCAT(CONCAT('%', #{RoleDesc}), '%')</if>-->
-        <!--<if test="SuperRoleName != null and SuperRoleName != ''"> and superrole_name like CONCAT(CONCAT('%', #{SuperRoleName}), '%')</if>-->
-    </sql>
-
-    <sql id="condition_sql_like">
-        <!-- Equal query -->
-        <if test="createTimeBegin != null"> and create_time &gt;= #{createTimeBegin}</if>
-        <if test="createTimeEnd != null"> and create_time &lt;= #{createTimeEnd}</if>
-        <if test="updateTimeBegin != null"> and update_time &gt;= #{updateTimeBegin}</if>
-        <if test="updateTimeEnd != null"> and update_time &lt;= #{updateTimeEnd}</if>
-        <if test="deleteTimeBegin != null"> and delete_time &gt;= #{deleteTimeBegin}</if>
-        <if test="deleteTimeEnd != null"> and delete_time &lt;= #{deleteTimeEnd}</if>
-        <if test="isDeleted != null"> and is_deleted = #{isDeleted}</if>
+        <if test="IsDeleted != null"> and is_deleted = #{IsDeleted}</if>
         <!-- Like query -->
         <if test="RoleName != null and RoleName != ''"> and role_name like CONCAT(CONCAT('%', #{RoleName}), '%')</if>
         <if test="RoleDesc != null and RoleDesc != ''"> and role_desc like CONCAT(CONCAT('%', #{RoleDesc}), '%')</if>
@@ -162,16 +140,7 @@
         select * from
         <include refid="t_role"/>
         <where>
-            <include refid="condition_sql_nolike" />
-        </where>
-        order by id asc
-    </select>
-
-    <select id="listByLike" parameterType="java.util.Map" resultMap="beanMap">
-        select * from
-        <include refid="t_role"/>
-        <where>
-            <include refid="condition_sql_like" />
+            <include refid="condition_sql" />
         </where>
         order by id asc
     </select>
@@ -180,17 +149,7 @@
         select * from
         <include refid="t_role"/>
         <where>
-            <include refid="condition_sql_nolike" />
-        </where>
-        order by id asc
-        limit #{pageFirst} , #{pageSize}
-    </select>
-
-    <select id="listPageLike" parameterType="java.util.Map" resultMap="beanMap">
-        select * from
-        <include refid="t_role"/>
-        <where>
-            <include refid="condition_sql_like" />
+            <include refid="condition_sql" />
         </where>
         order by id asc
         limit #{pageFirst} , #{pageSize}
@@ -199,14 +158,7 @@
     <select id="listPageCount" parameterType="java.util.Map" resultType="long">
         select count(1) from <include refid="t_role"/>
         <where>
-            <include refid="condition_sql_nolike"/>
-        </where>
-    </select>
-
-    <select id="listPageCountLike" parameterType="java.util.Map" resultType="long">
-        select count(1) from <include refid="t_role"/>
-        <where>
-            <include refid="condition_sql_like"/>
+            <include refid="condition_sql"/>
         </where>
     </select>
 </mapper>

@@ -108,29 +108,26 @@ public class TestPermission {
     public void testGetBy() {
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("isDeleted", true);
-        boolean islike = false;
-        paramMap.put("id", 1L);
-        logger.info(permissionDao.getBy(paramMap, islike));
+        paramMap.put("Id", 1L);
+        logger.info(permissionDao.getBy(paramMap));
     }
 
     @Test
     public void testListBy() {
-        boolean islike = true;
         Map<String, Object> paramMap = new HashMap<String, Object>();
-//        paramMap.put("isDeleted", false);
+//        paramMap.put("IsDeleted", false);
         paramMap.put("PermissionName", "URL");
-        List<Permission> permissions = permissionDao.listBy(paramMap, islike);
+        List<Permission> permissions = permissionDao.listBy(paramMap);
         for (int i = 0; i < permissions.size(); i++)
             logger.info("Item" + i + ":" + permissions.get(i));
     }
 
     @Test
     public void testListPage() {
-        boolean islike = false;
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("isDeleted", false);
         PageParam pageParam = new PageParam(2, 2);
-        PageBean<Permission> pageBean = permissionDao.listPage(pageParam, paramMap, islike);
+        PageBean<Permission> pageBean = permissionDao.listPage(pageParam, paramMap);
         logger.info(pageBean);
         List<Permission> permissions = pageBean.getRecordList();
         for (int i = 0; i < permissions.size(); i++)

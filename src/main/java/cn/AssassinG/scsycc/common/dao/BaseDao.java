@@ -15,14 +15,14 @@ public interface BaseDao<T> {
     long insert(List<T> list);
     int update(T entity);
     int update(List<T> list);
-    int delete(long id);
+    int delete(long Id);
     int delete(T entity);
-    T getById(long id);
+    T getById(long Id);
     List<T> listAll();
     T getBy(Map<String, Object> paramMap);
-    T getBy(Map<String, Object> paramMap, boolean islike);
+//    T getBy(Map<String, Object> paramMap, boolean islike);
     List<T> listBy(Map<String, Object> paramMap);
-    List<T> listBy(Map<String, Object> paramMap, boolean islike);
+//    List<T> listBy(Map<String, Object> paramMap, boolean islike);
     PageBean<T> listPage(PageParam pageParam, Map<String, Object> paramMap);
-    PageBean<T> listPage(PageParam pageParam, Map<String, Object> paramMap, boolean islike);
+//    PageBean<T> listPage(PageParam pageParam, Map<String, Object> paramMap, boolean islike);
 }

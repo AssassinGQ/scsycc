@@ -82,7 +82,7 @@ public class AuthController {
             Role role = roles.get(i);
             String father_name = role.getSuperRoleName();
             Role father_role = father_name == null ? null : userService.findRoleByRoleName(role.getSuperRoleName());
-            item.put("id", role.getId());
+            item.put("Id", role.getId());
             item.put("pid", father_role == null ? 0 : father_role.getId());
             item.put("roledesc", role.getRoleDesc());
             jsonArray.add(item);

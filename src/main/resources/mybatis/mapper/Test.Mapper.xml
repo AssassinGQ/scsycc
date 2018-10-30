@@ -5,12 +5,7 @@
 	<!-- 用户信息表 -->
 	<sql id="t_test"> t_test </sql>
 
-	<resultMap id="beanMap" type="Test">
-		<id column="id" property="id" />
-		<result column="create_time" property="createTime" />
-		<result column="update_time" property="updateTime" />
-		<result column="delete_time" property="deleteTime" />
-        <result column="is_deleted" property="isDeleted" />
+	<resultMap id="beanMap" type="Test" extends="cn.AssassinG.scsycc.common.entity.BaseEntity.BaseEntityMap">
 		<result column="_ip" property="IP" />
 	</resultMap>
 
@@ -34,7 +29,7 @@
 			_ip =  #{IP}
 		</set>
 		<where>
-			ID = #{id}
+			id = #{Id}
 		</where>
 	</update>
 
@@ -43,20 +38,20 @@
         <trim prefix="set" suffixOverrides=",">
             <trim prefix="update_time =case" suffix="end,">
                 <foreach collection="list" item="item">
-                    when id=#{item.id} then now()
+                    when id=#{item.Id} then now()
                 </foreach>
             </trim>
             <trim prefix="_ip =case" suffix="end,">
                 <foreach collection="list" item="item">
                     <if test="item.IP!=null">
-                        when id=#{item.id} then #{item.IP}
+                        when id=#{item.Id} then #{item.IP}
                     </if>
                 </foreach>
             </trim>
         </trim>
         <where>
             <foreach collection="list" separator="or" item="item">
-                id=#{item.id}
+                id=#{item.Id}
             </foreach>
         </where>
     </update>
@@ -69,7 +64,7 @@
             is_deleted =  true
         </set>
         <where>
-            ID = #{id}
+            id = #{Id}
         </where>
     </update>
 
@@ -81,59 +76,37 @@
 			is_deleted =  true
 		</set>
 		<where>
-			ID = #{id}
+			id = #{Id}
 		</where>
 	</update>
 	
   	<select id="getById" parameterType="long" resultMap="beanMap">
-    	select * from <include refid="t_test"/> where id = #{id}
+    	select * from <include refid="t_test"/> where id = #{Id}
   	</select>
   	
   	<select id="listAll" resultMap="beanMap">
     	select * from <include refid="t_test"/> order by id asc
   	</select>
 
-	<sql id="condition_sql_like">
+	<sql id="condition_sql">
 		<!-- Equal query -->
-		<if test="id != null"> and id = #{id}</if>
+		<if test="Id != null"> and id = #{Id}</if>
 		<if test="createTimeBegin != null"> and create_time &gt;= #{createTimeBegin}</if>
 		<if test="createTimeEnd != null"> and create_time &lt;= #{createTimeEnd}</if>
 		<if test="updateTimeBegin != null"> and update_time &gt;= #{updateTimeBegin}</if>
 		<if test="updateTimeEnd != null"> and update_time &lt;= #{updateTimeEnd}</if>
 		<if test="deleteTimeBegin != null"> and delete_time &gt;= #{deleteTimeBegin}</if>
 		<if test="deleteTimeEnd != null"> and delete_time &lt;= #{deleteTimeEnd}</if>
-		<if test="isDeleted != null"> and is_deleted = #{isDeleted}</if>
+		<if test="IsDeleted != null"> and is_deleted = #{IsDeleted}</if>
 		<!-- Like query -->
 		<if test="IP != null and IP != ''"> and _ip like CONCAT(CONCAT('%', #{IP}), '%')</if>
-	</sql>
-
-	<sql id="condition_sql_nolike">
-		<!-- Equal query -->
-		<if test="id != null"> and id = #{id}</if>
-		<if test="createTimeBegin != null"> and create_time &gt;= #{createTimeBegin}</if>
-		<if test="createTimeEnd != null"> and create_time &lt;= #{createTimeEnd}</if>
-		<if test="updateTimeBegin != null"> and update_time &gt;= #{updateTimeBegin}</if>
-		<if test="updateTimeEnd != null"> and update_time &lt;= #{updateTimeEnd}</if>
-		<if test="deleteTimeBegin != null"> and delete_time &gt;= #{deleteTimeBegin}</if>
-		<if test="deleteTimeEnd != null"> and delete_time &lt;= #{deleteTimeEnd}</if>
-		<if test="isDeleted != null"> and is_deleted = #{isDeleted}</if>
-		<if test="IP != null and IP != ''"> and _ip = #{IP}</if>
 	</sql>
 
 	<select id="listBy" parameterType="java.util.Map" resultMap="beanMap">
 		select * from
 		<include refid="t_test"/>
 		<where>
-			<include refid="condition_sql_nolike" />
-		</where>
-		order by id asc
-	</select>
-
-	<select id="listByLike" parameterType="java.util.Map" resultMap="beanMap">
-		select * from
-		<include refid="t_test"/>
-		<where>
-			<include refid="condition_sql_like" />
+			<include refid="condition_sql" />
 		</where>
 		order by id asc
 	</select>
@@ -142,17 +115,7 @@
 		select * from
 		<include refid="t_test"/>
 		<where>
-			<include refid="condition_sql_nolike" />
-		</where>
-		order by id asc
-		limit #{pageFirst} , #{pageSize}
-	</select>
-
-	<select id="listPageLike" parameterType="java.util.Map" resultMap="beanMap">
-		select * from
-		<include refid="t_test"/>
-		<where>
-			<include refid="condition_sql_like" />
+			<include refid="condition_sql" />
 		</where>
 		order by id asc
 		limit #{pageFirst} , #{pageSize}
@@ -161,14 +124,7 @@
 	<select id="listPageCount" parameterType="java.util.Map" resultType="long">
 		select count(1) from <include refid="t_test"/>
 		<where>
-			<include refid="condition_sql_nolike"/>
-		</where>
-	</select>
-
-	<select id="listPageCountLike" parameterType="java.util.Map" resultType="long">
-		select count(1) from <include refid="t_test"/>
-		<where>
-			<include refid="condition_sql_like"/>
+			<include refid="condition_sql"/>
 		</where>
 	</select>
 	

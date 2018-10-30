@@ -14,8 +14,8 @@ public class RoleDaoImpl extends BaseDaoImpl<Role> implements RoleDao {
     public static final String SQL_FINDBYUSERNAME = "listByUsername";
 
     @Override
-    public Set<Role> findByUserId(long id) {
-        List<Role> roles = super.getSessionTemplate().selectList(super.getStatement(SQL_FINDBYUSERID), id);
+    public Set<Role> findByUserId(long Id) {
+        List<Role> roles = super.getSessionTemplate().selectList(super.getStatement(SQL_FINDBYUSERID), Id);
         Set<Role> ret = new HashSet<Role>();
         ret.addAll(roles);
         Queue<Role> queue = new LinkedList<Role>();
@@ -34,8 +34,8 @@ public class RoleDaoImpl extends BaseDaoImpl<Role> implements RoleDao {
     }
 
     @Override
-    public Set<Role> findByUsername(String username) {
-        List<Role> roles = super.getSessionTemplate().selectList(super.getStatement(SQL_FINDBYUSERNAME), username);
+    public Set<Role> findByUsername(String UserName) {
+        List<Role> roles = super.getSessionTemplate().selectList(super.getStatement(SQL_FINDBYUSERNAME), UserName);
         Set<Role> ret = new HashSet<Role>();
         ret.addAll(roles);
         Queue<Role> queue = new LinkedList<Role>();

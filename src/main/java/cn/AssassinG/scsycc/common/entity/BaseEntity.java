@@ -4,49 +4,53 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class BaseEntity implements Serializable {
-    protected Long id;
-    protected Date createTime;
-    protected Date updateTime;
-    protected Date deleteTime;
-    protected boolean isDeleted;
+    protected Long Id;
+    protected Date CreateTime;
+    protected Date UpdateTime;
+    protected Date DeleteTime;
+    protected boolean IsDeleted;
+
+    public BaseEntity() {
+        IsDeleted = false;
+    }
 
     public Long getId() {
-        return id;
+        return Id;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.Id = id;
     }
 
     public Date getCreateTime() {
-        return createTime;
+        return CreateTime;
     }
 
     public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+        this.CreateTime = createTime;
     }
 
     public Date getUpdateTime() {
-        return updateTime;
+        return UpdateTime;
     }
 
     public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
+        this.UpdateTime = updateTime;
     }
 
     public Date getDeleteTime() {
-        return deleteTime;
+        return DeleteTime;
     }
 
     public void setDeleteTime(Date deleteTime) {
-        this.deleteTime = deleteTime;
+        this.DeleteTime = deleteTime;
     }
 
     public boolean isDeleted() {
-        return isDeleted;
+        return IsDeleted;
     }
 
     public void setDeleted(boolean deleted) {
-        isDeleted = deleted;
+        IsDeleted = deleted;
     }
 }

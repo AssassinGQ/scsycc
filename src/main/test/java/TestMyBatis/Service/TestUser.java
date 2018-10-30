@@ -99,11 +99,11 @@ public class TestUser {
         Long role_id = 1L;
         Long permission_id = 2L;
         Set<Permission> permissions = permissionDao.findByRoleId(role_id);
-        logger.info("Before The role who's id = "+role_id+" has permissions:");
+        logger.info("Before The role who's Id = "+role_id+" has permissions:");
         for(Permission permission : permissions)
             logger.info(permission);
         userService.addPermissionToRole(role_id, permission_id);
-        logger.info("After The role who's id = "+role_id+" has permissions:");
+        logger.info("After The role who's Id = "+role_id+" has permissions:");
         for(Permission permission : permissions)
             logger.info(permission);
     }
@@ -113,11 +113,11 @@ public class TestUser {
         Long role_id = 1L;
         Long permission_id = 2L;
         Set<Permission> permissions = permissionDao.findByRoleId(role_id);
-        logger.info("Before The role who's id = "+role_id+" has permissions:");
+        logger.info("Before The role who's Id = "+role_id+" has permissions:");
         for(Permission permission : permissions)
             logger.info(permission);
         userService.removePermissionFromRole(role_id, permission_id);
-        logger.info("After The role who's id = "+role_id+" has permissions:");
+        logger.info("After The role who's Id = "+role_id+" has permissions:");
         for(Permission permission : permissions)
             logger.info(permission);
     }
@@ -127,11 +127,11 @@ public class TestUser {
         Long role_id = 1L;
         Long user_id = 1L;
         Set<Role> roles = roleDao.findByUserId(user_id);
-        logger.info("Before The user who's id = "+user_id+" has roles:");
+        logger.info("Before The user who's Id = "+user_id+" has roles:");
         for(Role role : roles)
             logger.info(role);
         userService.addUserRole(user_id, role_id);
-        logger.info("After The user who's id = "+user_id+" has roles:");
+        logger.info("After The user who's Id = "+user_id+" has roles:");
         for(Role role : roles)
             logger.info(role);
     }
@@ -141,11 +141,11 @@ public class TestUser {
         Long role_id = 1L;
         Long user_id = 1L;
         Set<Role> roles = roleDao.findByUserId(user_id);
-        logger.info("Before The user who's id = "+user_id+" has roles:");
+        logger.info("Before The user who's Id = "+user_id+" has roles:");
         for(Role role : roles)
             logger.info(role);
         userService.removeUserRole(user_id, role_id);
-        logger.info("After The user who's id = "+user_id+" has roles:");
+        logger.info("After The user who's Id = "+user_id+" has roles:");
         for(Role role : roles)
             logger.info(role);
     }

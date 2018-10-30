@@ -29,7 +29,7 @@
     </security:http>
 
     <!--自定义权限前缀-->
-    <!--<bean id="myAccessDecisionManager" class="cn.AssassinG.scsycc.common.security.MyAffirmativeBased">-->
+    <!--<bean Id="myAccessDecisionManager" class="cn.AssassinG.scsycc.common.security.MyAffirmativeBased">-->
         <!--<constructor-arg name="decisionVoters">-->
             <!--<list>-->
                 <!--&lt;!&ndash;<bean class="org.springframework.security.web.access.expression.WebExpressionVoter"/>&ndash;&gt;-->
@@ -38,14 +38,14 @@
             <!--</list>-->
         <!--</constructor-arg>-->
     <!--</bean>-->
-    <!--<bean id="myMethodSecurityInterceptor" class="org.springframework.security.access.intercept.aopalliance.MethodSecurityInterceptor">-->
+    <!--<bean Id="myMethodSecurityInterceptor" class="org.springframework.security.access.intercept.aopalliance.MethodSecurityInterceptor">-->
         <!--<property name="authenticationManager" ref="myAuthenticationManager"/>-->
         <!--<property name="accessDecisionManager" ref="myAccessDecisionManager"/>-->
         <!--<property name="securityMetadataSource">-->
             <!--<bean class="org.springframework.security.access.annotation.SecuredAnnotationSecurityMetadataSource"/>-->
         <!--</property>-->
     <!--</bean>-->
-    <!--<bean id="roleVoter" class="org.springframework.security.access.method.MethodSecurityMetadataSource.springframework.security.access.vote.RoleVoter">-->
+    <!--<bean Id="roleVoter" class="org.springframework.security.access.method.MethodSecurityMetadataSource.springframework.security.access.vote.RoleVoter">-->
         <!--<property name="rolePrefix" value="RES_"/>-->
     <!--</bean>-->
 
@@ -56,12 +56,12 @@
     <bean id="userDetailsService" class="cn.AssassinG.scsycc.common.security.MyUserDetailService"/>
 
     <!--自定义支持Ehcache的UserDetailsService-->
-    <!--<bean id="cachingUserDetailsService" class="org.springframework.security.config.authentication.CachingUserDetailsService">-->
+    <!--<bean Id="cachingUserDetailsService" class="org.springframework.security.config.authentication.CachingUserDetailsService">-->
     <!--<constructor-arg ref="userDetailsService"/>-->
     <!--<property name="userCache" ref="userCache"/>-->
     <!--</bean>-->
-    <!--<bean id="userCache" class="org.springframework.security.core.userdetails.cache.EhCacheBasedUserCache">-->
+    <!--<bean Id="userCache" class="org.springframework.security.core.userdetails.cache.EhCacheBasedUserCache">-->
     <!--<property name="cache" ref="ehcache4UserDetails"/>-->
     <!--</bean>-->
-    <!--<bean id="ehcache4UserDetails" class="org.springframework.cache.ehcache.EhCacheFactoryBean"/>-->
+    <!--<bean Id="ehcache4UserDetails" class="org.springframework.cache.ehcache.EhCacheFactoryBean"/>-->
 </beans>

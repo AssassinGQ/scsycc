@@ -15,12 +15,12 @@ import java.util.List;
 public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 
     @Override
-    public User findByUserName(String userName) {
-        List<User> results = super.getSessionTemplate().selectList(super.getStatement("findByUserNo"), userName);
+    public User findByUserName(String UserName) {
+        List<User> results = super.getSessionTemplate().selectList(super.getStatement("findByUserNo"), UserName);
         if (results.size() == 0)
             return null;
         else if(results.size() > 1)
-            throw DaoException.DB_FINDBYUSERNAME_TOOMANY_RESULT.newInstance("数据库操作,findByUserName返回多个结果.{%s},UserName{%s}", getStatement("findByUserNo"), userName);
+            throw DaoException.DB_FINDBYUSERNAME_TOOMANY_RESULT.newInstance("数据库操作,findByUserName返回多个结果.{%s},UserName{%s}", getStatement("findByUserNo"), UserName);
         else
             return results.get(0);
     }

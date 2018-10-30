@@ -10,11 +10,13 @@ public class User extends BaseEntity {
     private String Phone;
     private String Vcode;
     private Date VcodeTime;
-    private Boolean IsRegistered;
+    private Boolean IfRegistered;
     private Integer UserType;
     private Long UserInfo;
 
     public User() {
+        super();
+        this.IfRegistered = false;
     }
 
     public String getUserName() {
@@ -22,7 +24,7 @@ public class User extends BaseEntity {
     }
 
     public void setUserName(String userName) {
-        this.UserName = userName;
+        UserName = userName;
     }
 
     public String getPassWord() {
@@ -30,7 +32,7 @@ public class User extends BaseEntity {
     }
 
     public void setPassWord(String passWord) {
-        this.PassWord = passWord;
+        PassWord = passWord;
     }
 
     public String getPhone() {
@@ -57,12 +59,12 @@ public class User extends BaseEntity {
         VcodeTime = vcodeTime;
     }
 
-    public Boolean getRegistered() {
-        return IsRegistered;
+    public Boolean getIfRegistered() {
+        return IfRegistered;
     }
 
-    public void setRegistered(Boolean registered) {
-        IsRegistered = registered;
+    public void setIfRegistered(Boolean ifRegistered) {
+        IfRegistered = ifRegistered;
     }
 
     public Integer getUserType() {
@@ -88,12 +90,15 @@ public class User extends BaseEntity {
                 ", PassWord='" + PassWord + '\'' +
                 ", Phone='" + Phone + '\'' +
                 ", Vcode='" + Vcode + '\'' +
-                ", VcodeTime='" + VcodeTime + '\'' +
-                ", id=" + id +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                ", deleteTime=" + deleteTime +
-                ", isDeleted=" + isDeleted +
+                ", VcodeTime=" + VcodeTime +
+                ", IfRegistered=" + IfRegistered +
+                ", UserType=" + UserType +
+                ", UserInfo=" + UserInfo +
+                ", Id=" + Id +
+                ", CreateTime=" + CreateTime +
+                ", UpdateTime=" + UpdateTime +
+                ", DeleteTime=" + DeleteTime +
+                ", IsDeleted=" + IsDeleted +
                 '}';
     }
 }

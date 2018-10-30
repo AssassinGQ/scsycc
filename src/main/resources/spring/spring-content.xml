@@ -25,5 +25,5 @@
     <!--<import resource="beans/UserServiceImpl.xml" />-->
     <import resource="spring-mybatis.xml" />
     <import resource="spring-security.xml" />
-    <import resource="spring-mvc.xml" />
+    <!--<import resource="spring-mvc.xml" />-->
 </beans>

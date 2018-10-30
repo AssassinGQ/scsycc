@@ -49,6 +49,7 @@
 
 	<mappers>
 		<mapper resource="mybatis/mapper/Test.Mapper.xml" />
+        <mapper resource="mybatis/mapper/BaseEntity.Mapper.xml" />
 		<mapper resource="mybatis/mapper/User.Mapper.xml" />
 		<mapper resource="mybatis/mapper/UserRole.Mapper.xml" />
 		<mapper resource="mybatis/mapper/Role.Mapper.xml" />

@@ -169,7 +169,7 @@ public class UserServiceImpl implements UserService{
 //    @Override
 //    public Set<Permission> findInheritRolePermissions(Long roleid) {
 //        Role role = roleDao.getById(roleid);
-//        if(role == null || role.isDeleted())
+//        if(role == null || role.IsDeleted())
 //            return new HashSet<Permission>();
 //        Set<Role> roles = new HashSet<Role>();
 //        roles.add(role);

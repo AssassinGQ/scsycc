@@ -12,8 +12,8 @@ create table t_user (
   _password     VARCHAR(20)                             COMMENT '登录密码',
   phone         VARCHAR(11)                             COMMENT '手机号',
   vcode         VARCHAR(20)                             COMMENT '验证码',
-  vcode_time    DATETIME    NOT NULL  DEFAULT now()   COMMENT '验证码有效期',
-  is_registered BOOLEAN     NOT NULL  DEFAULT false   COMMENT '是否已经注册',
+  vcode_time    DATETIME                                COMMENT '验证码有效期',
+  if_registered BOOLEAN     NOT NULL  DEFAULT false   COMMENT '是否已经注册',
   user_type     INT(3)                                   COMMENT '用户类型',
   user_info     BIGINT(20)                              COMMENT '用户信息',
   PRIMARY KEY (id)
@@ -22,5 +22,5 @@ create table t_user (
 alter table t_user comment '用户信息表';
 
 ## 用户的初始化数据(密码123456)
-insert into t_user (user_name, _password) values ("superadmin", "{noop}123456");
-insert into t_user (user_name, _password) values ("hgq", "{noop}123456");
+insert into t_user (user_name, _password, if_registered) values ("superadmin", "{noop}123456", true);
+insert into t_user (user_name, _password, if_registered) values ("hgq", "{noop}123456", true);

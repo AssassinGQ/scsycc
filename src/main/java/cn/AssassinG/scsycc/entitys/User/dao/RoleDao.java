@@ -7,6 +7,6 @@ import cn.AssassinG.scsycc.entitys.User.entity.Role;
 import java.util.Set;
 
 public interface RoleDao extends BaseDao<Role> {
-    Set<Role> findByUserId(long id);
-    Set<Role> findByUsername(String username);
+    Set<Role> findByUserId(long Id);
+    Set<Role> findByUsername(String UserName);
 }

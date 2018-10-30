@@ -5,12 +5,7 @@
     <!-- 用户信息表 -->
     <sql id="t_permission"> t_permission </sql>
 
-    <resultMap id="beanMap" type="Permission">
-        <id column="id" property="id" />
-        <result column="create_time" property="createTime" />
-        <result column="update_time" property="updateTime" />
-        <result column="delete_time" property="deleteTime" />
-        <result column="is_deleted" property="isDeleted" />
+    <resultMap id="beanMap" type="Permission" extends="cn.AssassinG.scsycc.common.entity.BaseEntity.BaseEntityMap">
         <result column="permission_name" property="PermissionName" />
         <result column="permission_desc" property="PermissionDesc" />
     </resultMap>
@@ -36,7 +31,7 @@
             permission_desc =  #{PermissionDesc}
         </set>
         <where>
-            ID = #{id}
+            id = #{Id}
         </where>
     </update>
 
@@ -45,27 +40,27 @@
         <trim prefix="set" suffixOverrides=",">
             <trim prefix="update_time =case" suffix="end,">
                 <foreach collection="list" item="item">
-                    when id=#{item.id} then now()
+                    when id=#{item.Id} then now()
                 </foreach>
             </trim>
             <trim prefix="permission_name =case" suffix="end,">
                 <foreach collection="list" item="item">
                     <if test="item.PermissionName!=null">
-                        when id=#{item.id} then #{item.PermissionName}
+                        when id=#{item.Id} then #{item.PermissionName}
                     </if>
                 </foreach>
             </trim>
             <trim prefix="permission_desc =case" suffix="end,">
                 <foreach collection="list" item="item">
                     <if test="item.PermissionDesc!=null">
-                        when id=#{item.id} then #{item.PermissionDesc}
+                        when id=#{item.Id} then #{item.PermissionDesc}
                     </if>
                 </foreach>
             </trim>
         </trim>
         <where>
             <foreach collection="list" separator="or" item="item">
-                id=#{item.id}
+                id=#{item.Id}
             </foreach>
         </where>
     </update>
@@ -78,7 +73,7 @@
             is_deleted =  true
         </set>
         <where>
-            ID = #{id}
+            id = #{Id}
         </where>
     </update>
 
@@ -90,74 +85,60 @@
             is_deleted =  true
         </set>
         <where>
-            ID = #{id}
+            id = #{Id}
         </where>
     </update>
 
     <select id="getById" parameterType="long" resultMap="beanMap">
-        select * from <include refid="t_permission"/> where id = #{id}
+        select * from <include refid="t_permission"/> where id = #{Id}
     </select>
 
     <select id="listAll" resultMap="beanMap">
         select * from <include refid="t_permission"/> order by id asc
     </select>
 
-    <!--<select id="listByUserId" parameterType="long" resultMap="beanMap">-->
+    <!--<select Id="listByUserId" parameterType="long" resultMap="beanMap">-->
         <!--SELECT p.*-->
         <!--FROM t_permission p-->
-        <!--LEFT JOIN t_user_role ur ON (ur.user_id = #{id})-->
+        <!--LEFT JOIN t_user_role ur ON (ur.user_id = #{Id})-->
         <!--LEFT JOIN t_role_permission rp ON (rp.role_id = ur.role_id)-->
-        <!--WHERE p.id = rp.permission_id-->
+        <!--WHERE p.Id = rp.permission_id-->
     <!--</select>-->
 
-    <!--<select id="listByUsername" parameterType="string" resultMap="beanMap">-->
+    <!--<select Id="listByUsername" parameterType="string" resultMap="beanMap">-->
         <!--SELECT p.*-->
         <!--FROM t_permission p-->
         <!--LEFT JOIN t_user u ON (u.user_name = #{userName})-->
-        <!--LEFT JOIN t_user_role ur ON (ur.user_id = u.id)-->
+        <!--LEFT JOIN t_user_role ur ON (ur.user_id = u.Id)-->
         <!--LEFT JOIN t_role_permission rp ON (rp.role_id = ur.role_id)-->
-        <!--WHERE p.id = rp.permission_id-->
+        <!--WHERE p.Id = rp.permission_id-->
     <!--</select>-->
 
     <select id="listByRoleId" parameterType="long" resultMap="beanMap">
         SELECT p.*
         FROM t_permission p
-        LEFT JOIN t_role_permission rp ON (rp.role_id = #{id})
+        LEFT JOIN t_role_permission rp ON (rp.role_id = #{Id})
         WHERE p.id = rp.permission_id
     </select>
 
     <select id="listByRolename" parameterType="string" resultMap="beanMap">
         SELECT p.*
         FROM t_permission p
-        LEFT JOIN t_role r ON (r.role_name = #{rolename})
+        LEFT JOIN t_role r ON (r.role_name = #{RoleName})
         LEFT JOIN t_role_permission rp ON (rp.role_id = r.id)
         WHERE p.id = rp.permission_id
     </select>
 
-    <sql id="condition_sql_nolike">
+    <sql id="condition_sql">
         <!-- Equal query -->
+        <if test="Id != null"> and id = #{Id}</if>
         <if test="createTimeBegin != null"> and create_time &gt;= #{createTimeBegin}</if>
         <if test="createTimeEnd != null"> and create_time &lt;= #{createTimeEnd}</if>
         <if test="updateTimeBegin != null"> and update_time &gt;= #{updateTimeBegin}</if>
         <if test="updateTimeEnd != null"> and update_time &lt;= #{updateTimeEnd}</if>
         <if test="deleteTimeBegin != null"> and delete_time &gt;= #{deleteTimeBegin}</if>
         <if test="deleteTimeEnd != null"> and delete_time &lt;= #{deleteTimeEnd}</if>
-        <if test="isDeleted != null"> and is_deleted = #{isDeleted}</if>
-        <if test="PermissionName != null"> and permission_name = #{PermissionName}</if>
-        <if test="PermissionDesc != null"> and permission_desc = #{PermissionDesc}</if>
-        <!-- Like query -->
-        <!--<if test="PermissionName != null and PermissionName != ''"> and permission_name like CONCAT(CONCAT('%', #{PermissionName}), '%')</if>-->
-    </sql>
-
-    <sql id="condition_sql_like">
-        <!-- Equal query -->
-        <if test="createTimeBegin != null"> and create_time &gt;= #{createTimeBegin}</if>
-        <if test="createTimeEnd != null"> and create_time &lt;= #{createTimeEnd}</if>
-        <if test="updateTimeBegin != null"> and update_time &gt;= #{updateTimeBegin}</if>
-        <if test="updateTimeEnd != null"> and update_time &lt;= #{updateTimeEnd}</if>
-        <if test="deleteTimeBegin != null"> and delete_time &gt;= #{deleteTimeBegin}</if>
-        <if test="deleteTimeEnd != null"> and delete_time &lt;= #{deleteTimeEnd}</if>
-        <if test="isDeleted != null"> and is_deleted = #{isDeleted}</if>
+        <if test="IsDeleted != null"> and is_deleted = #{IsDeleted}</if>
         <!-- Like query -->
         <if test="PermissionName != null and PermissionName != ''"> and permission_name like CONCAT(CONCAT('%', #{PermissionName}), '%')</if>
         <if test="PermissionDesc != null and PermissionDesc != ''"> and permission_desc like CONCAT(CONCAT('%', #{PermissionDesc}), '%')</if>
@@ -167,16 +148,7 @@
         select * from
         <include refid="t_permission"/>
         <where>
-            <include refid="condition_sql_nolike" />
-        </where>
-        order by id asc
-    </select>
-
-    <select id="listByLike" parameterType="java.util.Map" resultMap="beanMap">
-        select * from
-        <include refid="t_permission"/>
-        <where>
-            <include refid="condition_sql_like" />
+            <include refid="condition_sql" />
         </where>
         order by id asc
     </select>
@@ -185,17 +157,7 @@
         select * from
         <include refid="t_permission"/>
         <where>
-            <include refid="condition_sql_nolike" />
-        </where>
-        order by id asc
-        limit #{pageFirst} , #{pageSize}
-    </select>
-
-    <select id="listPageLike" parameterType="java.util.Map" resultMap="beanMap">
-        select * from
-        <include refid="t_permission"/>
-        <where>
-            <include refid="condition_sql_like" />
+            <include refid="condition_sql" />
         </where>
         order by id asc
         limit #{pageFirst} , #{pageSize}
@@ -204,14 +166,7 @@
     <select id="listPageCount" parameterType="java.util.Map" resultType="long">
         select count(1) from <include refid="t_permission"/>
         <where>
-            <include refid="condition_sql_nolike"/>
-        </where>
-    </select>
-
-    <select id="listPageCountLike" parameterType="java.util.Map" resultType="long">
-        select count(1) from <include refid="t_permission"/>
-        <where>
-            <include refid="condition_sql_like"/>
+            <include refid="condition_sql"/>
         </where>
     </select>
 

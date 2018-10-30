@@ -109,31 +109,28 @@ public class TestUser {
 
     @Test
     public void testGetBy() {
-        boolean islike = false;
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("isDeleted", true);
-        paramMap.put("id", 1L);
-        logger.info(userDao.getBy(paramMap, islike));
+        paramMap.put("Id", 1L);
+        logger.info(userDao.getBy(paramMap));
     }
 
     @Test
     public void testListBy() {
-        boolean islike = true;
         Map<String, Object> paramMap = new HashMap<String, Object>();
-//        paramMap.put("isDeleted", false);
-        paramMap.put("username", "admi");
-        List<User> users = userDao.listBy(paramMap, islike);
+//        paramMap.put("IsDeleted", false);
+        paramMap.put("UserName", "admi");
+        List<User> users = userDao.listBy(paramMap);
         for (int i = 0; i < users.size(); i++)
             logger.info("Item" + i + ":" + users.get(i));
     }
 
     @Test
     public void testListPage() {
-        boolean islike = false;
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("isDeleted", false);
         PageParam pageParam = new PageParam(2, 2);
-        PageBean<User> pageBean = userDao.listPage(pageParam, paramMap, islike);
+        PageBean<User> pageBean = userDao.listPage(pageParam, paramMap);
         logger.info(pageBean);
         List<User> users = pageBean.getRecordList();
         for (int i = 0; i < users.size(); i++)

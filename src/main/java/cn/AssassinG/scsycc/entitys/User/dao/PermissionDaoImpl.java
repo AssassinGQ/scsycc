@@ -23,8 +23,8 @@ public class PermissionDaoImpl extends BaseDaoImpl<Permission> implements Permis
     }
 
     @Override
-    public Set<Permission> findByRolename(String rolename) {
-        List<Permission> permissions = super.getSessionTemplate().selectList(super.getStatement(SQL_FINDBYROLENAME), rolename);
+    public Set<Permission> findByRolename(String RoleName) {
+        List<Permission> permissions = super.getSessionTemplate().selectList(super.getStatement(SQL_FINDBYROLENAME), RoleName);
         Set<Permission> ret = new HashSet<Permission>();
         ret.addAll(permissions);
         return ret;

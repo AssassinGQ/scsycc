@@ -8,6 +8,6 @@ import java.util.Set;
 
 public interface PermissionDao extends BaseDao<Permission> {
     Set<Permission> findByRoleId(long id);
-//    Set<Permission> findByRoleIdInherit(long id);
-    Set<Permission> findByRolename(String rolename);
+//    Set<Permission> findByRoleIdInherit(long Id);
+    Set<Permission> findByRolename(String RoleName);
 }

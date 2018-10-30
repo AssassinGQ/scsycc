@@ -105,30 +105,27 @@ public class TestUserRole {
 
     @Test
     public void testGetBy() {
-        boolean islike = false;
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("isDeleted", true);
-        paramMap.put("id", 1L);
-        logger.info(user_roleDao.getBy(paramMap, islike));
+        paramMap.put("Id", 1L);
+        logger.info(user_roleDao.getBy(paramMap));
     }
 
     @Test
     public void testListBy() {
-        boolean islike = true;
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("isDeleted", false);
-        List<User_Role> user_roles = user_roleDao.listBy(paramMap, islike);
+        List<User_Role> user_roles = user_roleDao.listBy(paramMap);
         for (int i = 0; i < user_roles.size(); i++)
             logger.info("Item" + i + ":" + user_roles.get(i));
     }
 
     @Test
     public void testListPage() {
-        boolean islike = false;
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("isDeleted", false);
         PageParam pageParam = new PageParam(2, 2);
-        PageBean<User_Role> pageBean = user_roleDao.listPage(pageParam, paramMap, islike);
+        PageBean<User_Role> pageBean = user_roleDao.listPage(pageParam, paramMap);
         logger.info(pageBean);
         List<User_Role> user_roles = pageBean.getRecordList();
         for (int i = 0; i < user_roles.size(); i++)
